@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <head>
+    <title>登录页面</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery-1.6.1.min.js"></script>
+<script src="javascript.js"></script>
+  </head>
+  
+  <body>
+    
+<div class="checkout_header">
+	<div class="checkout_header_box">
+		<div class="checkout_header_logo">
+			<a href="index.html"><img src="images/logo-1.png" /></a>
+		</div>
+	</div>
+</div>
+     
+<div class="checkout_box">
+	<div class="checkout_left">
+		<div class="checkout_box_left">
+			<div class="checkout_inner">
+				<form name="login_form" id="login_form" onsubmit="return checkinfo()" method="post"  action="index.html">
+					<font class="checkout_title_font"><strong>用户登录</strong></font>
+					<p style="margin-top: 50px;">	
+						<label for="user_login"><font class="checkout_font">用户名</font><br>
+						<input placeholder="用户名为4~10个字符" type="text" name="log" id="user_login" class="input_box" value="" size="20"></label>
+					</p>
+			
+					<p>
+						<label for="user_pass"><font class="checkout_font">登录密码</font><br>
+						<input placeholder="密码为4~16个字符" type="password" name="pwd" id="user_pass" class="input_box" value="" size="20"></label>
+					</p>
+
+					<p>
+						<input type="checkbox" style="margin-top: 10px;"><a style="font-size: 13px;"><strong>记住我</strong></a>
+					</p>
+					<div class="checkout_button">
+						<input type="submit" name="submit" id="submit" value="登录">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="checkout_right">
+		<div class="checkout_box_right">
+			<div class="checkout_inner-1">
+				<font><strong>还没有账号？</strong></font>
+					<div class="checkout_button" style="margin-top: 110px;">
+						<a href="signup.html"><input type="button" value="注册"></a>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div style="padding: 8px 0 0; margin: 0 auto;">
+<div style="border-top: 1px solid;"></div>
+<div class="bottom">Copyright©2017<a href="index.html">基于PHP的传媒公司网站</a>All rights reserved. By:1440706131 计算机系 张跃聪</div>
+<br />
+</div>
+  </body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>基于PHP的传媒公司网站</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script src="javascript.js"></script>
+<script src="jquery-2.1.4.min.js"></script>
+</head>
+
+
+<body>
+
+<div id="pagewrap">
+	<div id="header" >
+		<div class="header_tool">
+			<div class="header_tool_box">
+				<div class="header_user_box">
+						<dl class="header_user">
+							<dd><a href="login.html">登录</a></dd>
+							<dd><a href="signup.html">注册</a></dd>
+							<dd><a href="signup.html">消息</a></dd>
+							<dd><a href="signup.html">发布</a></dd>
+						</dl>
+				</div>
+			</div>
+		</div>
+		<div id="header-1">
+			<div id="header_box">
+				<div class="header_sex_option">
+					<ul>
+						<li id="boy_option"><a href="javascript:void(0)">男生</a><img class="img_boys" src="images/boy.png" /></li>
+						<li id="girl_option"><a href="javascript:void(0)">女生</a><img class="img_girls" src="images/girl.png"/></li>
+					</ul>
+				</div>
+				<div class="header_logo"><a href="index.html">
+					<img src="images/header_logo.png"/></a>
+				</div>
+				<div class="header_search_box">
+						<form id="header_search">
+					 		<input placeholder="请输入搜索内容" id="header_search_input" type="text" />
+					 		<a class="search_img"></a>
+						</form>
+				</div>
+			</div>
+			<div style=" clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0;"></div>
+		</div>
+	</div>
+</div>
+
+<div class="nav_boys nav">
+<ul>
+  <li><a href="javascript:void(0)">潮流资讯</a></li>
+  <li><a href="javascript:void(0)">搭配频道</a></li>
+  <li><a href="javascript:void(0)">潮流达人</a></li>
+</ul>
+</div>
+<div class="nav_girls nav">
+<ul>
+  <li><a href="javascript:void(0)">潮流资讯</a></li>
+  <li><a href="javascript:void(0)">搭配频道</a></li>
+  <li><a href="javascript:void(0)">潮流达人</a></li>
+</ul>
+</div>
+
+<div class="slide_box">
+	<div style="height:40px;"></div>
+	<div id="arrow_left"><img src="images/arrowleft.jpg" /></div>
+	<div id="arrow_right"><img src="images/arrowright.jpg" /></div>
+	
+	<div id="news">
+		<div  id="newsBox">
+			<div id="con1">
+				<div class="slide_pic">
+					<ul>
+						<li><a href="Adobe.html"><img src="images/pr-feature1-540x400.jpg"/></a></li> 
+						<li><a href="Dw.html"><img src="images/dw-feature3-	540x400.jpg"/></a></li> 
+						<li><a href="Ps.html"><img src="images/ps-feature2-540x400.jpg"/></a></li>
+						<li><a href="Ai.html"><img src="images/ai-feature1-540X400.jpg"/></a></li>
+						<li><a href="Pr.html"><img src="images/pr-feature2-540x400.jpg"/></a></li>
+						<li><a href="more.html"><img src="images/pr-feature3-540x400.jpg"/></a></li>
+						<li><a href="more.html"><img src="images/ae-feature1-540x400.jpg"/></a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="con2"></div>
+		</div>
+	</div>
+	
+</div>
+
+<script>
+	//导航栏变色
+	function colorTurn(){
+		$(".nav ul li").mouseenter(function(ev){
+			$("<div class='nav_underline'></div>").appendTo(this);
+		});
+		$(".nav ul li").mouseleave(function(ev){
+			$(".nav_underline").remove();
+		});
+		
+		$(".nav ul li a").mousedown(function(ev){
+			$(this).css({
+				"color" : "#150303",
+				"font-size" : "15px"
+			});
+			$(this).parent().siblings().find("a").css({
+				"color" : "#FFF",
+				"font-size" : "14px"
+			});
+		});
+		$(".header_sex_option ul li:nth-child(2)").find("a").mousedown(function(ev){
+			$("#boy_option").attr("id","boy_option-1");
+			$("#girl_option").attr("id","girl_option-1");
+			$(".search_img").css({
+				"background" : "url(images/girl_search.png) no-repeat 50%"
+			});
+			$("#header_search_input").css({
+				"border": "1px solid #C72864"
+			});
+			$(".img_girls").css({
+				"z-index" : 1	
+			});
+			$(".img_boys").css({
+				"z-index" : "-1"
+			});
+			$(".nav_girls").css({
+				"display" : "block"
+			});
+			$(".nav_boys").css({
+				"display" : "none"
+			});
+			$(".nav_boys ul li:first-child").find("a").css({
+				"color" : "#150303",
+				"font-size" : "15px"
+			});
+			$(".nav_boys ul li:first-child").siblings().find("a").css({
+				"color" : "#FFF",
+				"font-size" : "14px"
+			});
+		});
+		$(".header_sex_option ul li:first-child").find("a").mousedown(function(ev){
+			$("#boy_option-1").attr("id","boy_option");
+			$("#girl_option-1").attr("id","girl_option");
+			$(".search_img").css({
+				"background" : "url(images/boy_search.png) no-repeat 50%"
+			});
+			$("#header_search_input").css({
+				"border": "1px solid #444447"
+			});
+			$(".img_girls").css({
+				"z-index" : "-1"	
+			});
+			$(".img_boys").css({
+				"z-index" : 1
+			});
+			$(".nav_boys").css({
+				"display" : "block"
+			});
+			$(".nav_girls").css({
+				"display" : "none"
+			});
+			$(".nav_girls ul li:first-child").find("a").css({
+				"color" : "#150303",
+				"font-size" : "15px"
+			});
+			$(".nav_girls ul li:first-child").siblings().find("a").css({
+				"color" : "#FFF",
+				"font-size" : "14px"
+			});
+		});
+		/*
+		$(".header_sex_option ul li a").mousedown(function(ev){
+			$(this).parent().css({
+				"background-color" : "#444447",
+			});
+			$(this).css({
+				"color" : "#000"
+			});
+			$(this).parent().siblings().css({
+				"background-color" : "#000"
+			});
+			$(this).parent().siblings().find("a").css({
+				"color" : "#FFF"
+			});
+		});
+		*/
+		}
+	colorTurn();
+	
+	//图片滚动
+	var area = document.getElementById("newsBox");
+	var con1 = document.getElementById("con1");
+	var con2 = document.getElementById("con2");
+	var aleft=document.getElementById("arrow_left");
+	var aright=document.getElementById("arrow_right");
+	area.scrollLeft = 0;
+	var time = 2800;
+	var myScroll;
+	con2.innerHTML = con1.innerHTML;
+	function left(){
+		if(area.scrollLeft>=con1.offsetLeft*15){
+			area.scrollLeft=0;
+		}else{
+			area.scrollLeft+=540;
+		}
+	}
+	myScroll = setInterval('left()',time);
+	area.onmouseover = function(){
+		clearInterval(myScroll);
+	}
+	area.onmouseout = function(){
+		myScroll = setInterval('left()',time);
+	}
+	aleft.onclick = function(){
+		 if(area.scrollLeft<540){
+	 	area.scrollLeft+=540*6;
+	 }else{
+	 clearInterval(myScroll);
+	 	area.scrollLeft-=540;
+	 myScroll = setInterval('left()',time);
+	 }
+ 	}
+ 	aright.onclick = function(){
+ 		clearInterval(myScroll);
+		area.scrollLeft+=540;
+		myScroll = setInterval('left()',time);
+		if(area.scrollLeft>=con1.offsetLeft*15){
+			area.scrollLeft=0;
+		}
+ 	}
+
+</script>
+
+
+
+
+
+
+<div class="content">
+        <div class="widget-title">
+			<h2 class="title-h2"><small>Adobe</small></h2>
+		<div class="related_posts">
+			<ul class="related_img"><li class="related_box"><a href="Adobe.html" title="Adobe"><span class="r_title">【公司简介】Adobe公司创建于1982年，是世界领先的数字媒体和在线营销解决方案供应商</span></a></li></ul>
+            <ul class="related_img"><li class="related_box"><a href="Adobe.html" title="Adobe"><span class="r_title">【产品套装】图像处理软件Adobe Photoshop、矢量图形编辑软件Adobe Illustrator、音频编辑软件Adobe Audition等</span></a></li></ul>
+            <ul class="related_img"><li class="related_box"><a href="Adobe.html" title="Adobe"><span class="r_title">【Adobe公司产品】Adobe Photoshop：
+图像元老，最受欢迎的强大图像处理软件之一 </span></a></li></ul>
+            </div></div>
+            
+		<div class="widget-title">
+			<h2 class="title-h2"><small>Adobe Dreamweaver</small></h2>
+		<div class="related_posts">
+			<ul class="related_img"><li class="related_box"><a href="Dw.html" title="Adobe Dreamweaver CC"><span class="r_title">【软件简介】Adobe Dreamweaver，简称“DW”，中文名称&quot;梦想编织者&quot;</span></a></li></ul>
+            <ul class="related_img"><li class="related_box"><a href="Dw.html" title="Adobe Dreamweaver CC"><span class="r_title">【软件优点】制作效率,网站管理,控制能力等</span></a></li></ul>
+            <ul class="related_img"><li class="related_box"><a href="Dw.html" title="Adobe Dreamweaver CC"><span class="r_title">【软件缺点】效果难一致，代码难控制等</span></a></li></ul>
+            <ul class="related_img"><li class="related_box"><a href="show.html#todw" title="Adobe Photoshop"><span class="r_title">【作品展示】作品展示</span></a></li></ul>
+         </div></div>
+         
+        <div class="widget-title">
+			<h2 class="title-h2"><small>Adobe Photoshop</small></h2>
+		<div class="related_posts">
+			<ul class="related_img"><li class="related_box"><a href="Ps.html" title="Adobe Photoshop"><span class="r_title">【功能】专业测评、平面设计、广告摄影、影像创意、网页制作、后期修饰、视觉创意、界面设计等</span></a></li></ul>
+            <ul class="related_img"><li class="related_box"><a href="Ps.html" title="Adobe Photoshop"><span class="r_title">【组成】从功能上看，该软件可分为图像编辑、图像合成、校色调色及特功能特色效制作部分等 </span></a></li></ul>
+            <ul class="related_img"><li class="related_box"><a href="show.html#tops" title="Adobe Photoshop"><span class="r_title">【作品展示】作品展示</span></a></li></ul>
+            </div></div>
+        
+        <div class="widget-title">
+			<h2 class="title-h2"><small>Adobe Illustrator</small></h2>
+		<div class="related_posts">
+			<ul class="related_img"><li class="related_box"><a href="Ai.html" title="Adobe Illustrator"><span class="r_title">【主要功能】软件特点、功能特性、使用技巧等</span></a></li></ul>
+            <ul class="related_img"><li class="related_box"><a href="show.html#toai" title="Adobe Illustrator"><span class="r_title">【作品展示】作品展示</span></a></li></ul>
+            </div></div>
+            
+        <div class="widget-title">
+			<h2 class="title-h2"><small>Adobe Premiere</small></h2>
+		<div class="related_posts">
+			<ul class="related_img"><li class="related_box"><a href="Pr.html" title="Adobe Premiere"><span class="r_title">【软件功能】LUT滤镜、轨道设计、Anywhere、音轨混合器、音频加强、云同步、Story 面板等</span></a></li></ul>
+            <ul class="related_img"><li class="related_box"><a href="show.html#topr" title="Adobe Premiere"><span class="r_title">【作品展示】作品展示</span></a></li></ul>
+            </div></div>
+            </div>
+<br />
+<div style="border-top: 1px solid; clear:both;"></div>
+<div id="bottom">Copyright©2017<a href="index.html">基于PHP的传媒公司网站</a>All rights reserved. By:1440706131 计算机系 张跃聪</div>
+<br />
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <head>
+    <title>注册页面</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="jquery-1.6.1.min.js"></script>
+<script src="javascript.js"></script>
+ 
+  </head>
+  
+  <body onload="createCode(4)"> 
+  
+<div class="checkout_header">
+	<div class="checkout_header_box">
+		<div class="checkout_header_logo">
+			<a href="index.html"><img src="images/logo-1.png" /></a>
+		</div>
+	</div>
+</div>
+
+<div class="sign_box" style="margin-top: 90px; height: 470px; width: 100%;">
+			<div class="signup_inner">
+				<form name="loginform" id="loginform" onsubmit="return checkinfo1()" method="post" action="login.html">
+					<font class="checkout_title_font"><strong>注册成为用户</strong></font>
+					<p>	
+						<label for="user_login"><font class="checkout_font"><strong>用户名</strong></font><br>
+							<input placeholder="用户名为4~10个字符" type="text" name="log" id="user_login" class="input_box" value="" size="20"></label>
+					</p>
+					<p>
+						<label for="user_pass"><font class="checkout_font"><strong>登录密码</strong></font><br>
+							<input placeholder="密码为4~16个字符" type="password" name="pwd" id="user_pass" class="input_box" value="" size="20"></label>
+						</p>
+					<p>
+						<label for="user_pass"><font class="checkout_font"><strong>确认密码</strong></font><br>
+							<input placeholder="确认密码应与密码一致" type="password" name="pwd" id="password" class="input_box" value="" size="20"></label>
+					</p>
+					<p>
+						<label for="user_pass"><font class="checkout_font"><strong>验证码</strong></font><br></label>
+						<div style="width:274px; height: 52px;">
+							<input placeholder="区分大小写" name="checkCode" type="text" id="check_code" style="height:31px; width:110px;" size="10" maxlength="10"/> 
+   							 <div onclick="createCode(4)" readonly id="checkCode"></div>
+   						 </div>
+					</p>
+					<div class="checkout_button">
+						<input type="submit" name="submit" id="submit" value="下一步">
+					</div>
+				</form>
+		</div>
+</div>
+	  
+	  
+<div style="padding: 8px 0 0; margin: 0 auto;">
+<div style="border-top: 1px solid;"><br/></div>
+<div class="bottom">Copyright©2017<a href="index.html">基于PHP的传媒公司网站</a>All rights reserved. By:1440706131 计算机系 张跃聪</div>
+<br />
+</div>
+  </body>
+</html>
