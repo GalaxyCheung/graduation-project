@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+	<script src="jquery-1.9.0.min.js"></script>
+<style>
+.back_to_top{  
+    position: fixed;  
+    bottom:30px;  
+    right: 30px;  
+    border:1px solid #888;  
+}  
+</style>
+</head>
+
+<body>
+<div style="height: 1600px"></div>
+
+<button class="back_to_top">返回顶部</button>  
+
+<script>
+	
+	var backButton=$('.back_to_top');  
+function backToTop() {  
+    $('html,body').animate({  
+        scrollTop: 0  
+    }, 800);  
+}  
+backButton.on('click', backToTop);  
+  
+$(window).on('scroll', function () {/*当滚动条的垂直位置大于浏览器所能看到的页面的那部分的高度时，回到顶部按钮就显示 */  
+    if ($(window).scrollTop() > $(window).height())  
+        backButton.fadeIn();  
+    else  
+        backButton.fadeOut();  
+});  
+$(window).trigger('scroll');/*触发滚动事件，避免刷新的时候显示回到顶部按钮*/  
+
+</script>
+
+</body>
+</html>
