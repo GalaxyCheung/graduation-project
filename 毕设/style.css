@@ -112,71 +112,7 @@ body{
 	width: 100%;
 	height: 120px;
 }
-.header_sex_option{
-	width: 280px;
-	float: left; 
-	height: 38px;
-	margin-top:82px;
-}
 
-.header_sex_option ul {
-	list-style:none;
-}
-
-.header_sex_option ul li{
-	background-color:#000;
-	float:left;
-	text-align:center;
-	width:90px;
-	height:38px;
-	-moz-border-radius: 1px;
-	-webkit-border-radius: 1px;
-	border-radius: 1px;
-}
-
-.header_sex_option ul li a{
-	font-size: 16px;
-	color: #FFF;
-	line-height:38px;
-}
-
-.header_sex_option ul li:focus{
-	color:#CCC;
-	background-color:#444447;
-}
-/*性别选项的两种颜色*/
-#boy_option{
-	background-color:#444447;
-	margin-left: 5px;
-}
-#girl_option-1 {
-	background-color:#000;
-	margin-left: 10px;
-}
-
-#boy_option-1{
-	background-color:#000;
-	margin-left: 5px;
-}
-#girl_option{
-	background-color:#C72864;
-	margin-left: 10px;
-}
-
-.img_boys{
-	position:absolute;
-	margin-top: 8px;
-	width : 25px;
-	height : 23px;
-	z-index: 1;
-}
-.img_girls{
-	position:absolute;
-	margin-top: 8px;
-	width : 25px;
-	height : 23px;
-	z-index: -1;
-}
 
 .header_logo{
 	width: 113px;
@@ -190,10 +126,12 @@ body{
 /*导航栏*/
 .nav{
 	width: 100%;
-	height: 42px;
+	height: 43px;
 	min-width: 940px;
-	z-index: 1;
+	background-color:#444447;
+	border-top: 1px solid #fff;
 }
+
 .nav ul {
 	width: 85%;
 	list-style:none;
@@ -203,18 +141,32 @@ body{
 	height: 100%;
 }
 
-.nav ul li a{
-	font-size:14px;
-	color: #FFF;
-	display:block;
+.nav ul li{
+	width:150px;
+	height: 43px;
+	float: left;
+	border-right: 1px solid #fff;
 }
 
-.nav ul li{
-	padding: 10px 0 10px 0;
-	float: left;
-	width:100px;
-	max-height: 22px;
+.nav ul li:first-child {
+	background-color: #00c9d0;
+	border-left: 1px solid #fff;
 }
+
+.nav ul li:hover {
+	background-color: #00c9d0;
+}
+
+.nav ul li a{
+	width: 150px;
+	height: 43px;
+	display: block;
+	padding-top: 10px;
+	font-size:16px;
+	letter-spacing: 2px;
+	color: #FFF;
+}
+
 .nav_search_box{
 	float: right;
 	width: 285px;
@@ -233,39 +185,10 @@ body{
 	height: 27px;
 	float: left;
 	margin: 1px 0 0 1px;
-	background: url(images/boy_search.png) no-repeat 50%;
 	border: 1px solid #FFF;
 	cursor: pointer;
 }
-/*男生导航栏*/
-.nav_boys{
-	background-color:#444447;
-	display:block;
-}
 
-.nav_boys ul li{
-	background-color:#444447;
-}
-
-.nav_boys ul li:first-child a {
-	font-size: 15px;
-	color: #150303;
-}
-
-/*女生导航栏*/
-.nav_girls{
-	background-color : #C72864;
-	display:none;
-}
-
-.nav_girls ul li{
-	background-color : #C72864;
-}
-
-.nav_girls ul li:first-child a{
-	font-size: 15px;
-	color : #150303;
-}
 
 /*
 .nav ul li ul{
@@ -426,11 +349,10 @@ body{
 }
 
 .nav_middle ul li{
-	width:99px;
-	height: 22px;
-	padding: 10px 0 10px 0;
+	width:148px;
+	height: 42px;
 	float: left;
-	border-right: 1px solid #FFF;
+	border-right: 2px solid #f6f7f9;
 }
 
 .nav_middle ul li:first-child{
@@ -438,18 +360,34 @@ body{
 }
 
 .nav_middle ul li a{
-	font-size:14px;
+	width: 148px;
+	height: 40px;
+	padding: 10px 0 0 0;
+	font-size:16px;
+	letter-spacing: 3px;
 	color: #FFF;
 	display:block;
 }
 
+.img_boys{
+	position:absolute;
+	width : 25px;
+	height : 23px;
+}
+
+.img_girls{
+	position:absolute;
+	width : 25px;
+	height : 23px;
+}
+
 .nav_middle_angle{
 	float: left;
-	margin-left: 40px;
+	margin-left: 62px;
     width: 0px;
     height: 0px;
     border: 10px solid #00c9d0;
-    border-color: #00c9d0 #fff #fff #fff;
+    border-color: #00c9d0 #f6f7f9 #f6f7f9 #f6f7f9;
 }
 
 .backToTop_button{
@@ -474,9 +412,52 @@ body{
     margin-left: 10px;
     padding: 8px 8px 0px 8px;
     width: 302px;
-    height: 365px;
+    height: 465px;
     background-color: #fff;
     border: 1px solid #d9d9d9;
+}
+
+.content_picture{
+	width: 300px;
+	height: 400px;
+	position: relative;
+}
+
+.content_picture img{
+	width: 300px;
+	height: 400px;
+}
+
+.content_picture_info{
+	width: 300px;
+	height: 50px;
+	position: relative;
+	margin-top: 10px;
+}
+
+.content_Profile_picture{
+	float: left;
+	height: 50px;
+	width: 50px;
+}
+
+.content_Profile_picture img{
+	height: 50px;
+	width: 50px;
+}
+
+.content_user_info{
+	float: left;
+	margin-left: 5px;
+	width:170px;
+	height: 50px;
+}
+
+.content_picture_caption{
+	float: right;
+	height: 50px;
+	width: 50px;
+	margin-right: 10px;
 }
 
 .content_page{
