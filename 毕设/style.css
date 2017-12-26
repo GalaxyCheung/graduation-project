@@ -9,8 +9,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     background: transparent;
 }
 a{
-	font-family:"微软雅黑";
-	text-decoration:none; }
+	font-family:"微软雅黑"; }
+a:link{
+	text-decoration:none;
+}
 ul{
 	list-style:none;
 }
@@ -26,6 +28,10 @@ h2 {
 	font-size: 20px;
 	color: #000;
 }
+body{
+	background-color: #f6f7f9;
+}
+
 .clear{
 	clear: both;
 }
@@ -46,7 +52,6 @@ h2 {
     height: 194px;
     width: 100%;
 	background-color:#000;
-	margin-bottom: 18px;
 }
 .header_tool{
     width : 100%;
@@ -262,13 +267,6 @@ h2 {
 	color : #150303;
 }
 
-.nav_underline{
-	width: 60px;
-	height: 2px;
-	background-color:#00c9d0;
-	margin: 0 auto;
-	position: relative;
-}
 /*
 .nav ul li ul{
 	left:0px; 
@@ -289,23 +287,24 @@ h2 {
 /*图片轮滚区*/
 .slide_box{
 	width:85%;
-	margin: 0 auto;
+	height: auto;
+	position: relative;
+	margin: 20px auto 0 auto;
 	text-align: center;
-	min-width: 1042px;
+	min-width: 1142px;
+	max-width: 1150px;
 }
 
 #arrow_left{
 	float:left;
 	margin-top:180px;
 	margin-left:50px;
-	cursor: pointer;
 }
 
 #arrow_right{
 	float:right;
 	margin-top:180px;
 	margin-right:50px;
-	cursor: pointer;
 }
 
 #news {
@@ -330,15 +329,11 @@ h2 {
 }
 
 #con1{
-	display:inline;
-}
-
-#con2{
-	display:inline;
 }
 
 .slide_pic ul {
-	width: 1300%;
+	width: 700%;
+	overflow: hidden;
 }
 
 .slide_pic ul li{
@@ -448,10 +443,6 @@ h2 {
 	display:block;
 }
 
-.nav_middle ul li:hover{
-	background-color: #00c9d0;
-}
-
 .nav_middle_angle{
 	float: left;
 	margin-left: 40px;
@@ -490,6 +481,10 @@ h2 {
 
 .content_page{
 }
+
+
+/*详情页头部*/
+
 
 
 /*注册登录*/
@@ -656,7 +651,7 @@ h2 {
 	width: 75%;
 	font-size:12px;
 	letter-spacing:1px;
-	margin: 0 auto;
+	margin: 5px auto;
 	text-align:center;
 	padding-top: 5px;
 	border-top: 1px solid #929292;

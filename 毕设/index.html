@@ -42,8 +42,8 @@
 		<nav class="nav_boys nav">
 			<ul>
  				<li><a href="javascript:void(0)">首页</a></li>
-  				<li><a href="javascript:void(0)">潮流资讯</a></li>
   				<li><a href="javascript:void(0)">搭配频道</a></li>
+  				<li><a href="javascript:void(0)">搭配达人</a></li>
 				<div class="nav_search_box">
 						<form class="nav_search">
 					 		<input placeholder="请输入搜索内容" class="nav_search_input" type="text" />
@@ -54,9 +54,9 @@
 		</nav>
 		<nav class="nav_girls nav">
 			<ul>
- 				<li><a href="javascript:void(0)">潮流资讯</a></li>
- 				<li><a href="javascript:void(0)">潮流资讯</a></li>
+ 				<li><a href="javascript:void(0)">首页</a></li>
  				<li><a href="javascript:void(0)">搭配频道</a></li>
+ 				<li><a href="javascript:void(0)">搭配达人</a></li>
 				<div class="nav_search_box">
 						<form class="nav_search">
 					 		<input placeholder="请输入搜索内容" class="nav_search_input" type="text" />
@@ -68,14 +68,9 @@
 	</div>
 </div>
 
-<div class="slide_box">
-	<div id="arrow_left"><img src="images/arrowleft.jpg" /></div>
-	<div id="arrow_right"><img src="images/arrowright.jpg" /></div>
-	
 	<div id="news">
 		<div  id="newsBox">
-			<div id="con1">
-				<div class="slide_pic">
+			<div id="con1" class="slide_pic">
 					<ul>
 						<li><a href="Adobe.html"><img src="images/pr-feature1-540x400.jpg"/></a></li> 
 						<li><a href="Dw.html"><img src="images/dw-feature3-	540x400.jpg"/></a></li> 
@@ -84,25 +79,23 @@
 						<li><a href="Pr.html"><img src="images/pr-feature2-540x400.jpg"/></a></li>
 						<li><a href="more.html"><img src="images/pr-feature3-540x400.jpg"/></a></li>	
 					</ul>
-				</div>
 			</div>
-			<div id="con2"></div>
 		</div>
 	</div>
-</div>
 
 <div class="image_list_box">
 	<div class="list_title">
-		<a href="javascript:void(0)"><div class="list_title_font">潮流资讯</div></a>
+		<a href="javascript:void(0)"><div class="list_title_font">人气穿搭</div></a>
 	</div>
 	<div class="image_list">
 		<ul>
 			<li><a href="Adobe.html"><div class="image_bor"><img src="images/pr-feature1-540x400.jpg"/></div></a></li> 
-			<li><a href="Dw.html"><div class="image_bor"><img src="images/dw-feature3-	540x400.jpg"/></div></a></li> 
+			<li><a href="Dw.html"><div class="image_bor"><img src="images/dw-feature3-540x400.jpg"/></div></a></li> 
 			<li><a href="Ps.html"><div class="image_bor"><img src="images/ps-feature2-540x400.jpg"/></div></a></li>
 			<li><a href="Ai.html"><div class="image_bor"><img src="images/ai-feature1-540X400.jpg"/></div></a></li>
 			<li><a href="Pr.html"><div class="image_bor"><img src="images/pr-feature2-540x400.jpg"/></div></a></li>
 			<li><a href="more.html"><div class="image_bor"><img src="images/pr-feature3-540x400.jpg"/></div></a></li>
+			<div class="clear"></div>
 		</ul>
 	</div>
 </div>
@@ -169,188 +162,24 @@
 <footer>
 <div class="bottom">Copyright©2017<a href="index.html">基于PHP的传媒公司网站</a>All rights reserved. By:1440706131 计算机系 张跃聪</div>
 </footer>
-<br />
 
+<script src="color.js"></script>
 <script>
-	//导航栏变色
-	function colorTurn(){
-		$(".nav ul li").mouseenter(function(ev){
-			$("<div class='nav_underline'></div>").appendTo(this);
-		});
-		$(".nav ul li").mouseleave(function(ev){
-			$(".nav_underline").remove();
-		});
-		
-		$(".nav ul li a").mousedown(function(ev){
-			$(this).css({
-				"color" : "#150303",
-				"font-size" : "15px"
-			});
-			$(this).parent().siblings().find("a").css({
-				"color" : "#FFF",
-				"font-size" : "14px"
-			});
-		});
-		$(".nav_middle ul li").each(function(i){
-			var angle_left = 100*i+40;
-			$(this).mousedown(function(ev){
-				var isGirls = $(".nav_girls").css("display");
-				ev.stopPropagation;
-				ev.preventDefault;
-				$(this).css({
-					"background-color" : "#00c9d0"
-				});
-				if(isGirls == "none"){
-					$(this).siblings().css({
-						"background-color" : "#444447"
-					});
-				}else{
-					$(this).siblings().css({
-						"background-color" : "#C72864"
-					});
-				 }
-				$(".nav_middle_angle").css({
-					"margin-left" : angle_left
-				});
-			});
-		});
-		}
-		
-		/*点击女生*/
-	function girlsColor(){
-		$(".header_sex_option ul li:nth-child(2)").find("a").mousedown(function(ev){
-			$("#boy_option").attr("id","boy_option-1");
-			$("#girl_option-1").attr("id","girl_option");
-			$(".search_img").css({
-				"background" : "url(images/girl_search.png) no-repeat 50%"
-			});
-			$("#header_search_input").css({
-				"border": "1px solid #C72864"
-			});
-			$(".img_girls").css({
-				"z-index" : 1	
-			});
-			$(".img_boys").css({
-				"z-index" : "-1"
-			});
-			$(".nav_girls").css({
-				"display" : "block"
-			});
-			$(".nav_boys").css({
-				"display" : "none"
-			});
-			$(".nav_boys ul li:first-child").find("a").css({
-				"color" : "#150303",
-				"font-size" : "15px"
-			});
-			$(".nav_boys ul li:first-child").siblings().find("a").css({
-				"color" : "#FFF",
-				"font-size" : "14px"
-			});
-			$(".list_title").css({
-				"background-color" : "#C72864"
-			});
-			$(".nav_middle").css({
-				"background-color" : "#C72864"
-			});
-			$(".nav_middle ul li").css({
-				"background-color" : "#C72864"
-			});
-			$(".nav_middle ul li:first-child").css({
-				"background-color" : "#00c9d0"
-			});
-			$(".nav_middle_angle").css({
-				"margin-left" : "40px"
-			});
-		});
-	}
-		/*点击男生*/
-	function boysColor(){
-		$(".header_sex_option ul li:first-child").find("a").mousedown(function(ev){
-			$("#boy_option-1").attr("id","boy_option");
-			$("#girl_option").attr("id","girl_option-1");
-			$(".search_img").css({
-				"background" : "url(images/boy_search.png) no-repeat 50%"
-			});
-			$("#header_search_input").css({
-				"border": "1px solid #444447"
-			});
-			$(".img_girls").css({
-				"z-index" : "-1"	
-			});
-			$(".img_boys").css({
-				"z-index" : 1
-			});
-			$(".nav_boys").css({
-				"display" : "block"
-			});
-			$(".nav_girls").css({
-				"display" : "none"
-			});
-			$(".nav_girls ul li:first-child").find("a").css({
-				"color" : "#150303",
-				"font-size" : "15px"
-			});
-			$(".nav_girls ul li:first-child").siblings().find("a").css({
-				"color" : "#FFF",
-				"font-size" : "14px"
-			});
-			$(".list_title").css({
-				"background-color" : "#444447"
-			});
-			$(".nav_middle").css({
-				"background-color" : "#444447"
-			});
-			
-			$(".nav_middle ul li").css({
-				"background-color" : "#444447"
-			});
-			$(".nav_middle ul li:first-child").css({
-				"background-color" : "#00c9d0"
-			});
-			$(".nav_middle_angle").css({
-				"margin-left" : "40px"
-			});
-		});
-	}
-	colorTurn();
-	boysColor();
-	girlsColor();
-		/*
-		$(".header_sex_option ul li a").mousedown(function(ev){
-			$(this).parent().css({
-				"background-color" : "#444447",
-			});
-			$(this).css({
-				"color" : "#000"
-			});
-			$(this).parent().siblings().css({
-				"background-color" : "#000"
-			});
-			$(this).parent().siblings().find("a").css({
-				"color" : "#FFF"
-			});
-		});
-		*/
-	
 	//图片滚动
 	var area = document.getElementById("newsBox");
 	var con1 = document.getElementById("con1");
-	var con2 = document.getElementById("con2");
 	var aleft = document.getElementById("arrow_left");
 	var aright = document.getElementById("arrow_right");
 	area.scrollLeft = 0;
 	var time = 2800;
 	var myScroll;
-	con2.innerHTML = con1.innerHTML;
 	function left(){
-		if(area.scrollLeft>=con1.offsetLeft*13){
+		if(area.scrollLeft>=720*5){
 			area.scrollLeft=0;
 		}else{
 			area.scrollLeft+=720;
 		}
 	}
-	
 	myScroll = setInterval('left()',time);
 	
 	area.onmouseover = function(){
@@ -373,11 +202,12 @@
 	
  	aright.onclick = function(){
  		clearInterval(myScroll);
-		area.scrollLeft+=720;
-		myScroll = setInterval('left()',time);
-		if(area.scrollLeft>=con1.offsetLeft*13){
+		if(area.scrollLeft>=720*5){
 			area.scrollLeft=0;
+		}else{
+			area.scrollLeft+=720;
 		}
+		myScroll = setInterval('left()',time);
  	}
 	
 	$(".image_list ul li").each(function(i){
