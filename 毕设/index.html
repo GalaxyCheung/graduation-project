@@ -55,12 +55,11 @@
 		<div  id="newsBox">
 			<div id="con1" class="slide_pic">
 					<ul>
-						<li><a href="Adobe.html"><img src="images/pr-feature1-540x400.jpg"/></a></li> 
-						<li><a href="Dw.html"><img src="images/dw-feature3-	540x400.jpg"/></a></li> 
-						<li><a href="Ps.html"><img src="images/ps-feature2-540x400.jpg"/></a></li>
-						<li><a href="Ai.html"><img src="images/ai-feature1-540X400.jpg"/></a></li>
-						<li><a href="Pr.html"><img src="images/pr-feature2-540x400.jpg"/></a></li>
-						<li><a href="more.html"><img src="images/pr-feature3-540x400.jpg"/></a></li>	
+						<li><a href="Adobe.html"><img src="images/boys/20160103232318793_500.jpg" /></a></li> 
+						<li><a href="Dw.html"><img src="images/boys/20170217082007173_500.jpg" /></a></li> 
+						<li><a href="Ps.html"><img src="images/girls/20171225233703502_500.jpg" /></a></li>
+						<li><a href="Ai.html"><img src="images/girls/20171226150828053_500.jpg" /></a></li>
+						<li><a href="Pr.html"><img src="images/boys/20171222065120588_500.jpg" /></a></li>
 					</ul>
 			</div>
 		</div>
@@ -69,16 +68,15 @@
 
 <div class="image_list_box">
 	<div class="list_title">
-		<a href="javascript:void(0)"><div class="list_title_font">人气穿搭</div></a>
+		<a href="javascript:void(0)"><div class="list_title_font">人气排名</div></a>
 	</div>
 	<div class="image_list">
 		<ul>
-			<li><a href="Adobe.html"><div class="image_bor"><img src="images/pr-feature1-540x400.jpg"/></div></a></li> 
-			<li><a href="Dw.html"><div class="image_bor"><img src="images/dw-feature3-540x400.jpg"/></div></a></li> 
-			<li><a href="Ps.html"><div class="image_bor"><img src="images/ps-feature2-540x400.jpg"/></div></a></li>
-			<li><a href="Ai.html"><div class="image_bor"><img src="images/ai-feature1-540X400.jpg"/></div></a></li>
-			<li><a href="Pr.html"><div class="image_bor"><img src="images/pr-feature2-540x400.jpg"/></div></a></li>
-			<li><a href="more.html"><div class="image_bor"><img src="images/pr-feature3-540x400.jpg"/></div></a></li>
+			<li><a href="Adobe.html"><img src="images/boys/20160103232318793_500.jpg"/></a></li> 
+			<li><a href="Dw.html"><img src="images/boys/20170217082007173_500.jpg"/></a></li> 
+			<li><a href="Ps.html"><img src="images/girls/20171225233703502_500.jpg"/></a></li>
+			<li><a href="Ai.html"><img src="images/girls/20171226150828053_500.jpg"/></a></li>
+			<li><a href="Pr.html"><img src="images/boys/20171222065120588_500.jpg"/></a></li>
 			<div class="clear"></div>
 		</ul>
 	</div>
@@ -263,10 +261,10 @@
 	var time = 2800;
 	var myScroll;
 	function left(){
-		if(area.scrollLeft>=720*5){
+		if(area.scrollLeft>=300*4){
 			area.scrollLeft=0;
 		}else{
-			area.scrollLeft+=720;
+			area.scrollLeft+=300;
 		}
 	}
 	myScroll = setInterval('left()',time);
@@ -280,21 +278,21 @@
 	}
 	
 	aleft.onclick = function(){
-		if(area.scrollLeft<720){
-	 	area.scrollLeft+=720*5;
+		if(area.scrollLeft<300){
+	 	area.scrollLeft+=300*4;
 	 }else{
 	 clearInterval(myScroll);
-	 	area.scrollLeft-=720;
+	 	area.scrollLeft-=300;
 	 myScroll = setInterval('left()',time);
 	 }
  	}
 	
  	aright.onclick = function(){
  		clearInterval(myScroll);
-		if(area.scrollLeft>=720*5){
+		if(area.scrollLeft>=300*4){
 			area.scrollLeft=0;
 		}else{
-			area.scrollLeft+=720;
+			area.scrollLeft+=300;
 		}
 		myScroll = setInterval('left()',time);
  	}
@@ -302,19 +300,13 @@
 //缩略图
 	$(".image_list ul li").each(function(i){
 		$(this).mouseenter(function(ev){
-			$(this).find(".image_bor").css({
-				"margin" : "8px 8px",
-				"border" : "2px solid #000000",
-				"border-radius" : "8px"
+			$(this).find("img").css({
 			});
-			area.scrollLeft = 720*i;
+			area.scrollLeft = 300*i;
 			clearInterval(myScroll);
 		})
 		$(this).mouseleave(function(ev){
-			$(this).find(".image_bor").css({
-				"margin" : "10px 10px",
-				"border" : "none",
-				"border-radius" : "none"
+			$(this).find("img").css({
 			});
 			myScroll = setInterval('left()',time);
 		})
@@ -334,11 +326,11 @@ backButton.on("click", backToTop);
 $(window).on("scroll", function () {
     if ($(window).scrollTop() > $(window).height())  
         backButton.css({
-			"display" : "block"
+			"display": "block"
 		});  
     else  
         backButton.css({
-			"display" : "none"
+			"display": "none"
 		});  
 
     if ($(window).scrollTop() > $("#header_tool").height()){  
