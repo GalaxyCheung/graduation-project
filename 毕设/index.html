@@ -11,7 +11,7 @@
 
 <body>
 
-<div id="header" >
+<header id="header" >
 	<div class="header_tool">
 		<div class="header_tool_box">
 			<div class="header_user_box">
@@ -39,13 +39,17 @@
   			<li><a href="javascript:void(0)">搭配达人</a></li>
 			<div class="nav_search_box">
 					<form class="nav_search">
+				 		<select>
+							<option>搭配</option>
+							<option>用户</option>
+						</select>
 					 	<input placeholder="请输入搜索内容" class="nav_search_input" type="text" />
-					 	<a class="search_img"  style="background:url(images/boy_search.png) no-repeat 50%;"></a>
+					 	<a class="search_img"></a>
 					</form>
 			</div>
 		</ul>
 	</nav>
-</div>
+</header>
 
 <div class="slide_box">
 	<div id="arrow_left"><img src="images/arrowleft.jpg" /></div>
@@ -253,16 +257,41 @@
 <script>
 	//中部导航
 		$(".nav_middle ul li").each(function(i){
+			$(this).attr("index",i);
+			
 			var angle_left = 122*i+48;
+			
+			$(this).mouseenter(function(){
+				
+				if($(this).css("background-color") == "rgb(0, 201, 208)")
+					var diffcolor = $(this).index();
+					
+				$(this).css({
+					"background-color" : "#00c9d0"
+				});	
+				
+				
 			$(this).mousedown(function(){
 				$(this).css({
 					"background-color" : "#00c9d0"
 				});
-					$(this).siblings().css({
-						"background-color" : "#444447"
-					});
+				
+				$(this).siblings().css({
+					"background-color" : "#444447"
+				});
+				
 				$(".nav_middle_angle").css({
 					"margin-left" : angle_left
+				});
+				diffcolor = $(this).index();
+			});
+				
+			$(this).mouseleave(function(){
+				if(diffcolor !== $(this).index()){
+					$(this).css({
+						"background-color" : "#444447"
+						});
+					}
 				});
 			});
 		});

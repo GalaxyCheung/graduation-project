@@ -1,11 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-main{
-	width: 100%;
-	overflow: hidden;
-}
-
 
 /*头部用户信息*/
 .detail_header{
@@ -14,8 +9,8 @@ main{
 
 .header_title{
 	width:1000px;
-	height: 72px;
-	margin: 40px auto 0 auto;
+	height: 82px;
+	margin: 30px auto 0 auto;
 }
 
 .title_box{
@@ -110,7 +105,7 @@ main{
 
 .detail_content_box{
 	width: 927px;
-	margin: 40px auto 30px auto;
+	margin: 30px auto 30px auto;
 }
 
 
@@ -236,6 +231,8 @@ main{
 }
 
 
-
-
+/*search-2页面*/
+.content .detail_header:first-child .header_title{
+    margin: 0px auto 0 auto;
+}
 
