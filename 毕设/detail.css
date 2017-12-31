@@ -31,14 +31,14 @@
 	float: left;
 }
 
-.title_Profile_picture{
+.title_profile_picture{
 	width: 60px;
 	height : 60px;
 	margin: 0px 15px 0px 5px;
 	float: left;
 }
 
-.title_Profile_picture img{
+.title_profile_picture img{
 	width: 60px;
 	height: 60px;
 }

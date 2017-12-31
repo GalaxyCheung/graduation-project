@@ -1,3 +1,56 @@
+
+'use strict';
+
+
+
+	//中部导航
+		$(".nav_middle ul li").each(function(i){
+			$(this).attr("index",i);
+			
+			var angle_left = 122*i+48;
+			
+			$(this).mouseenter(function(){
+				
+				if($(this).css("background-color") === "rgb(0, 201, 208)"){
+					var diffcolor = $(this).index();
+				}
+				$(this).css({
+					"background-color" : "#00c9d0"
+				});	
+				
+				
+			$(this).mousedown(function(){
+				$(this).css({
+					"background-color" : "#00c9d0"
+				});
+				
+				$(this).siblings().css({
+					"background-color" : "#444447"
+				});
+				
+				$(".nav_middle_angle").css({
+					"margin-left" : angle_left
+				});
+				diffcolor = $(this).index();
+			});
+				
+			$(this).mouseleave(function(){
+				if(diffcolor !== $(this).index()){
+					$(this).css({
+						"background-color" : "#444447"
+						});
+					}
+				});
+			});
+		});
+
+
+
+
+
+
+
+
 //checkinfo
 function checkinfo(){
 	

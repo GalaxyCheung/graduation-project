@@ -27,20 +27,24 @@ li{
 }
 h1 {
 	font-family:"微软雅黑";
-	font-size: 24px;
+	font-size: 26px;
 	font-weight: normal;
 	color: #000;
 }
 h2 {
 	margin-top:10px;
 	font-family:"微软雅黑";
-	font-size: 20px;
+	font-size: 22px;
 	font-weight: normal;
 	color: #000;
 }
 
 .clear{
 	clear: both;
+}
+
+.display-none{
+	display: none;
 }
 
 #img1{
@@ -419,6 +423,7 @@ h2 {
 	height: 32px;
 	padding: 7px 0 0 0;
 	font-size:16px;
+	line-height: 20px;
 	letter-spacing: 3px;
 	color: #FFF;
 	display:block;
@@ -472,10 +477,10 @@ main{
 
 .content_picture_box{
     width: 302px;
-    height: 465px;
+    height: auto;
     float: left;
 	margin: 0 0 10px 10px;
-    padding: 8px 8px 0px 8px;
+    padding: 8px 8px 5px 8px;
     background-color: #fff;
     border: 1px solid #d9d9d9;;
 }
