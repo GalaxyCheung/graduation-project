@@ -10,7 +10,7 @@
 
 <body>
 	
-<header id="header" >
+<header id="header">
 	<div class="header_tool">
 		<div class="header_tool_box">
 			<div class="header_user_box">
@@ -33,7 +33,7 @@
 		
 	<nav class="nav">
 		<ul>
- 			<li><a href="javascript:void(0)">首 页</a></li>
+ 			<li><a href="index.html">首 页</a></li>
   			<li><a href="javascript:void(0)">搭配频道</a></li>
   			<li><a href="javascript:void(0)">搭配达人</a></li>
 			<div class="nav_search_box">
@@ -49,22 +49,35 @@
 		</ul>
 	</nav>
 </header>
-
 	
 <div class="space_header">
 	<div class="space_header_box">
-		<div class="space_profile_picture">
-		
-			<img src="images/AI.png" />
+		<div class="space_user_info">
+			<div class="space_profile_picture">
+				<img src="images/AI.png" />
+			</div>
 			
 			<div class="space_user_introduction">
-				<p>1</p>
-				<p>1</p>
-				<p>1</p>
+				<p class="user_name">咋撒啊</p>
+				<div class="display-none">
+					<input id="space_user_stature" type="text" placeholder="身高" maxlength="3" value="" />
+					<span>cm /</span>
+					<select id="space_user_sex" type="text" placeholder="性别" maxlength="8" value="">
+						<option>男生</option>
+						<option>女生</option>
+					</select>
+				</div>
+				<p class="user_charact"><a class="user_stature">162</a> cm /&nbsp;<a class="user_sex">男生</a></p>
+				<input id="space_user_signature" type="text" placeholder="编辑个性签名" maxlength="40" value="" />
+				<p class="user_signature">1</p>
 			</div>
 			
 			<div class="edit_info_button">
-				<a href="javascript:void(0);">编辑个人信息</a>
+				<a id="info_button" href="javascript:void(0);">编辑个人信息</a>
+			</div>
+			
+			<div class="edit_info_button display-none">
+				<a id="finsh_button" href="javascript:void(0);">完成编辑</a>
 			</div>
 		</div>
 	</div>
@@ -93,6 +106,7 @@
 	<div class="content_box">
 		
 		<div class="content">
+			
 			<div class="space_picture_box">
 				
 				<div class="space_picture">
@@ -101,45 +115,112 @@
 				
 				<div class="space_picture_introduction">
 
-					<div id="edit_button" class="edit_pic_button">
+					<div class="edit_button edit_pic_button">
 						<a href="javascript:void(0);"><span>∨</span> 编辑搭配</a>
 					</div>
 
-					<div id="close_button" class="edit_pic_button display-none">
-						<a href="javascript:void(0);"><span>∧</span> 收起编辑</a>
+					<div class="close_button edit_pic_button display-none">
+						<a href="javascript:void(0);"><span>∧</span> 完成编辑</a>
 					</div>
 					
 					<div class="space_introduction_content">
 						<div class="introduction_title">
-							<textarea id="space_h1" class="display-none" type="text" placeholder="编辑标题" maxlength="17" value=""></textarea>
-							<h1><a>1233121321321321</a></h1>
-							<textarea id="space_h2" class="display-none" type="text" placeholder="编辑副标题" maxlength="40" value=""></textarea>
-							<h2><a>12312132132132132</a></h2>
+							<textarea class="space_h1 display-none" type="text" placeholder="编辑标题" maxlength="17" value=""></textarea>
+							<h1 class="h1-a"><a>1233121321321321</a></h1>
+							<textarea class="space_h2 display-none" type="text" placeholder="编辑副标题" maxlength="40" value=""></textarea>
+							<h2 class="h2-a"><a>12312132132132132</a></h2>
 						</div>
 						<div class="introduction_content">
-							<textarea id="space_cont" class="display-none" type="text" placeholder="编辑内容" maxlength="300" value=""></textarea>	
-							<div><a>12312132132132112132132132112132132132112132132131213213213211213213213212132</a></div>
+							<textarea class="space_cont display-none" type="text" placeholder="编辑介绍内容" maxlength="300" value=""></textarea>	
+							<div class="cont-a"><a>12312132132132112132132132112132132132112132132131213213213211213213213212132</a>
+							</div>
 						</div>
 					</div>
 					
-					<div id="delete_button" class="edit_pic_button display-none">
+					<div class="delete_button edit_pic_button display-none">
 						<a href="javascript:void(0);"><span>×</span> 删除搭配</a>
 					</div>
 					<div class="clear"></div>
 				</div>
 			</div>
-		
-			<div class="content_picture_box">
-				<div class="content_picture">
+			
+			
+			<div class="space_picture_box">
+				
+				<div class="space_picture">
+					<img src="images/boys/20160103232318793_500.jpg" />
+				</div>
+				
+				<div class="space_picture_introduction">
+
+					<div class="edit_button edit_pic_button">
+						<a href="javascript:void(0);"><span>∨</span> 编辑搭配</a>
+					</div>
+
+					<div class="close_button edit_pic_button display-none">
+						<a href="javascript:void(0);"><span>∧</span> 完成编辑</a>
+					</div>
+					
+					<div class="space_introduction_content">
+						<div class="introduction_title">
+							<textarea class="space_h1 display-none" type="text" placeholder="编辑标题" maxlength="17" value=""></textarea>
+							<h1 class="h1-a"><a>1233121321321321</a></h1>
+							<textarea class="space_h2 display-none" type="text" placeholder="编辑副标题" maxlength="40" value=""></textarea>
+							<h2 class="h2-a"><a>12312132132132132</a></h2>
+						</div>
+						<div class="introduction_content">
+							<textarea class="space_cont display-none" type="text" placeholder="编辑介绍内容" maxlength="300" value=""></textarea>	
+							<div class="cont-a"><a>12312132132132112132132132112132132132112132132131213213213211213213213212132</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="delete_button edit_pic_button display-none">
+						<a href="javascript:void(0);"><span>×</span> 删除搭配</a>
+					</div>
+					<div class="clear"></div>
 				</div>
 			</div>
 			
-			<div class="content_picture_box">
-				<div class="content_picture">
+			
+			<div class="space_picture_box">
+				
+				<div class="space_picture">
+					<img src="images/boys/20160103232318793_500.jpg" />
+				</div>
+				
+				<div class="space_picture_introduction">
+
+					<div class="edit_button edit_pic_button">
+						<a href="javascript:void(0);"><span>∨</span> 编辑搭配</a>
+					</div>
+
+					<div class="close_button edit_pic_button display-none">
+						<a href="javascript:void(0);"><span>∧</span> 完成编辑</a>
+					</div>
+					
+					<div class="space_introduction_content">
+						<div class="introduction_title">
+							<textarea class="space_h1 display-none" type="text" placeholder="编辑标题" maxlength="17" value=""></textarea>
+							<h1 class="h1-a"><a>1233121321321321</a></h1>
+							<textarea class="space_h2 display-none" type="text" placeholder="编辑副标题" maxlength="40" value=""></textarea>
+							<h2 class="h2-a"><a>12312132132132132</a></h2>
+						</div>
+						<div class="introduction_content">
+							<textarea class="space_cont display-none" type="text" placeholder="编辑介绍内容" maxlength="300" value=""></textarea>	
+							<div class="cont-a"><a>12312132132132112132132132112132132132112132132131213213213211213213213212132</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="delete_button edit_pic_button display-none">
+						<a href="javascript:void(0);"><span>×</span> 删除搭配</a>
+					</div>
+					<div class="clear"></div>
 				</div>
 			</div>
+			
 		</div>
-		
 		<div class="content_page">
 					<a href="javascript:void(0)">&lt;&nbsp;上一页</a>
 					<a class="current_page" href="javascript:void(0)">1</a>
@@ -160,39 +241,8 @@
 </footer>
 
 <script src="javascript.js"></script>
-<script>
-	
-	$("#edit_button").find("a").mousedown(function(){
-		$("#edit_button").addClass("display-none");
-		$("#close_button").removeClass("display-none");
-		$("#delete_button").removeClass("display-none");
-		
-		$("#space_h1").removeClass("display-none");
-		$("#space_h2").removeClass("display-none");
-		$("#space_cont").removeClass("display-none");
-		
-		$(".introduction_title").find("h1").addClass("display-none");
-		$(".introduction_title").find("h2").addClass("display-none");
-		$(".introduction_content").find("div").addClass("display-none");
-		
-		
-		$("#close_button").find("a").mousedown(function(){
-			$("#edit_button").removeClass("display-none");
-			$("#close_button").addClass("display-none");
-			$("#delete_button").addClass("display-none");
-			
-			$(".introduction_title").find("h1").removeClass("display-none");
-			$(".introduction_title").find("h2").removeClass("display-none");
-			$(".introduction_content").find("div").removeClass("display-none");
-			
-			$("#space_h1").addClass("display-none");
-			$("#space_h2").addClass("display-none");
-			$("#space_cont").addClass("display-none");
-		});
-		
-	});
-	
-</script>
+<script src="scroll.js"></script>
+<script src="space.js"></script>
 
 </body>
 </html>

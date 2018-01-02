@@ -304,7 +304,7 @@ h2 {
 	height: 400px;
 }
 
-.slide_pic ul li a .Profile_picture img{
+.slide_pic ul li a .profile_picture img{
 	width: 50px;
 	height: 50px;
 }
@@ -503,13 +503,13 @@ main{
 	margin: 10px auto 0 auto;
 }
 
-.Profile_picture{
+.profile_picture{
 	float: left;
 	height: 50px;
 	width: 50px;
 }
 
-.Profile_picture img{
+.profile_picture img{
 	height: 50px;
 	width: 50px;
 }
