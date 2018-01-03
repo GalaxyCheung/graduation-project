@@ -1,65 +1,65 @@
 @charset "utf-8";
 /* CSS Document */
 
-.space_header{
+.space-header{
 	width: 1000px;
 	height: 253px;
 	margin: 15px auto;
 	background-image: url(images/space_header.jpg);
 }
 
-.space_header_box{
+.space-header-box{
 	width: 940px;
 	height: 100px; 
 	margin: 0 auto; 
 	padding: 138px 0 15px 0;
 }
 
-.space_user_info{
+.space-user-info{
 	width: 100%;
 	height: 80px; 
 	margin-top: 10px;
 }
 
-.space_user_info img{
+.space-user-info img{
 	width: 80px;
 	height: 80px; 
 	border-radius: 3px; 
 	float: left;
 }
 
-.space_user_introduction{
+.space-user-introduction{
 	height: 78px;
 	margin: 2px 0 0px 15px;
 	float: left;
 }
 
-.space_user_introduction p{
+.space-user-introduction p{
 	height: 26px; 
 	font-size: 14px; 
 	line-height: 26px;
 	color: #ddd;
 }
 
-.space_user_introduction p:first-child{
+.space-user-introduction p:first-child{
 	font-size: 18px; 
 	color: #fff;
 }
 
-.space_user_introduction span{
+.space-user-introduction span{
 	margin-left: -9px; 
 	color: #ddd;
 	line-height: 26px;
 	font-size: 14px;
 }
 
-.edit_info_button{
+.edit-info-button{
 	width: 158px; 
 	float: right; 
 	margin-top: 55px;
 }
 
-.edit_info_button a{
+.edit-info-button a{
 	display: block;
 	float: right; 
 	line-height: 20px; 
@@ -67,11 +67,11 @@
 	color: #fff; 
 }
 
-.edit_info_button a:hover{
+.edit-info-button a:hover{
 	color: mediumblue;
 }
 
-#space_user_stature{
+#space-user-stature{
 	width: 40px;
 	height: 22px;
 	padding-left: 5px;
@@ -90,17 +90,17 @@
 	transition: all 0.3s ease;
 }
 
-#space_user_stature:hover{
+#space-user-stature:hover{
 	color: #000;
 	background: #fff;
 }
 
-#space_user_stature:focus{
+#space-user-stature:focus{
 	color: #000;
 	background: #fff;
 }
 
-#space_user_sex{
+#space-user-sex{
 	width: 65px;
 	height: 22px;
 	padding-left: 2px;
@@ -117,21 +117,21 @@
 	transition: all 0.3s ease;
 }
 
-#space_user_sex option{
+#space-user-sex option{
 	color: #000;
 }
 
-#space_user_sex:hover{
-	color: #000;
-	background: #fff;
-}
-
-#space_user_sex:focus{
+#space-user-sex:hover{
 	color: #000;
 	background: #fff;
 }
 
-#space_user_signature{
+#space-user-sex:focus{
+	color: #000;
+	background: #fff;
+}
+
+#space-user-signature{
 	width: 600px;
 	height: 22px;
 	display: none;
@@ -151,23 +151,23 @@
 	transition: all 0.3s ease;
 }
 
-#space_user_signature:hover{
+#space-user-signature:hover{
 	color: #000;
 	background: #fff;
 }
 
-#space_user_signature:focus{
+#space-user-signature:focus{
 	color: #000;
 	background: #fff;
 }
 
-.edit_pic_button{
+.edit-pic-button{
 	width: 150px;
 	height: 25px;
 	float: right;
 }
 
-.edit_pic_button a{
+.edit-pic-button a{
 	display: block;
 	float: right; 
 	margin-right: 10px;
@@ -176,22 +176,22 @@
 	color: #444447; 
 }
 
-.edit_pic_button span{
+.edit-pic-button span{
 	font-size: 16px;
 }
 
-.edit_pic_button a:hover{
+.edit-pic-button a:hover{
 	color: red;
 }
 
 
-.space_picture_box{
+.space-picture-box{
 	margin-bottom: 20px;
     background-color: #fff;
     border: 1px solid #d9d9d9;;
 }
 
-.space_picture{
+.space-picture{
 	width: 300px;
 	height: 400px;
 	margin: 20px 15px 16px 20px;
@@ -199,16 +199,16 @@
 	border: 1px solid #ddd;
 }
 
-.space_picture a{
+.space-picture a{
 	display: block;
 }
 
-.space_picture img{
+.space-picture img{
 	width: 300px;
 	height: 400px;
 }
 
-.space_picture_introduction{
+.space-picture-introduction{
 	width: 630px;
 	height: 400px; 
 	display: inline-block;
@@ -216,31 +216,31 @@
 	overflow: hidden;
 }
 
-.space_introduction_content {
+.space-introduction-content {
 	height: 360px;
 	padding: 10px 15px 0 15px;
 }
 
-.introduction_title {
+.introduction-title {
 	width: 460px; 
 	min-height: 90px;
 	margin-bottom: 10px;
 }
 
 
-.introduction_title h1{
+.introduction-title h1{
 	border-bottom: 1px solid #ddd;
 	padding-bottom: 5px;
     line-height: 26px;
 }
 
-.introduction_title h1 a{
+.introduction-title h1 a{
 	padding: 10px 0  0 10px; 
 	display: block;
 	word-wrap: break-word;
 }
 
-.space_h1{
+.space-h1{
 	width: 460px;
 	height: 33px;
 	margin: 0 0 5px 5px;
@@ -249,25 +249,24 @@
     font-size: 26px;
 	font-family: "微软雅黑";
     line-height: 25px;
-	border: none;
     box-shadow: none;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
     border-radius: 4px;
     top: -1px;
 }
-
-.introduction_title h2{
+	
+.introduction-title h2{
 	line-height: 25px;
 }
 
-.introduction_title h2 a{
+.introduction-title h2 a{
 	padding-left: 10px; 
 	display: block;
 	word-wrap: break-word;
 }
 
-.space_h2{
+.space-h2{
 	width: 460px;
 	height: 58px;
 	margin: 10px 0 0 5px;
@@ -276,18 +275,17 @@
     font-size: 22px;
 	font-family: "微软雅黑";
     line-height: 25px;
-	border: none;
     box-shadow: none;
     border-radius: 4px;
     top: -1px;
 }
 
-.introduction_content{
+.introduction-content{
 	width: 100%;
 	height: 241px;
 }
 
-.introduction_content a{
+.introduction-content a{
 	width: 590px;  
 	display: block; 
 	padding-left: 10px; 
@@ -295,16 +293,15 @@
 	word-wrap: break-word;
 }
 
-.introduction_content a textarea{
+.introduction-content a textarea{
 	width: 100%;
 	font-size: 18px;
 }
 
-.space_cont{
+.space-cont{
 	width: 583px;
 	height: 212px;
 	margin: 0 5px;
     padding: 5px 0 0 5px;
-	border: none;
 	font-size: 18px;
 }

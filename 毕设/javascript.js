@@ -2,9 +2,8 @@
 'use strict';
 
 
-
 	//中部导航
-		$(".nav_middle ul li").each(function(i){
+		$(".nav-middle ul li").each(function(i){
 			$(this).attr("index",i);
 			
 			var angle_left = 122*i+48;
@@ -28,7 +27,7 @@
 					"background-color" : "#444447"
 				});
 				
-				$(".nav_middle_angle").css({
+				$(".nav-middle-angle").css({
 					"margin-left" : angle_left
 				});
 				diffcolor = $(this).index();
@@ -50,12 +49,11 @@
 
 
 
-
 //checkinfo
 function checkinfo(){
 	
-  var name=document.getElementById("user_login").value;
-  var pass=document.getElementById("user_pass").value;
+  var name=document.getElementById("user-login").value;
+  var pass=document.getElementById("user-pass").value;
   var input=document.getElementById("input1").value;
   
 if(name==""||name==null){
@@ -82,8 +80,8 @@ return false;}
 
 function checkinfo1(){
 	
-  var name=document.getElementById("user_login").value;
-  var pass=document.getElementById("user_pass").value;
+  var name=document.getElementById("user-login").value;
+  var pass=document.getElementById("user-pass").value;
   var input=document.getElementById("input1").value;
   var password=document.getElementById("password").value;
   

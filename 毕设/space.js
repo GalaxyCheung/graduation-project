@@ -1,44 +1,51 @@
 // JavaScript Document
 'use strict'
 
-	$("#info_button").mousedown(function(){
+//游客
+if(false){
+	$("#info-button").parent().addClass("display-none");
+	$(".edit-button").addClass("display-none");
+}
+
+//用户本人
+	$("#info-button").mousedown(function(){
 		
-		$("#space_user_stature").val($(".user_stature").text());
-		$("#space_user_signature").val($(".user_signature").text());
-		$("#space_user_sex").val($(".user_sex").text());
+		$("#space-user-stature").val($(".user-stature").text());
+		$("#space-user-signature").val($(".user-signature").text());
+		$("#space-user-sex").val($(".user-sex").text());
 			
-		$("#finsh_button").parent().removeClass("display-none");
+		$("#finsh-button").parent().removeClass("display-none");
 		$(this).parent().addClass("display-none");
 		
-		$(".space_user_introduction").find("div").removeClass("display-none");
-		$("#space_user_signature").css({
+		$(".space-user-introduction").find("div").removeClass("display-none");
+		$("#space-user-signature").css({
 			"display" : "block"
 		});
 		
-		$(".user_charact").addClass("display-none");
-		$(".user_signature").addClass("display-none");
+		$(".user-charact").addClass("display-none");
+		$(".user-signature").addClass("display-none");
 		
-		$("#finsh_button").mousedown(function(){
+		$("#finsh-button").mousedown(function(){
 			
 			if(confirm('确认更改') === true){
-				var userStature = $("#space_user_stature").val();
-				if(userStature === ""||userStature === null){
+				var userStature = $("#space-user-stature").val();
+				if(userStature === "" || userStature === null){
 					alert("请输入你的身高");
 					return;
 				}else if(userStature < 80 || userStature > 200){
 					alert("输入错误");
 					return;
 				}else{
-					$("#info_button").parent().removeClass("display-none");
+					$("#info-button").parent().removeClass("display-none");
 					$(this).parent().addClass("display-none");
 
-					$(".space_user_introduction").find("div").addClass("display-none");
-					$("#space_user_signature").css({
+					$(".space-user-introduction").find("div").addClass("display-none");
+					$("#space-user-signature").css({
 						"display" : "none"
 					});
 
-					$(".user_charact").removeClass("display-none");
-					$(".user_signature").removeClass("display-none");
+					$(".user-charact").removeClass("display-none");
+					$(".user-signature").removeClass("display-none");
 				}
 			}else{
 				return false; 
@@ -48,13 +55,13 @@
 	});
 	
 	
-	$(".space_picture_introduction").each(function(){
-		var editButton = $(this).find(".edit_button");
-		var closeButton = $(this).find(".close_button");
-		var deleteButton = $(this).find(".delete_button");
-		var space_h1 = $(this).find(".space_h1");
-		var space_h2 = $(this).find(".space_h2");
-		var space_cont = $(this).find(".space_cont");
+	$(".space-picture-introduction").each(function(){
+		var editButton = $(this).find(".edit-button");
+		var closeButton = $(this).find(".close-button");
+		var deleteButton = $(this).find(".delete-button");
+		var space_h1 = $(this).find(".space-h1");
+		var space_h2 = $(this).find(".space-h2");
+		var space_cont = $(this).find(".space-cont");
 		var h1_a = $(this).find(".h1-a");
 		var h2_a = $(this).find(".h2-a");
 		var cont_a = $(this).find(".cont-a");
@@ -79,16 +86,17 @@
 
 			closeButton.find("a").mousedown(function(){
 				if(confirm('确认编辑') === true){
-					var s_h1 = space_h1.val();
-					var s_h2 = space_h2.val();
-					var s_cont = space_cont.val();
-					if(s_h1 === ""||s_h1 === null){
+					var s_h1 = replaceTextarea1(space_h1.val());
+					var s_h2 = replaceTextarea1(space_h2.val());
+					var s_cont = replaceTextarea1(space_cont.val());
+					
+					if(s_h1 === "" || s_h1 === null){
 						alert("请输入标题");
 						return;
-					}else if(s_h2 === ""||s_h2 === null){
+					}else if(s_h2 === "" || s_h2 === null){
 						alert("请输入副标题");
 						return;
-					}else if(s_cont === ""||s_cont === null){
+					}else if(s_cont === "" || s_cont === null){
 						alert("请输入介绍内容");
 						return;
 					}else{
@@ -120,3 +128,24 @@
 		});
 	});
 	
+//文本域换行符替换
+
+function replaceTextarea1(str){
+	var reg = new RegExp("\r\n","g");
+	var reg1 = new RegExp(" ","g");
+
+	str = str.replace(reg,"＜br＞");
+	str = str.replace(reg1,"＜p＞");
+
+	return str;
+}
+
+function replaceTextarea2(str){
+	var reg = new RegExp("＜br＞","g");
+	var reg1 = new RegExp("＜p＞","g");
+
+	str = str.replace(reg,"\r\n");
+	str = str.replace(reg1," ");
+
+	return str;
+}

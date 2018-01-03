@@ -1,7 +1,7 @@
 //»Øµ½¶¥²¿
 'use strict';
 
-var backButton=$(".backToTop_button");  
+var backButton=$(".backToTop-button");  
 	
 function backToTop() {  
     $('html,body').animate({  
@@ -21,16 +21,16 @@ $(window).on("scroll", function () {
 			"display": "none"
 		});  
     } 
-    if ($(window).scrollTop() > $("#header_tool").height()){
-        $(".header_tool").addClass("float_top_tool");
+    if ($(window).scrollTop() > $("#header-tool").height()){
+        $(".header-tool").addClass("float-top-tool");
 	}else{ 
-        $(".header_tool").removeClass("float_top_tool");
+        $(".header-tool").removeClass("float-top-tool");
 	}
 	
     if ($(window).scrollTop() > $("#header-1").height()-32){
-        $(".nav").addClass("float_top_nav");
+        $(".nav").addClass("float-top-nav");
 	}else{ 
-        $(".nav").removeClass("float_top_nav");
+        $(".nav").removeClass("float-top-nav");
 	}
 	
 });   

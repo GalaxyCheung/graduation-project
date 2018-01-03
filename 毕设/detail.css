@@ -3,17 +3,17 @@
 
 
 /*头部用户信息*/
-.detail_header{
+.detail-header{
 	width: 100%;
 }
 
-.header_title{
+.header-title{
 	width:1000px;
 	height: 82px;
 	margin: 30px auto 0 auto;
 }
 
-.title_box{
+.title-box{
 	width:927px;
 	height: 60px;
 	padding: 10px 0;
@@ -25,32 +25,32 @@
 	border-radius: 4px;
 }
 
-.title_user_message{
+.title-user-message{
 	width: 680px;
 	height: 60px;
 	float: left;
 }
 
-.title_profile_picture{
+.title-profile-picture{
 	width: 60px;
 	height : 60px;
 	margin: 0px 15px 0px 5px;
 	float: left;
 }
 
-.title_profile_picture img{
+.title-profile-picture img{
 	width: 60px;
 	height: 60px;
 }
 
-.title_user_introduction{
+.title-user-introduction{
 	width: auto;
 	height : 60px;
 	vertical-align: middle;
 	float: left;
 }
 
-.title_user_introduction p{
+.title-user-introduction p{
 	height: 20px;
 	display: block;
 	line-height: 20px;
@@ -58,18 +58,18 @@
 	color: #444447;
 }
 
-.title_user_introduction p:first-child{
+.title-user-introduction p:first-child{
 	font-size: 16px; 
 }
 
-.title_button{
+.title-button{
 	width: 205px;
 	height: 34px;
 	float: right;
 	margin-top: 13px; 
 }
 
-.button_follow{
+.button-follow{
 	width: 90px;
 	height: 34px;
 	float: left;
@@ -81,7 +81,7 @@
 	border-radius: 8px;
 }
 
-.button_chat{
+.button-chat{
 	width: 90px; 
 	height: 34px;
 	float: left; 
@@ -92,32 +92,32 @@
 	border-radius: 8px;
 }
 
-.title_button ul li{
+.title-button ul li{
 	padding-top: 5px;
 }
 
-.title_button ul li a{
+.title-button ul li a{
 	display: block;
-	line-height: 20px;
+	line-height: 25px;
 	font-size: 15px;
 	color: #fff;
 }
 
-.detail_content_box{
+.detail-content-box{
 	width: 927px;
 	margin: 30px auto 30px auto;
 }
 
 
 /*左边图片区*/
-.detail_content{
+.detail-content{
 	width:560px;
 	height: auto; 
 	float: left;
 	overflow: hidden;
 }
 
-.detail_picture{
+.detail-picture{
 	width: 540px;
 	height: auto;
 	float: left; 
@@ -129,12 +129,12 @@
 	border-radius: 4px;
 }
 
-.detail_picture img{
+.detail-picture img{
 	width: 540px;
 	height: 720px;
 }
 
-.picture_button{
+.picture-button{
 	width: 90px;
 	height: 35px;
 	float: right;
@@ -146,7 +146,7 @@
 	border-radius: 8px;
 }
 
-.picture_button a{
+.picture-button a{
 	width: 90px;
 	height: 35px;
 	display: block;
@@ -156,13 +156,13 @@
 	letter-spacing: 3px;
 }
 
-.picture_button a span{
+.picture-button a span{
 	font-size: 18px;
 }
 
 
 /*左下评论区*/
-.detail_comments{
+.detail-comments{
 	width: 540px;
 	height: auto;
 	float: left;
@@ -173,7 +173,7 @@
 	border-radius: 4px;
 }
 
-.comments_title{
+.comments-title{
 	width: 480px;
 	height: 25px;
 	padding: 10px 0;
@@ -181,12 +181,12 @@
 	border-bottom: 1px solid #ddd;
 }
 
-.comments_title p{
+.comments-title p{
 	font-size: 18px;
 	letter-spacing: 2px;
 }
 
-.comments_content{
+.comments-content{
 	width: 480px;
 	height: 600px;
 	margin: 20px auto;
@@ -195,14 +195,14 @@
 
 
 /*右边简介区*/
-.detail_picture_introduction{
+.detail-picture-introduction{
 	width: 352px;
 	height: auto;
 	float: left;
 	margin-left: 15px;
 }
 
-.introduction_title{
+.introduction-title{
 	width: 350px;
 	height: 140px;
 	margin: 0 auto;
@@ -213,13 +213,13 @@
 	border-radius: 4px;
 }
 
-.introduction_title h1{
+.introduction-title h1{
 	height: 60px;
 	margin: 0 15px;
 	border-bottom: 1px solid #ddd;
 }
 
-.introduction_content{
+.introduction-content{
 	width: 350px;
 	height: 1000px;
 	margin: 35px auto 30px auto;
@@ -232,7 +232,7 @@
 
 
 /*search-2页面*/
-.content .detail_header:first-child .header_title{
+.content .detail-header:first-child .header-title{
     margin: 0px auto 0 auto;
 }
 
