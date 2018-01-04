@@ -26,16 +26,16 @@
 }
 
 .title-user-message{
+	float: left;
 	width: 680px;
 	height: 60px;
-	float: left;
 }
 
 .title-profile-picture{
+	float: left;
 	width: 60px;
 	height : 60px;
 	margin: 0px 15px 0px 5px;
-	float: left;
 }
 
 .title-profile-picture img{
@@ -44,17 +44,17 @@
 }
 
 .title-user-introduction{
+	float: left;
 	width: auto;
 	height : 60px;
 	vertical-align: middle;
-	float: left;
 }
 
 .title-user-introduction p{
-	height: 20px;
 	display: block;
-	line-height: 20px;
+	height: 20px;
 	font-size: 14px; 
+	line-height: 20px;
 	color: #444447;
 }
 
@@ -63,16 +63,16 @@
 }
 
 .title-button{
+	float: right;
 	width: 205px;
 	height: 34px;
-	float: right;
 	margin-top: 13px; 
 }
 
 .button-follow{
+	float: left;
 	width: 90px;
 	height: 34px;
-	float: left;
 	margin-right: 20px;
 	text-align: center;
 	background-color: #161616;
@@ -82,11 +82,11 @@
 }
 
 .button-chat{
+	float: left; 
 	width: 90px; 
 	height: 34px;
-	float: left; 
-	background-color: #161616;
 	text-align: center;
+	background-color: #161616;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
@@ -98,8 +98,8 @@
 
 .title-button ul li a{
 	display: block;
-	line-height: 25px;
 	font-size: 15px;
+	line-height: 25px;
 	color: #fff;
 }
 
@@ -111,16 +111,16 @@
 
 /*左边图片区*/
 .detail-content{
+	float: left;
 	width:560px;
 	height: auto; 
-	float: left;
 	overflow: hidden;
 }
 
 .detail-picture{
+	float: left; 
 	width: 540px;
 	height: auto;
-	float: left; 
 	margin: 0 10px 35px 0;
 	background-color: #fff;
 	border: 1px solid #ddd;
@@ -135,11 +135,11 @@
 }
 
 .picture-button{
+	float: right;
 	width: 90px;
 	height: 35px;
-	float: right;
-	text-align: center;
 	margin: 15px 10px;
+	text-align: center;
 	background-color: #B10A0D;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
@@ -147,13 +147,13 @@
 }
 
 .picture-button a{
+	display: block;
 	width: 90px;
 	height: 35px;
-	display: block;
-	line-height: 30px; 
 	font-size: 15px;
-	color: #fff; 
+	line-height: 30px; 
 	letter-spacing: 3px;
+	color: #fff; 
 }
 
 .picture-button a span{
@@ -163,9 +163,9 @@
 
 /*左下评论区*/
 .detail-comments{
+	float: left;
 	width: 540px;
 	height: auto;
-	float: left;
 	background-color: #fff;
 	border: 1px solid #ddd;
 	-moz-border-radius: 4px;
@@ -196,9 +196,9 @@
 
 /*右边简介区*/
 .detail-picture-introduction{
+	float: left;
 	width: 352px;
 	height: auto;
-	float: left;
 	margin-left: 15px;
 }
 

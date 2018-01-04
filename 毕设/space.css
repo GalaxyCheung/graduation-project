@@ -11,8 +11,8 @@
 .space-header-box{
 	width: 940px;
 	height: 100px; 
-	margin: 0 auto; 
 	padding: 138px 0 15px 0;
+	margin: 0 auto; 
 }
 
 .space-user-info{
@@ -22,16 +22,16 @@
 }
 
 .space-user-info img{
+	float: left;
 	width: 80px;
 	height: 80px; 
 	border-radius: 3px; 
-	float: left;
 }
 
 .space-user-introduction{
+	float: left;
 	height: 78px;
 	margin: 2px 0 0px 15px;
-	float: left;
 }
 
 .space-user-introduction p{
@@ -48,22 +48,22 @@
 
 .space-user-introduction span{
 	margin-left: -9px; 
-	color: #ddd;
-	line-height: 26px;
 	font-size: 14px;
+	line-height: 26px;
+	color: #ddd;
 }
 
 .edit-info-button{
-	width: 158px; 
 	float: right; 
+	width: 158px; 
 	margin-top: 55px;
 }
 
 .edit-info-button a{
 	display: block;
 	float: right; 
-	line-height: 20px; 
 	font-size: 14px;
+	line-height: 20px; 
 	color: #fff; 
 }
 
@@ -77,16 +77,16 @@
 	padding-left: 5px;
 	padding-right: 0;
 	margin-left: -5px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 26px;
+	color: #ddd;
+	background: transparent;
 	border: none;
     box-shadow: none;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
     border-radius: 4px;
-	background: transparent;
-	font-family: "微软雅黑";
-	font-size: 14px;
-	line-height: 26px;
-	color: #ddd;
 	transition: all 0.3s ease;
 }
 
@@ -104,16 +104,16 @@
 	width: 65px;
 	height: 22px;
 	padding-left: 2px;
-	border: none;
-    box-shadow: none;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
     border-radius: 4px;
-	background: transparent;
 	font-family: "微软雅黑";
 	font-size: 14px;
 	line-height: 26px;
 	color: #ddd;
+	background: transparent;
+	border: none;
+    box-shadow: none;
 	transition: all 0.3s ease;
 }
 
@@ -132,22 +132,22 @@
 }
 
 #space-user-signature{
+	display: none;
 	width: 600px;
 	height: 22px;
-	display: none;
 	padding-left: 5px;
 	margin-left: -5px;
 	margin-top: 1px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 26px;
+	color: #ddd;
+	background: transparent;
 	border: none;
     box-shadow: none;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
     border-radius: 4px;
-	background: transparent;
-	font-family: "微软雅黑";
-	font-size: 14px;
-	line-height: 26px;
-	color: #ddd;
 	transition: all 0.3s ease;
 }
 
@@ -162,17 +162,17 @@
 }
 
 .edit-pic-button{
+	float: right;
 	width: 150px;
 	height: 25px;
-	float: right;
 }
 
 .edit-pic-button a{
 	display: block;
 	float: right; 
 	margin-right: 10px;
-	line-height: 25px; 
 	font-size: 14px;
+	line-height: 25px; 
 	color: #444447; 
 }
 
@@ -192,10 +192,10 @@
 }
 
 .space-picture{
+	display: inline-block;
 	width: 300px;
 	height: 400px;
 	margin: 20px 15px 16px 20px;
-	display: inline-block;
 	border: 1px solid #ddd;
 }
 
@@ -209,9 +209,9 @@
 }
 
 .space-picture-introduction{
+	display: inline-block;
 	width: 630px;
 	height: 400px; 
-	display: inline-block;
 	border: 1px solid #ddd;
 	overflow: hidden;
 }
@@ -223,37 +223,37 @@
 
 .introduction-title {
 	width: 460px; 
-	min-height: 90px;
 	margin-bottom: 10px;
+	min-height: 90px;
 }
 
 
 .introduction-title h1{
-	border-bottom: 1px solid #ddd;
 	padding-bottom: 5px;
     line-height: 26px;
+	border-bottom: 1px solid #ddd;
 }
 
 .introduction-title h1 a{
-	padding: 10px 0  0 10px; 
 	display: block;
+	padding: 10px 0  0 10px; 
 	word-wrap: break-word;
 }
 
 .space-h1{
+    top: -1px;
 	width: 460px;
 	height: 33px;
-	margin: 0 0 5px 5px;
     padding: 5px 0 0 5px;
-    color: #000;
+	margin: 0 0 5px 5px;
     font-size: 26px;
 	font-family: "微软雅黑";
     line-height: 25px;
-    box-shadow: none;
+    color: #000;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
     border-radius: 4px;
-    top: -1px;
+    box-shadow: none;
 }
 	
 .introduction-title h2{
@@ -261,23 +261,23 @@
 }
 
 .introduction-title h2 a{
-	padding-left: 10px; 
 	display: block;
+	padding-left: 10px; 
 	word-wrap: break-word;
 }
 
 .space-h2{
+    top: -1px;
 	width: 460px;
 	height: 58px;
-	margin: 10px 0 0 5px;
     padding: 5px 0 0 5px;
-    color: #000;
+	margin: 10px 0 0 5px;
     font-size: 22px;
 	font-family: "微软雅黑";
     line-height: 25px;
+    color: #000;
     box-shadow: none;
     border-radius: 4px;
-    top: -1px;
 }
 
 .introduction-content{
@@ -286,8 +286,8 @@
 }
 
 .introduction-content a{
-	width: 590px;  
 	display: block; 
+	width: 590px;  
 	padding-left: 10px; 
 	font-size: 18px;
 	word-wrap: break-word;
@@ -301,7 +301,7 @@
 .space-cont{
 	width: 583px;
 	height: 212px;
-	margin: 0 5px;
     padding: 5px 0 0 5px;
+	margin: 0 5px;
 	font-size: 18px;
 }

@@ -47,8 +47,29 @@
 
 
 
-
-
+		
+function checkinfo(){
+	var user_name = $("#user-login").val();
+	var user_pass = $("#user-pass").val();
+	
+	if(user_name === "" || user_name === null){
+		alert("请输入用户名");
+		return false;
+	}else if(user_name.replace(/[^\u0000-\u00ff]/g,"ab").length <= 4 || user_name.replace(/[^\u0000-\u00ff]/g,"aa").length >= 10){
+		alert("用户名应为5~10个字符，请重新输入!");
+		return false;
+	}else if(user_pass === "" || user_pass === null){
+		alert("请输入密码");
+		return false;
+	}else if(user_pass.replace(/[^\u0000-\u00ff]/g,"aa").length <= 5 || user_pass.replace(/[^\u0000-\u00ff]/g,"aa").length >= 17){
+		alert("密码应为6~16个字符，请重新输入!");
+		return false;
+	}else{
+		return false;
+	}		
+}
+	
+/*
 //checkinfo
 function checkinfo(){
 	
@@ -77,7 +98,46 @@ alert("验证码不正确，请重新输入!");
 return false;}
 }
 }
+*/
 
+	
+function checkinfo1(){
+	var user_name = $("#user-login").val();
+	var user_pass = $("#user-pass").val();
+	var confirm_pass = $("#password").val();
+	var user_code = $("#check-code").val();
+	var check_code = $("#checkCode").html();
+	
+	if(user_name === "" || user_name === null){
+		alert("请输入用户名");
+		return false;
+	}else if(user_name.replace(/[^\u0000-\u00ff]/g,"ab").length <= 4 || user_name.replace(/[^\u0000-\u00ff]/g,"aa").length >= 10){
+		alert("用户名应为5~10个字符，请重新输入!");
+		return false;
+	}else if(user_pass === "" || user_pass === null){
+		alert("请输入密码");
+		return false;
+	}else if(user_pass.replace(/[^\u0000-\u00ff]/g,"aa").length <= 5 || user_pass.replace(/[^\u0000-\u00ff]/g,"aa").length >= 17){
+		alert("密码应为6~16个字符，请重新输入!");
+		return false;
+	}else if(confirm_pass === "" || confirm_pass === null){
+		alert("请确认您的密码");
+		return false;
+	}else if(user_pass !== confirm_pass){
+		alert("密码不一致，请重新输入");
+		return false;
+	}else if(user_code === "" || user_code === null){
+		alert("请输入验证码");
+		return false;
+	}else if(user_code !== check_code){
+		alert("验证码错误，请重新输入");
+		return false;
+	}else{
+		return false;
+	}		
+}
+
+/*
 function checkinfo1(){
 	
   var name=document.getElementById("user-login").value;
@@ -116,13 +176,13 @@ else if(password!=pass){
 alert("密码与确认密码不一致，请重新输入!");
 return false;}
 }
-
+*/
 
 var code;
 function createCode(n){
   code="";
   var checkCode=document.getElementById("checkCode");
-  var sourceStr=new Array("S","A","d","w","4","a","5","o","t","j","N","b","X","z","6","0","1","2","x","n","v");
+  var sourceStr=new Array("m","8","d","w","4","a","5","Q","t","j","p","b","X","z","6","0","1","2","x","n","v","O","o","q","P","Z");
     for (var i=0; i<n; i++) {
     var charIndex=(sourceStr[Math.floor(Math.random()*21)]);
     code+=charIndex;
