@@ -3,6 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
     <title>注册页面</title>
+<link href="signup-login.css" rel="stylesheet" type="text/css">
 <link href="style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="jquery-1.6.1.min.js"></script>
  
@@ -20,35 +21,81 @@
 
 		<div class="sign-box">
 			<div class="signup-inner">
-				<form name="loginform" id="loginform" onsubmit="return checkinfo1()" method="post" action="login.html">
-					<font class="checkout-title-font"><strong>注册成为用户</strong></font>
-					<p>	
-						<label for="user-login"><font class="checkout-font"><strong>用户名</strong></font><br>
-							<input placeholder="用户名为4~10个字符" type="text" name="log" id="user-login" class="input-box" value="" size="20"></label>
-					</p>
-					<p>
-						<label for="user-pass"><font class="checkout-font"><strong>登录密码</strong></font><br>
-							<input placeholder="密码为4~16个字符" type="password" name="pwd" id="user-pass" class="input-box" value="" size="20"></label>
+				<form name="loginform" id="loginform" onsubmit="return false" method="post" action="login.html">
+					<div class="signup-user-info">
+						<font class="checkout-title-font"><strong>注册成为用户</strong></font>
+						<p>	
+							<label for="user-login"><font class="checkout-font"><strong>用户名</strong></font><br>
+								<input placeholder="用户名为4~12个字符" type="text" name="log" id="user-login" class="input-box" value="" maxlength="12"></label>
 						</p>
-					<p>
-						<label for="user-pass"><font class="checkout-font"><strong>确认密码</strong></font><br>
-							<input placeholder="确认密码应与密码一致" type="password" name="pwd" id="password" class="input-box" value="" size="20"></label>
-					</p>
-					<p>
-						<label for="user-pass"><font class="checkout-font"><strong>验证码</strong></font><br></label>
-						<div class="check-code">
-							<input placeholder="区分大小写" name="checkCode" type="text" id="check-code" size="10" maxlength="10"/> 
-   							 <div onclick="createCode(4)" readonly id="checkCode"></div>
-   						 </div>
-					</p>
-					<div class="checkout-button">
-						<input type="submit" name="submit" id="submit" value="下一步">
+						
+						<p>
+							<label for="user-pass"><font class="checkout-font"><strong>登录密码</strong></font><br>
+								<input placeholder="密码为4~16个字符" type="password" name="pwd" id="user-pass" class="input-box" value="" maxlength="16"></label>
+						</p>
+						
+						<p>
+							<label for="user-pass"><font class="checkout-font"><strong>确认密码</strong></font><br>
+								<input placeholder="确认密码应与密码一致" type="password" name="pwd" id="password" class="input-box" value="" maxlength="16"></label>
+						</p>
+						
+						<p>
+							<label for="user-pass"><font class="checkout-font"><strong>验证码</strong></font><br></label>
+							<div class="check-code">
+								<input placeholder="区分大小写" name="checkCode" type="text" id="check-code" maxlength="4" /> 
+								 <div onclick="createCode(4)" readonly id="checkCode"></div>
+							 </div>
+						</p>
+						
+						<div class="checkout-button">
+							<input type="button" onClick="checkinfo1()" name="submit" value="下一步">
+						</div>
+				 	</div>
+				 	
+					<div class="signup-user-data display-none">
+						<font class="checkout-title-font"><strong>完善您的用户信息</strong></font>
+						
+						<p>	
+							<label for="user-picture"><font class="checkout-font"><strong>头像</strong></font><br>
+							
+								<div class="preview_pic">
+									<img src="" alt=""/>
+								</div>
+								
+							</label>
+						</p>
+						
+						<p>	
+							<label for="user-sex"><font class="checkout-font"><strong>性别</strong></font><br>
+								<select name="sex" id="user-sex" class="data-sex" value="">
+									<option>男生</option>
+									<option>女生</option>
+								</select>
+							</label>
+						</p>
+						
+						<p>	
+							<label for="user-stature"><font class="checkout-font"><strong>身高</strong></font><br>
+								<input type="number" name="stat" id="user-stature" class="data-stature" value="" oninput="if(value.length>3)value=value.slice(0,3)" />
+								<a class="data-stature-a">cm</a>
+							</label>
+						</p>
+						
+						<p>	
+							<label for="user-stature"><font class="checkout-font"><strong>个性签名</strong></font><br>
+								<textarea name="signa" id="user-signature" class="data-signature" value="" maxlength="40"></textarea>
+							</label>
+						</p>
+						
+						<div class="checkout-button">
+							<input type="submit" name="submit" id="submit" value="注册">
+						</div>
 					</div>
+					<div class="clear"></div>
+					  
 				</form>
-			<div class="clear"></div>
 			</div>
 		</div>
-	  
 	  
 
 <footer>

@@ -55,8 +55,8 @@ function checkinfo(){
 	if(user_name === "" || user_name === null){
 		alert("请输入用户名");
 		return false;
-	}else if(user_name.replace(/[^\u0000-\u00ff]/g,"ab").length <= 4 || user_name.replace(/[^\u0000-\u00ff]/g,"aa").length >= 10){
-		alert("用户名应为5~10个字符，请重新输入!");
+	}else if(user_name.replace(/[^\u0000-\u00ff]/g,"ab").length <= 4 || user_name.replace(/[^\u0000-\u00ff]/g,"aa").length >= 13){
+		alert("用户名应为5~12个字符，请重新输入!");
 		return false;
 	}else if(user_pass === "" || user_pass === null){
 		alert("请输入密码");
@@ -102,7 +102,7 @@ return false;}
 
 	
 function checkinfo1(){
-	var user_name = $("#user-login").val();
+	var user_name = $.trim($("#user-login").val());
 	var user_pass = $("#user-pass").val();
 	var confirm_pass = $("#password").val();
 	var user_code = $("#check-code").val();
@@ -111,8 +111,8 @@ function checkinfo1(){
 	if(user_name === "" || user_name === null){
 		alert("请输入用户名");
 		return false;
-	}else if(user_name.replace(/[^\u0000-\u00ff]/g,"ab").length <= 4 || user_name.replace(/[^\u0000-\u00ff]/g,"aa").length >= 10){
-		alert("用户名应为5~10个字符，请重新输入!");
+	}else if(user_name.replace(/[^\u0000-\u00ff]/g,"ab").length <= 4 || user_name.replace(/[^\u0000-\u00ff]/g,"aa").length >= 13){
+		alert("用户名应为5~12个字符，请重新输入!");
 		return false;
 	}else if(user_pass === "" || user_pass === null){
 		alert("请输入密码");
@@ -133,6 +133,8 @@ function checkinfo1(){
 		alert("验证码错误，请重新输入");
 		return false;
 	}else{
+		$(".signup-user-info").addClass("display-none");
+		$(".signup-user-data").removeClass("display-none");
 		return false;
 	}		
 }

@@ -26,15 +26,20 @@ if(false){
 		$(".user-signature").addClass("display-none");
 		
 		$("#finsh-button").mousedown(function(){
-			
-			if(confirm('确认更改') === true){
+			var confirm_1 = confirm("是否确认更改");
+			if(confirm_1 === true){
 				var userStature = $("#space-user-stature").val();
 				if(userStature === "" || userStature === null){
 					alert("请输入你的身高");
-					return;
-				}else if(userStature < 80 || userStature > 200){
-					alert("输入错误");
-					return;
+					return false;
+				}else if(userStature < 50 || userStature > 270){
+					if(userStature < 50){
+						$("#space-user-stature").val(50);
+					}else{
+						$("#space-user-stature").val(270);
+					}
+					alert("身高范围应为50cm~270cm ");
+					return false;
 				}else{
 					$("#info-button").parent().removeClass("display-none");
 					$(this).parent().addClass("display-none");
@@ -85,7 +90,8 @@ if(false){
 			cont_a.addClass("display-none");
 
 			closeButton.find("a").mousedown(function(){
-				if(confirm('确认编辑') === true){
+				var confirm_2 = confirm("是否确认编辑");
+				if(confirm_2 === true){
 					var s_h1 = replaceTextarea1(space_h1.val());
 					var s_h2 = replaceTextarea1(space_h2.val());
 					var s_cont = replaceTextarea1(space_cont.val());
@@ -119,7 +125,8 @@ if(false){
 			});	
 			
 			deleteButton.find("a").mousedown(function(){
-				if(confirm('删除搭配') === true){
+				var confirm_3 = confirm("是否删除搭配");
+				if(confirm_3 === true){
 					
 				}else{
 					return false; 

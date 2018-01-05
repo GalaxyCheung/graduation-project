@@ -2,13 +2,12 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>个人消息</title>
+<title>发布搭配</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 <script src="jquery-2.1.4.min.js"></script>
 </head>
 
 <body>
-
 
 <header id="header" >
 	<div class="header-tool">
@@ -55,6 +54,5 @@
 <footer>
 <div class="bottom">Copyright©2017<a href="index.html">基于PHP的传媒公司网站</a>All rights reserved. By:1440706131 计算机系 张跃聪</div>
 </footer>
-
 </body>
 </html>

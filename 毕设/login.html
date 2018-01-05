@@ -3,6 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
     <title>登录页面</title>
+<link href="signup-login.css" rel="stylesheet" type="text/css">
 <link href="style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="jquery-1.6.1.min.js"></script>
 <script src="javascript.js"></script>
@@ -25,13 +26,13 @@
 				<form name="login-form" id="login-form" onsubmit="return checkinfo()" method="post"  action="index.html">
 					<font class="checkout-title-font"><strong>用户登录</strong></font>
 					<p style="margin-top: 50px;">	
-						<label for="user-login"><font class="checkout-font">用户名</font><br>
-						<input placeholder="用户名为4~10个字符" type="text" name="log" id="user-login" class="input-box" value="" size="20"></label>
+						<label for="user-login"><font class="checkout-font"><strong>用户名</strong></font><br>
+						<input placeholder="用户名为4~12个字符" type="text" name="log" id="user-login" class="input-box" value="" maxlength="12"></label>
 					</p>
 			
 					<p>
-						<label for="user-pass"><font class="checkout-font">登录密码</font><br>
-						<input placeholder="密码为4~16个字符" type="password" name="pwd" id="user-pass" class="input-box" value="" size="20"></label>
+						<label for="user-pass"><font class="checkout-font"><strong>登录密码</strong></font><br>
+						<input placeholder="密码为4~16个字符" type="password" name="pwd" id="user-pass" class="input-box" value="" maxlength="16"></label>
 					</p>
 
 					<p>
