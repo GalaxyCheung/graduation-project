@@ -40,7 +40,7 @@
 	<div id="header-1">
 		<div id="header-box">
 			<div class="header-logo"><a href="index.html">
-				<img src="images/header-logo.png"/></a>
+				<img src="images/header_logo.png"/></a>
 			</div>
 		</div>
 	</div>
@@ -48,8 +48,8 @@
 	<nav class="nav">
 		<ul>
  			<li><a href="index.html">首 页</a></li>
-  			<li><a href="javascript:void(0)">搭配频道</a></li>
-  			<li><a href="javascript:void(0)">搭配达人</a></li>
+  			<li><a href="index-2.php">搭配频道</a></li>
+  			<li><a href="index-3.php">搭配达人</a></li>
 			<div class="nav-search-box">
 					<form class="nav-search">
 				 		<select>

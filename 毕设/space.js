@@ -90,8 +90,8 @@ if(false){
 			cont_a.addClass("display-none");
 
 			closeButton.find("a").mousedown(function(){
-				var confirm_2 = confirm("是否确认编辑");
-				if(confirm_2 === true){
+				var confirm_1 = confirm("是否确认编辑");
+				if(confirm_1 === true){
 					var s_h1 = replaceTextarea1(space_h1.val());
 					var s_h2 = replaceTextarea1(space_h2.val());
 					var s_cont = replaceTextarea1(space_cont.val());

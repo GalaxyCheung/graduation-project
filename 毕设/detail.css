@@ -214,9 +214,16 @@
 }
 
 .introduction-title h1{
-	height: 60px;
-	margin: 0 15px;
+	padding-top: 12px;
+	height: 48px;
+	margin: 5px 15px;
+	text-align: center;
 	border-bottom: 1px solid #ddd;
+}
+
+.introduction-title h2{
+	margin: 10px 15px 0 15px;
+	padding-left: 10px;
 }
 
 .introduction-content{
@@ -230,6 +237,9 @@
 	border-radius: 4px;
 }
 
+.introduction-content p{
+	padding: 15px 20px;
+}
 
 /*search-2页面*/
 .content .detail-header:first-child .header-title{
