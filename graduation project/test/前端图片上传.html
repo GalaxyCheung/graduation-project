@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>上传头像</title>
+		<script src="http://cdn.bootcss.com/jquery/1.12.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#file').change(function(){
+					var docObj = document.getElementById("file");
+					var imgObjPreview = document.getElementById("look");
+					if (docObj.files && docObj.files[0]) {
+			            //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+			            imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+			        } else {
+			            //IE下，使用滤镜
+			            docObj.select();
+			            var imgSrc = document.selection.createRange().text;
+			            var localImagId = document.getElementById("localImag");
+			            //图片异常的捕捉，防止用户修改后缀来伪造图片
+			            try {
+			            	localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+			            	localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+			            } catch(e) {
+			            	alert("您上传的图片格式不正确，请重新选择!");
+			            	return false;
+			            }
+			            document.selection.empty();
+			        }
+			        return true;
+			    })
+			})
+		</script>
+		<style type="text/css">
+			.showBg{
+				position: absolute;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				background: rgba(0,0,0,.3);
+				z-index: 99;
+			}
+			.changeImg{
+				position: absolute;
+				top:10%;
+				left:50%;
+				margin-left:-180px;
+				width:360px;
+				background:white;
+				padding-left:30px;
+				font-size: 16px;
+				padding-top: 20px;
+			}
+			#upImag1,#upImag2{
+				display: inline-block;
+				width: 180px;
+				box-sizing: border-box;
+				font-size:14px;
+			}
+			#upImag2{
+				width:140px;
+			}
+			#upImag1>label,#upImag2>label{
+				padding: 4px 18px 4px 18px;
+			    border: 1px solid #eeeeee;
+			    margin-left: 10px;
+			    font-weight: normal;
+			}
+			#upImag1>input{
+				width:100px;
+				left: 73px;
+				top: -26px;
+				width: 76px;
+				position: relative!important;
+				cursor: pointer;
+				outline: medium none;
+				filter: alpha(opacity=0);
+				-moz-opacity: 0;
+				opacity: 0;
+			}
+			#upImag2>input{
+				left: 12px;
+			    top: -26px;
+			    width: 87px;
+				position: relative!important;
+				cursor: pointer;
+				outline: medium none;
+				filter: alpha(opacity=0);
+				-moz-opacity: 0;
+				opacity: 0;
+			}
+			#upImag3>span{
+				vertical-align: top;
+			}
+			#upImag3>img{
+				margin-left:38px;
+				width:186px;
+				height:186px;
+				background: #EEEEEE;
+				border: 1px solid #eeeeee;
+				display:inline-block;
+			}
+			#upImag4{
+				text-align: center;
+			}
+			#upImag4>p{
+				margin-top:20px;
+				margin-bottom: 20px;
+				text-align: left;
+			}
+			#upImag4>button{
+				text-align: center;
+				background: #0F90D2;
+				width:144px;
+				height:36px;
+				margin-bottom: 20px;
+				outline: none;
+				border:1px solid #0F90D2;
+				color: white;
+				font-size:16px;
+				
+			}
+
+		</style>
+	</head>
+	<body>
+		<!--上传头像-->
+		<div class="showBg">
+			<div class="changeImg">
+		        <div id="upImag1">
+		            <span class="font">头像上传</span>
+				    <label for="upload-file">本地上传</label>
+				    <input type="file" accept="image/*" value="" id="file" >
+	            </div>
+	            <div id="upImag2">
+				    <label for="upload-file">从图库选择</label>
+				    <input type="file" value="" id="file-1" >
+	            </div>
+	            <div id="upImag3">
+		            <span>预览</span>
+		            <img src="" alt="" id="look"/>
+		        </div>
+		        <div id="upImag4">
+		        	<p>头像建议尺寸：500像素*500像素</p>
+		            <button class="button submit">提交</button>
+		        </div>
+	        </div>
+		</div>
+	</body>
+</html>
