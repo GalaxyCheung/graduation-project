@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <title>发布搭配</title>
-<link href="detail.css" rel="stylesheet" type="text/css">
-<link href="style.css" rel="stylesheet" type="text/css">
-<script src="jquery-2.1.4.min.js"></script>
+<link href="public/css/detail.css" rel="stylesheet" type="text/css">
+<link href="public/css/style.css" rel="stylesheet" type="text/css">
+<script src="public/js/jquery-2.1.4.min.js"></script>
 <style>
 .publish-title{
 	margin-bottom: 5px; 
@@ -127,7 +127,7 @@
 	<div id="header-1">
 		<div id="header-box">
 			<div class="header-logo"><a href="index.php">
-				<img src="images/header_logo.png"/></a>
+				<img src="public/public/images/header_logo.png"/></a>
 			</div>
 		</div>
 	</div>

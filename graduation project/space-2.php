@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <title>个人空间</title>
-<link href="space.css" rel="stylesheet" type="text/css">
-<link href="style.css" rel="stylesheet" type="text/css">
-<script src="jquery-2.1.4.min.js"></script>
+<link href="public/css/space.css" rel="stylesheet" type="text/css">
+<link href="public/css/style.css" rel="stylesheet" type="text/css">
+<script src="public/js/jquery-2.1.4.min.js"></script>
 </head>
 
 <body>
-<?php include("header.php");?>
+<?php include("app/header.php");?>
 <div class="space-header">
 	<div class="space-header-box">
 		<div class="space-user-info">
 			<div class="space-profile-picture">
-				<img src="images/AI.png" />
+				<img src="public/images/AI.png" />
 			</div>
 			
 			<div class="space-user-introduction">
@@ -61,7 +61,7 @@
 
 	
 	<div class="backToTop-button">
-		<img src="images/回到顶部.png" />
+		<img src="public/images/回到顶部.png" />
 	</div>
 	
 	<div class="content-box">
@@ -72,7 +72,7 @@
 			<div class="space-picture-box">
 				
 				<div class="space-picture">
-					<img src="images/boys/20160103232318793_500.jpg" />
+					<img src="public/images/boys/20160103232318793_500.jpg" />
 				</div>
 				
 				<div class="space-picture-introduction">
@@ -97,7 +97,7 @@
 			<div class="space-picture-box">
 				
 				<div class="space-picture">
-					<img src="images/boys/20160103232318793_500.jpg" />
+					<img src="public/images/boys/20160103232318793_500.jpg" />
 				</div>
 				
 				<div class="space-picture-introduction">
@@ -121,7 +121,7 @@
 			<div class="space-picture-box">
 				
 				<div class="space-picture">
-					<img src="images/boys/20160103232318793_500.jpg" />
+					<img src="public/images/boys/20160103232318793_500.jpg" />
 				</div>
 				
 				<div class="space-picture-introduction">
@@ -160,8 +160,8 @@
 <div class="bottom">Copyright©2017<a href="index.php">基于PHP的传媒公司网站</a>All rights reserved. By:1440706131 计算机系 张跃聪</div>
 </footer>
 
-<script src="scroll.js"></script>
-<script src="space.js"></script>
+<script src="public/js/scroll.js"></script>
+<script src="public/js/space.js"></script>
 
 <script>
 	$(".nav-middle ul li:first-child").css({

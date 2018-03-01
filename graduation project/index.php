@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>基于PHP的传媒公司网站</title>
-<link href="style.css" rel="stylesheet" type="text/css">
-<script src="jquery-2.1.4.min.js"></script>
+<link href="public/css/style.css" rel="stylesheet" type="text/css">
+<script src="public/js/jquery-2.1.4.min.js"></script>
 <style>
 	.nav-middle ul li:first-child{
 		background-color: #00c9d0;
@@ -40,7 +40,7 @@
 	<div id="header-1">
 		<div id="header-box">
 			<div class="header-logo"><a href="index.php">
-				<img src="images/header_logo.png"/></a>
+				<img src="public/images/header_logo.png"/></a>
 			</div>
 		</div>
 	</div>
@@ -65,26 +65,26 @@
 </header>
 
 <div class="slide-box">
-	<div id="arrow-left"><img src="images/arrowleft.jpg" /></div>
-	<div id="arrow-right"><img src="images/arrowright.jpg" /></div>
+	<div id="arrow-left"><img src="public/images/arrowleft.jpg" /></div>
+	<div id="arrow-right"><img src="public/images/arrowright.jpg" /></div>
 	<div id="news">
 		<div  id="newsBox">
 			<div class="slide-pic">
 					<ul>
 						<li>
-						<a href="detail.php"><img src="images/boys/20160103232318793_500.jpg" /></a>
+						<a href="detail.php"><img src="public/images/boys/20160103232318793_500.jpg" /></a>
 							<div class="picture-info">
 							<div class="profile-picture">
-								<a href="space.php"><img src="images/AI.png" /></a>
+								<a href="space.php"><img src="public/images/AI.png" /></a>
 							</div>
 							<div class="user-info"></div>
 							<div class="picture-caption"></div>
 							</div>
 						</li> 
-						<li><a href="detail.php"><img src="images/boys/20170217082007173_500.jpg" /></a></li> 
-						<li><a href="Ps.php"><img src="images/girls/20171225233703502_500.jpg" /></a></li>
-						<li><a href="Ai.php"><img src="images/girls/20171226150828053_500.jpg" /></a></li>
-						<li><a href="Pr.php"><img src="images/boys/20171222065120588_500.jpg" /></a></li>
+						<li><a href="detail.php"><img src="public/images/boys/20170217082007173_500.jpg" /></a></li> 
+						<li><a href="Ps.php"><img src="public/images/girls/20171225233703502_500.jpg" /></a></li>
+						<li><a href="Ai.php"><img src="public/images/girls/20171226150828053_500.jpg" /></a></li>
+						<li><a href="Pr.php"><img src="public/images/boys/20171222065120588_500.jpg" /></a></li>
 					</ul>
 			</div>
 		</div>
@@ -104,11 +104,11 @@
 				<span>No.4</span>
 				<span>No.5</span>
 			</div>
-			<li><a href="space.php"><img src="images/boys/20160103232318793_500.jpg"/></a></li> 
-			<li><a href="Dw.php"><img src="images/boys/20170217082007173_500.jpg"/></a></li> 
-			<li><a href="Ps.php"><img src="images/girls/20171225233703502_500.jpg"/></a></li>
-			<li><a href="Ai.php"><img src="images/girls/20171226150828053_500.jpg"/></a></li>
-			<li><a href="Pr.php"><img src="images/boys/20171222065120588_500.jpg"/></a></li>
+			<li><a href="space.php"><img src="public/images/boys/20160103232318793_500.jpg"/></a></li> 
+			<li><a href="Dw.php"><img src="public/images/boys/20170217082007173_500.jpg"/></a></li> 
+			<li><a href="Ps.php"><img src="public/images/girls/20171225233703502_500.jpg"/></a></li>
+			<li><a href="Ai.php"><img src="public/images/girls/20171226150828053_500.jpg"/></a></li>
+			<li><a href="Pr.php"><img src="public/images/boys/20171222065120588_500.jpg"/></a></li>
 			<div class="clear"></div>
 		</ul>
 	</div>
@@ -121,26 +121,26 @@
 		<nav class="nav-middle">
 			<ul>
  				<li><a href="javascript:void(0)">不 限</a></li>
- 				<li><a href="javascript:void(0)">男 生<img class="img-boys" src="images/boy.png" /></a></li>
- 				<li><a href="javascript:void(0)">女 生<img class="img-girls" src="images/girl.png"/></a></li>
+ 				<li><a href="javascript:void(0)">男 生<img class="img-boys" src="public/images/boy.png" /></a></li>
+ 				<li><a href="javascript:void(0)">女 生<img class="img-girls" src="public/images/girl.png"/></a></li>
 			</ul>
 		</nav>
 		<div class="nav-middle-angle"></div>  
 	</div>
 
 	<div class="backToTop-button">
-		<img src="images/回到顶部.png" />
+		<img src="public/images/回到顶部.png" />
 	</div>
 
 	<div class="content-box">
 		<div class="content">
 			<div class="content-picture-box">
 				<div class="content-picture">
-					<a href="detail.php"><img src="images/boys/20160103232318793_500.jpg" /></a>
+					<a href="detail.php"><img src="public/images/boys/20160103232318793_500.jpg" /></a>
 				</div>
 				<div class="picture-info">
 					<div class="profile-picture">
-						<a href="space.php"><img src="images/AI.png" /></a>
+						<a href="space.php"><img src="public/images/AI.png" /></a>
 					</div>
 					<div class="user-info"></div>
 					<div class="picture-caption"></div>
@@ -349,7 +349,7 @@
 	
 </script>
 
-<script src="scroll.js"></script>
-<script src="javascript.js"></script>
+<script src="public/js/scroll.js"></script>
+<script src="public/js/javascript.js"></script>
 </body>
 </html>

@@ -3,9 +3,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
     <title>注册页面</title>
-<link href="signup-login.css" rel="stylesheet" type="text/css">
-<link href="style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="jquery-1.6.1.min.js"></script>
+<link href="public/css/signup-login.css" rel="stylesheet" type="text/css">
+<link href="public/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="public/js/jquery-1.6.1.min.js"></script>
 <style>
 input[type="file"]{
 	position: absolute;
@@ -25,14 +25,14 @@ input[type="file"]{
 <div class="checkout-header">
 	<div class="checkout-header-box">
 		<div class="checkout-header-logo">
-			<a href="index.php"><img src="images/logo-1.png" /></a>
+			<a href="index.php"><img src="public/images/logo-1.png" /></a>
 		</div>
 	</div>
 </div>
 
 		<div class="sign-box">
 			<div class="signup-inner">
-				<form name="loginform" id="loginform" onsubmit="return checkinfo_2()" method="post" action="signupAction.php" enctype="multipart/form-data">
+				<form name="loginform" id="loginform" onsubmit="return checkinfo_2()" method="post" action="app/signupAction.php" enctype="multipart/form-data">
 					<div class="signup-user-info">
 						<font class="checkout-title-font"><strong>注册成为用户</strong></font>
 						

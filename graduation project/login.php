@@ -3,11 +3,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
     <title>登录页面</title>
-<link href="signup-login.css" rel="stylesheet" type="text/css">
-<link href="style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="jquery-1.6.1.min.js"></script>
-<script type="text/javascript" src="jquery.cookie.js"></script> 
-<script src="javascript.js"></script>
+<link href="public/css/signup-login.css" rel="stylesheet" type="text/css">
+<link href="public/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="public/js/jquery-1.6.1.min.js"></script>
+<script type="text/javascript" src="public/js/jquery.cookie.js"></script> 
+<script src="public/js/javascript.js"></script>
 </head>
   
 <body>
@@ -20,7 +20,7 @@
 <div class="checkout-header">
 	<div class="checkout-header-box">
 		<div class="checkout-header-logo">
-			<a href="index.php"><img src="images/logo-1.png" /></a>
+			<a href="index.php"><img src="public/images/logo-1.png" /></a>
 		</div>
 	</div>
 </div>
