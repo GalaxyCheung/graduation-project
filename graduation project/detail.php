@@ -10,45 +10,22 @@
 
 <body>
 
-<header id="header" >
-	<div class="header-tool">
-		<div class="header-tool-box">
-			<div class="header-user-box">
-					<dl>
-						<dd><span></span><a href="login.php">登录</a></dd>
-						<dd><span></span><a href="signup.php">注册</a></dd>
-						<dd><span></span><a href="signup.php">消息</a></dd>
-						<dd><a href="signup.php">发布</a></dd>
-					</dl>
-			</div>
-		</div>
-	</div>
-	<div id="header-1">
-		<div id="header-box">
-			<div class="header-logo"><a href="index.php">
-				<img src="public/images/header_logo.png"/></a>
-			</div>
-		</div>
-	</div>
+<?php 
+	include("header.php"); 
+	include("app/config.php");
+	
+	@$pic_id = $_GET['pic_id'];
+	
+	$sql_p = "select * from gp_pic where id='".$pic_id."'";
+	$result_p = mysqli_query($link, $sql_p);
+	$rs_p = mysqli_fetch_array($result_p);
 		
-	<nav class="nav">
-		<ul>
- 			<li><a href="index.php">首 页</a></li>
-  			<li><a href="index-2.php">搭配频道</a></li>
-  			<li><a href="index-3.php">搭配达人</a></li>
-			<div class="nav-search-box">
-					<form class="nav-search">
-				 		<select>
-							<option>搭配</option>
-							<option>用户</option>
-						</select>
-					 	<input placeholder="请输入搜索内容" class="nav-search-input" type="text" />
-					 	<a class="search-img"></a>
-					</form>
-			</div>
-		</ul>
-	</nav>
-</header>
+	$sql_u = "select * from gp_user where id='".$rs_p['u_id']."'";
+	$result_u = mysqli_query($link, $sql_u);
+	$rs_u = mysqli_fetch_array($result_u);
+	
+	mysqli_close($link);
+?> 
 
 
 <div class="detail-header">
@@ -56,32 +33,40 @@
 		<div class="title-box">
 			<div class="title-user-message">
 				<div class="title-profile-picture">
-					<img src="public/images/AI.png" />
+					<img src="<?php echo @$rs_u['prof_url']; ?>" />
 				</div>
 				<div class="title-user-introduction">
-					<p>1</p>
-					<p>1</p>
-					<p>1</p>
+					<p><?php echo @$rs_u['name']; ?></p>
+					<p><?php echo @$rs_u['sex']." / ". @$rs_u['stature']."cm"; ?></p>
+					<p><?php echo @$rs_u['signature']; ?></p>
 				</div>
 			</div>
 			<div class="title-button">
-				<ul class="button-follow">
-					<li><a>关注</a></li>
-				</ul>
-				<ul class="button-chat">
-					<li><a>私信</a></li>
-				</ul>
+					<?php 
+						if(@$_SESSION['currentUser']['id'] !== @$rs_u['id']){
+							echo "<ul class='button-follow'><li><a>关注</a></li></ul>
+								<ul class='button-chat'><li><a>私信</a></li></ul>";
+						}else{
+							echo "<ul class='button-follow'><li><a>个人空间</a></li></ul>
+								<ul class='button-chat'><li><a>查看信息</a></li></ul>";
+						}
+					?>
+				
 			</div>
 		</div>
 	</div>
 </div>
 
 
+<div class="backToTop-button">
+	<img src="public/images/回到顶部.png" />
+</div>
+	
 <main>
 	<div class="detail-content-box">
 		<div class="detail-content">
 			<div class="detail-picture">
-				<img src="public/images/boys/20160103232318793_500.jpg">
+				<img src="<?php echo @$rs_p['pic_url']; ?>">
 					<div class="picture-button"><a href="javascriot:void(0);"><span>▽</span>评论</a></div>
 					
 					<div class="picture-button"><a href="javascriot:void(0);"><span>♡</span>喜欢</a></div>
@@ -89,7 +74,7 @@
 
 			<div class="detail-comments">
 				<div class="comments-title">
-					<p>***的评论</p>
+					<p>对「 <?php echo @$rs_p['title']; ?> 」的评论</p>
 				</div>
 				
 				<div class="comments-content">
@@ -102,11 +87,11 @@
 
 		<div class="detail-picture-introduction">
 			<div class="introduction-title">
-				<h1>123按时</h1>
-				<h2>啊345按时12345按时12345按时12345按时</h2>
+				<h1><?php echo @$rs_p['title']; ?></h1>
+				<h2><?php echo @$rs_p['subtitle']; ?></h2>
 			</div>
 			<div class="introduction-content">
-				<p>按时cszss撒大事按时打算1231254阿桑大事大阿桑大事大</p>
+				<p><?php echo @$rs_p['intro']; ?></p>
 			</div>
 		</div>
 		<div class="clear"></div>

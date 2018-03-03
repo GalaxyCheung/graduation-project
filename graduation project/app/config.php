@@ -1,5 +1,4 @@
 <?php
-header('Content-Type: text/html;charset=utf-8');
 
 /* Connect to a MySQL server  连接数据库服务器 */
 $link = mysqli_connect(

@@ -82,7 +82,7 @@ textarea{
 }
 .header-user-box{
 	float: right;
-	width: 220px;
+	width: 260px;
 }
 .header-user-box dl{
 	float: right;
@@ -517,25 +517,19 @@ main{
 	width: 50px;
 }
 
-.user-info{
+.intro-info{
 	float: left;
 	margin-left: 5px;
-	width:170px;
-	height: 50px;
-}
-
-.picture-caption{
-	float: right;
-	height: 50px;
-	width: 50px;
 	margin-right: 10px;
+	width:220px;
+	height: 25px;
 }
 
 .content-page{
 	float: right;
+	margin: 15px auto;
 	width: auto;
 	height: 24px;
-	margin: 15px auto;
 	text-decoration: none;
 	overflow: hidden;
 }

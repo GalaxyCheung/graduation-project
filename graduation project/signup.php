@@ -41,7 +41,7 @@ input[type="file"]{
 							</label>
 						</p>
 						<div class="check-name">
-								<input placeholder="用户名为4~12个字符" type="text" name="log" id="user-login" class="input-box" value="" maxlength="12">
+								<input placeholder="用户名为4~12个字符" type="text" name="log" id="user-login" class="input-box" value="" maxlength="12" autofocus="autofocus">
 								<span class="error-star">*</span>
 							<div class="error-message-box">
 								<a class="error-message"></a>
@@ -91,7 +91,7 @@ input[type="file"]{
 				 	</div>
 				 	
 					<div class="signup-user-data display-none">
-						<font class="checkout-title-font"><strong>完善您的用户信息</strong></font>
+						<font class="checkout-title-font"><strong>请完善您的用户信息</strong></font>
 						
 						<p style="margin-top: 15px;">	
 							<label for="user-picture"><font class="checkout-font"><strong>头像</strong></font><br>
@@ -102,6 +102,9 @@ input[type="file"]{
 									<img src="" alt="" id="look" />
 								</div>
 							</label>
+								<div class="error-message-box check-pro">
+									<a class="error-message"></a>
+								</div>
 								
 							</label>
 						</p>
@@ -148,33 +151,41 @@ input[type="file"]{
 <div class="bottom">Copyright&copy;2017<a href="index.php">基于PHP的传媒公司网站</a>All rights reserved. By:1440706131 计算机系 张跃聪</div>
 </footer>
 
-<script src="javascript.js"></script>
-		<script type="text/javascript">
-			$(function(){
-				$("#file").change(function(){
-					var docObj = document.getElementById("file");
-					var imgObjPreview = document.getElementById("look");
-					if (docObj.files && docObj.files[0]) {
-			            //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要已下方式
-			            imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
-			        } else {
-			            //IE下，使用滤镜
-			            docObj.select();
-			            var imgSrc = document.selection.createRange().text;
-			            var localImagId = document.getElementById("localImag");
-			            //图片异常的捕捉，防止用户修改后缀来伪造图片
-			            try {
-			            	localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
-			            	localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
-			            } catch(e) {
-			            	alert("您上传的图片格式不正确，请重新选择!");
-			            	return false;
-			            }
-			            document.selection.empty();
-			        }
-			        return true;
-			    })
-			})
-	</script>
+<script src="public/js/javascript.js"></script>
+<script type="text/javascript">
+	
+$(function(){
+	$("#file").change(function(){
+		var docObj = document.getElementById("file");
+		var imgObjPreview = document.getElementById("look");
+		
+		var filepath = $(this).val();
+		var extStart = filepath.lastIndexOf(".");
+		var ext = filepath.substring(extStart,filepath.length).toUpperCase();
+		
+		var file_size = this.files[0].size;
+		
+		var size = file_size / 1024;
+
+		if(ext!==".BMP"&&ext!==".PNG"&&ext!==".GIF"&&ext!==".JPG"&&ext!==".JPEG"){
+			$(".check-pro a").html("请选择一个格式正确的图片");
+			return false;
+		}else if(size > 10240){
+			$(".check-pro a").html("上传的图片大小不能超过10M");
+			return false;
+		}else{
+			$(".check-pro a").html("");
+		}
+		
+		if (docObj.files && docObj.files[0]) {
+			imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+		}else{
+			imgObjPreview.src = docObj.files[0].getAsDataURL();
+		}
+			return true;
+		});
+});
+	
+</script>
 </body>
 </html>

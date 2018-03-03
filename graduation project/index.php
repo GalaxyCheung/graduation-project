@@ -16,53 +16,7 @@
 
 <body>
 
-<header id="header" >
-	<div class="header-tool">
-		<div class="header-tool-box">
-			<div class="header-user-box">
-					<dl>
-					<?php 
-						session_start();
-						if(!isset($_SESSION['currentUser'])){
-							echo '<dd><span></span><a href="login.php">登录</a></dd>
-								<dd><span></span><a href="signup.php">注册</a></dd>';
-						}else{
-							echo '<dd><span></span><a href="space.php">'.@$_SESSION['currentUser'][name].'</a></dd>
-								<dd><span></span><a href="login.php">注销</a></dd>';
-						}
-					?>
-						<dd><span></span><a href="signup.php">消息</a></dd>
-						<dd><a href="publish.php">发布</a></dd>
-					</dl>
-			</div>
-		</div>
-	</div>
-	<div id="header-1">
-		<div id="header-box">
-			<div class="header-logo"><a href="index.php">
-				<img src="public/images/header_logo.png"/></a>
-			</div>
-		</div>
-	</div>
-		
-	<nav class="nav">
-		<ul>
- 			<li><a href="index.php">首 页</a></li>
-  			<li><a href="index-2.php">搭配频道</a></li>
-  			<li><a href="index-3.php">搭配达人</a></li>
-			<div class="nav-search-box">
-					<form class="nav-search">
-				 		<select>
-							<option>搭配</option>
-							<option>用户</option>
-						</select>
-					 	<input placeholder="请输入搜索内容" class="nav-search-input" type="text" />
-					 	<a class="search-img"></a>
-					</form>
-			</div>
-		</ul>
-	</nav>
-</header>
+<?php include("header.php"); ?>
 
 <div class="slide-box">
 	<div id="arrow-left"><img src="public/images/arrowleft.jpg" /></div>
@@ -134,114 +88,29 @@
 
 	<div class="content-box">
 		<div class="content">
-			<div class="content-picture-box">
-				<div class="content-picture">
-					<a href="detail.php"><img src="public/images/boys/20160103232318793_500.jpg" /></a>
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-						<a href="space.php"><img src="public/images/AI.png" /></a>
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
 		
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-						
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
+			<?php 
+				include("app/config.php");
+				
+				$sql = "select * from gp_pic inner join gp_user on gp_pic.u_id=gp_user.id ORDER BY gp_pic.id DESC";
+				$result = mysqli_query($link,$sql);
+				while($rs = mysqli_fetch_array($result)){
+					echo "<div class='content-picture-box'>
+							<div class='content-picture'>
+								<a href='detail.php?pic_id=".@$rs[0]."'><img src='".@$rs[pic_url]."' /></a>
+							</div>
+							<div class='picture-info'>
+								<div class='profile-picture'>
+									<a href='space.php'><img src='".@$rs[prof_url]."' /></a>
+								</div>
+								<div class='intro-info'><p>".@$rs[name]." / ".@$rs[sex]." / ".@$rs[stature]."</p>
+								</div>
+								<div class='intro-info'><p>".@$rs[title]."</p></div>	
+							</div>
+						</div>";
+				}
+			?>
 			
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-						
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-		
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-						
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-		
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-						
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-			
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-					
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-		
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-						
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-		
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-					<div class="picture-info">
-					<div class="profile-picture">
-
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
 			<div class="clear"></div>
 		</div>
 		

@@ -81,7 +81,7 @@
 }
 	
 .bottom-button{
-	float: right;
+	display: inline-block;
 	width: 110px;
 	height: 35px;
 	margin: 15px 10px;
@@ -106,51 +106,33 @@
 	font-size: 18px;
 }
 	
+input[type="file"]{
+	position: absolute;
+	margin: 15px 10px;
+	width: 110px;
+	height: 35px;
+	filter: alpha(opacity=0); 
+	-moz-opacity: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+	
+input[type="submit"]{
+	position: absolute; 
+	margin: 15px 10px;
+	width: 110px;
+	height: 35px;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	opacity: 0;
+	cursor: pointer;
+}
 </style>
 </head>
 
 <body>
 
-<header id="header" >
-	<div class="header-tool">
-		<div class="header-tool-box">
-			<div class="header-user-box">
-					<dl>
-						<dd><span></span><a href="login.php">登录</a></dd>
-						<dd><span></span><a href="signup.php">注册</a></dd>
-						<dd><span></span><a href="signup.php">消息</a></dd>
-						<dd><a href="publish.php">发布</a></dd>
-					</dl>
-			</div>
-		</div>
-	</div>
-	<div id="header-1">
-		<div id="header-box">
-			<div class="header-logo"><a href="index.php">
-				<img src="public/public/images/header_logo.png"/></a>
-			</div>
-		</div>
-	</div>
-		
-	<nav class="nav">
-		<ul>
- 			<li><a href="index.php">首 页</a></li>
-  			<li><a href="index-2.php">搭配频道</a></li>
-  			<li><a href="index-3.php">搭配达人</a></li>
-			<div class="nav-search-box">
-					<form class="nav-search">
-				 		<select>
-							<option>搭配</option>
-							<option>用户</option>
-						</select>
-					 	<input placeholder="请输入搜索内容" class="nav-search-input" type="text" />
-					 	<a class="search-img"></a>
-					</form>
-			</div>
-		</ul>
-	</nav>
-</header>
-	
+<?php include("header.php"); ?>	
 	
 <main>
 	<div class="detail-content-box">
@@ -158,25 +140,30 @@
 		<h2>发布搭配</h2>
 		<h2>标题</h2>
 	</div>
-		<div class="detail-content">
-			<div class="detail-picture">
-				<img src="" />
-					<div class="bottom-button" id="publish_button"><a href="javascriot:void(0);"><span>√</span>发布</a></div>
-					<div class="bottom-button" id="upload_button"><a href="javascriot:void(0);"><span>∧</span>上传图片</a></div>
-					
+		<form name="publish-form" id="publish-form" onsubmit="return check_pic_info()" method="post" action="app/publishAction.php" enctype="multipart/form-data">
+			<div class="detail-content">
+				<div class="detail-picture">
+					<img alt="" src="" id="look"/>
+					<div style="margin-left: 270px;">
+						<input type="file" accept="image/*" value="" id="file" name="pic_url">
+						<div class="bottom-button" id="upload_button"><a href="javascriot:void(0);"><span>∧</span>上传图片</a></div>
+						<input type="submit" id="submit">
+						<div class="bottom-button" id="publish_button"><a href="javascriot:void(0);"><span>√</span>发布</a></div>
+					</div>
+				</div>
 			</div>
-		</div>
-		
-		<div class="detail-picture-introduction">
-			<div class="introduction-title">
-				<div class="h1_textarea"><textarea id="h1_textarea" maxlength="10"></textarea></div>
-				<div class="h2_textarea"><textarea id="h2_textarea" maxlength="22"></textarea></div>
+
+			<div class="detail-picture-introduction">
+				<div class="introduction-title">
+					<div class="h1_textarea"><textarea name="title" id="h1_textarea" maxlength="10"></textarea></div>
+					<div class="h2_textarea"><textarea name="subtitle" id="h2_textarea" maxlength="22"></textarea></div>
+				</div>
+				<h2>简介</h2>
+				<div class="introduction-content-1">
+					<textarea name="intro" id="cont_textarea" maxlength="300"></textarea>
+				</div>
 			</div>
-			<h2>简介</h2>
-			<div class="introduction-content-1">
-				<textarea id="cont_textarea" maxlength="300"></textarea>
-			</div>
-		</div>
+		</form>
 		<div class="clear"></div>
 	</div>
 </main>
@@ -187,7 +174,7 @@
 
 <script>
 
-$("#publish_button").mousedown(function(){
+function check_pic_info(){
 	var confirm_1 = confirm("是否确认发布");
 	if(confirm_1 === true){
 		var p_h1 = replaceTextarea1($("#h1_textarea").val());
@@ -196,24 +183,27 @@ $("#publish_button").mousedown(function(){
 		var p_img = $(".detail-picture").find("img").attr("src");
 		
 		if(p_h1 === "" || p_h1 === null){
+			$("#h1_textarea").focus();
 			alert("请输入标题");
-			return;
+			return false;
 		}else if(p_h2 === "" || p_h2 === null){
+			$("#h2_textarea").focus();
 			alert("请输入副标题");
-			return;
+			return false;
 		}else if(p_cont === "" || p_cont === null){
+			$("#cont_textarea").focus();
 			alert("请输入介绍内容");
-			return;
+			return false;
 		}else if(p_img === "" || p_img === null){
 			alert("请上传图片");
-			return;
-		}else{
 			return false;
+		}else{
+			return true;
 		}
 	}else{
 		return false; 
 	}	
-});	
+}
 		
 function replaceTextarea1(str){
 	var reg = new RegExp("\r\n","g");
@@ -234,6 +224,37 @@ function replaceTextarea2(str){
 
 	return str;
 }
+	
+$(function(){
+	$("#file").change(function(){
+		var docObj = document.getElementById("file");
+		var imgObjPreview = document.getElementById("look");
+		
+		var filepath = $(this).val();
+		var extStart = filepath.lastIndexOf(".");
+		var ext = filepath.substring(extStart,filepath.length).toUpperCase();
+		
+		var file_size = this.files[0].size;
+		
+		var size = file_size / 1024;
+
+		if(ext!==".BMP"&&ext!==".PNG"&&ext!==".GIF"&&ext!==".JPG"&&ext!==".JPEG"){
+			alert("请选择一个格式正确的图片");
+			return false;
+		}else if(size > 10240){
+			alert("上传的图片大小不能超过10M");
+			return false;
+		}
+		
+		if (docObj.files && docObj.files[0]) {
+			imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+		}else{
+			imgObjPreview.src = docObj.files[0].getAsDataURL();
+		}
+			return true;
+		});
+});
+	
 </script>
 
 </body>

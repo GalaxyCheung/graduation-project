@@ -80,9 +80,11 @@
 <script>
 	$(function() {
 		if ($.cookie("remember-me")) {
-			$("#rememberUser").attr("checked", true);
-			$("#user-login").val($.cookie("username"));
-			$("#user-pass").val($.cookie("password"));
+			if($("#user-login").val() === ""){
+				$("#rememberUser").attr("checked", true);
+				$("#user-login").val($.cookie("username"));
+				$("#user-pass").val($.cookie("password"));
+			}
 		}
 	});
 </script>

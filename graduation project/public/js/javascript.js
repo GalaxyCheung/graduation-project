@@ -141,43 +141,55 @@ return false;}
 }
 */
 	
-function checkinfo_1(){
-	var user_name = $.trim($("#user-login").val());
-	var user_pass = $("#user-pass").val();
-	var confirm_pass = $("#password").val();
-	var user_code = $("#check-code").val();
-	var code = $("#checkCode").html();
-	var i = 0;
-	
-	function check_name(){
+	$("#user-login").focus(function(){
+	$("#user-login").blur(function(){
+		
+		var user_name = $.trim($("#user-login").val());
+		
 		if(user_name === "" || user_name === null){
 			$(".check-name a").html("请输入用户名");
 			return false;
 		}else if(user_name.replace(/[^\u0000-\u00ff]/g,"ab").length <= 4 || user_name.replace(/[^\u0000-	\u00ff]/g,"aa").length >= 13){
 			$(".check-name a").html("用户名应为5~12个字符，请重新输入");
 			return false;
-		}else{
-			$.ajax({
-				url: "app/checkName.php",
-				type: "POST",
-				dataType: "json",
-				data: {username: user_name},
-				error: function(){  
-					alert('Error loading XML document');  
-				},  
-				success: function(data) {
-					if (data[0] === "") {
-						$(".check-name a").html("「 "+user_name + " 」 已被注册");
-					} else {
-						$(".check-name a").html("「 "+user_name + " 」 可以注册");
-					}
+		}else{		
+				$.ajax({
+					url: "app/checkName.php",
+					type: "POST",
+						dataType: "json",
+						data: {username: user_name},
+						error: function(){  
+							alert('Error loading XML document');  
+						},  
+						success: function(data) {
+							if (data[0] === "") {
+								$(".check-name a").html("「 "+user_name + " 」 已被注册");
+								return false;
+							} else {
+								$(".check-name a").html("「 "+user_name + " 」 可以注册");
+							}
+						}
+					});
 				}
 			});
+		});
+
+function checkinfo_1(){
+	
+	var i = 0;
+	
+	function check_name(){
+
+		var user_name = $.trim($("#user-login").val());
+		if($(".check-name a").text() === "「 "+user_name + " 」 可以注册"){
 			i++;
+			}
 		}
-	}
 	
 	function check_pass(){
+		
+		var user_pass = $("#user-pass").val();
+		
 		if(user_pass === "" || user_pass === null){
 			$(".check-pass a").html("请输入密码");
 			return false;
@@ -191,6 +203,10 @@ function checkinfo_1(){
 	}
 	
 	function cfm_pass(){
+		
+		var confirm_pass = $("#password").val();
+		var user_pass = $("#user-pass").val();
+		
 		if(confirm_pass === "" || confirm_pass === null){
 			$(".check-cfmpass a").html("请确认您的密码");
 			return false;
@@ -204,6 +220,10 @@ function checkinfo_1(){
 	}
 	
 	function check_code(){
+		
+		var user_code = $("#check-code").val();
+		var code = $("#checkCode").html();
+		
 		if(user_code === "" || user_code === null){
 			$(".check-code a").html("请输入验证码");
 			return false;
@@ -232,7 +252,13 @@ function checkinfo_1(){
 
  
 function checkinfo_2(){
-	var user_stat = $(".data-stature").val();
+	
+	var i = 0;
+	
+	function check_stat(){
+		
+		var user_stat = $(".data-stature").val();
+		
 		if(user_stat === "" || user_stat === null){
 			$(".check-stat a").html("请输入您的身高");
 			return false;
@@ -245,8 +271,27 @@ function checkinfo_2(){
 			$(".check-stat a").html("身高范围应为50cm~270cm");
 			return false;
 		}else{
-			return true;
+			i++;
 		}
+	}
+	function check_pro(){
+		var filepath = $("#file").val();
+
+		if(filepath === ""){
+			$(".check-pro a").html("请上传您的头像");
+			return false;
+		}else{
+			i++;
+		}
+	}
+		check_stat();
+		check_pro();
+	
+	if(i ===2){
+		return true;
+	}else{
+		return false;
+	}
 }
 /*
 function checkinfo1(){
