@@ -25,6 +25,7 @@ $pic_id = mysqli_insert_id($link);
 
 header("Location: ../detail.php?pic_id=$pic_id");
 
+mysqli_free_result($result);
 mysqli_close($link);
 
 ?>

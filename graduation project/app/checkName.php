@@ -15,6 +15,7 @@
 
 	echo json_encode($array);
 	
+	mysqli_free_result($res);
 	mysqli_close($link);
 
 ?>

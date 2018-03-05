@@ -446,9 +446,9 @@ textarea{
 
 .nav-middle-angle{
 	float: left;
+	margin-left: 48px;
     width: 0px;
     height: 0px;
-	margin-left: 48px;
     border: 10px solid #00c9d0;
     border-color: #00c9d0 #f6f7f9 #f6f7f9 #f6f7f9;
 }
@@ -502,19 +502,25 @@ main{
 .picture-info{
 	position: relative;
 	width: 300px;
-	height: 50px;
+	height: 70px;
 	margin: 10px auto 0 auto;
 }
 
 .profile-picture{
 	float: left;
-	height: 50px;
-	width: 50px;
+	height: 60px;
+	width: 60px;
+}
+
+.profile-picture a{
+	display: block;
+	height: 60px;
+	width: 60px;
 }
 
 .picture-info .profile-picture a img{
-	height: 50px;
-	width: 50px;
+	height: 60px;
+	width: 60px;
 }
 
 .intro-info{

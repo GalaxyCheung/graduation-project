@@ -11,7 +11,7 @@
 
 <body>
 
-<?php include("app/header.php");?>
+<?php include("header.php");?>
 	
 <div class="space-header">
 	<div class="space-header-box">

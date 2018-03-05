@@ -14,10 +14,6 @@
 		background-color: #00c9d0;
 	}	
 	
-	.nav-middle ul li:first-child{
-		background-color: #00c9d0;
-	}	
-	
 	.nav-middle-box{
 		margin-top: 40px;
 	}
@@ -27,55 +23,91 @@
 
 <body>
 
-<header id="header" >
-	<div class="header-tool">
-		<div class="header-tool-box">
-			<div class="header-user-box">
-					<dl>
-						<dd><span></span><a href="login.php">登录</a></dd>
-						<dd><span></span><a href="signup.php">注册</a></dd>
-						<dd><span></span><a href="signup.php">消息</a></dd>
-						<dd><a href="publish.php">发布</a></dd>
-					</dl>
-			</div>
-		</div>
-	</div>
-	<div id="header-1">
-		<div id="header-box">
-			<div class="header-logo"><a href="index.php">
-				<img src="public/images/header_logo.png"/></a>
-			</div>
-		</div>
-	</div>
+<?php include('header.php'); ?>
+<?php
+	class index2 {
 		
-	<nav class="nav">
-		<ul>
- 			<li><a href="index.php">首 页</a></li>
-  			<li><a href="index-2.php">搭配频道</a></li>
-  			<li><a href="index-3.php">搭配达人</a></li>
-			<div class="nav-search-box">
-					<form class="nav-search">
-				 		<select>
-							<option>搭配</option>
-							<option>用户</option>
-						</select>
-					 	<input placeholder="请输入搜索内容" class="nav-search-input" type="text" />
-					 	<a class="search-img"></a>
-					</form>
-			</div>
-		</ul>
-	</nav>
-</header>
+		public $sex;
+		public $sqlcount;
+		public $pageCount;
+		public $curPage;
+		public $pageSize;
+		public $startRow;
+		public $pageNum;
+		
+		function queryPage(){
+			
+			include("app/config.php");
+			$this->sex = @$_GET[sex];
+			
+			if($this->sex == ""){
+				$sqls  = "SELECT COUNT(*) as total FROM gp_user inner join gp_pic on gp_user.id=gp_pic.u_id"; 
+			}else{
+				$sqls  = "SELECT COUNT(*) as total FROM gp_user inner join gp_pic on gp_user.id=gp_pic.u_id where sex='$this->sex'"; 
+			} 
 
+			$sqlcount = mysqli_query($link,$sqls);
+			$pageCount  = mysqli_fetch_array($sqlcount);
+			$this->pageCount = $pageCount['total']; 	
+
+			$this->curPage = @$_GET[page]?:'1';  
+
+			$this->pageSize = 9;  
+
+			$this->startRow = ($this->curPage-1) * $this->pageSize; 
+			$this->pageNum = ceil($this->pageCount/$this->pageSize);
+
+			if($this->curPage<=0||$this->curPage==""||!isset($this->curPage)){
+				$this->curPage= 1;
+			}else if($this->curPage > $this->pageNum){
+				$this->curPage = $this->pageNum; 
+			}
+			
+			mysqli_free_result($sqlcount);
+			mysqli_close($link);
+		}
+		
+		function queryBySex(){
+
+			include("app/config.php");
+			$i = new index2();
+			$i->queryPage();
+			if($i->sex == ""){
+				$sql = "select * from gp_user inner join gp_pic on gp_user.id=gp_pic.u_id ORDER BY gp_pic.id DESC LIMIT $i->startRow,$i->pageSize";
+			}else{
+				$sql = "select * from gp_user inner join gp_pic on gp_user.id=gp_pic.u_id where sex='$i->sex' ORDER BY gp_pic.id DESC LIMIT $i->startRow,$i->pageSize";
+			}
+			$result = mysqli_query($link,$sql);
+			while($rs = mysqli_fetch_array($result)){
+				echo "<div class='content-picture-box'>
+						<div class='content-picture'>
+							<a href='detail.php?pic_id=".@$rs[0]."'><img src='".@$rs[pic_url]."' /></a>
+						</div>
+						<div class='picture-info'>
+							<div class='profile-picture'>
+								<a href='space.php'><img src='".@$rs[prof_url]."' /></a>
+							</div>
+							<div class='intro-info'><p>".@$rs[name]." / ".@$rs[sex]." / ".@$rs[stature]."</p>
+							</div>
+							<div class='intro-info'><p>".@$rs[title]."</p></div>
+							<div style='float:left; width:240px; height:20px;'><a style='float:right; display:block; font-size:10px; line-height:20px;'>".@$rs[time]."</a></div>	
+						</div>
+					</div>";
+			}
+			mysqli_free_result($result);
+			mysqli_close($link);
+		}	
+	}
+?>
 
 <main>
 
 	<div class="nav-middle-box">
 		<nav class="nav-middle">
 			<ul>
- 				<li><a href="javascript:void(0)">不 限</a></li>
- 				<li><a href="javascript:void(0)">男 生<img class="img-boys" src="public/images/boy.png" /></a></li>
- 				<li><a href="javascript:void(0)">女 生<img class="img-girls" src="public/images/girl.png"/></a></li>
+ 				<li><a href="index-2.php">不 限</a></li>
+ 				<li><a href="index-2.php?sex=男生">男 生<img class="img-boys" src="public/images/boy.png" /></a></li>
+ 				<li><a href="index-2.php?sex=女生">女 生<img class="img-girls" src="public/images/girl.png"/></a></li>
 			</ul>
 		</nav>
 		<div class="nav-middle-angle"></div>  
@@ -87,128 +119,53 @@
 
 	<div class="content-box">
 		<div class="content">
-			<div class="content-picture-box">
-				<div class="content-picture">
-					<a href="detail.php"><img src="public/images/boys/20160103232318793_500.jpg" /></a>
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-						<a href="space.php"><img src="public/images/AI.png" /></a>
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-		
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-						
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-			
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-						
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-		
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-						
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-		
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-						
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-			
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-					
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-		
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-						
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-		
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-					<div class="picture-info">
-					<div class="profile-picture">
-
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
-
-			<div class="content-picture-box">
-				<div class="content-picture">
-				</div>
-				<div class="picture-info">
-					<div class="profile-picture">
-
-					</div>
-					<div class="user-info"></div>
-					<div class="picture-caption"></div>
-				</div>
-			</div>
+			<?php
+				$i0 = new index2();
+				$i0->queryBySex();
+			?>
 			<div class="clear"></div>
 		</div>
 		
 		<div class="content-page">
-					<a href="javascript:void(0)">&lt;&nbsp;上一页</a>
-					<a class="current-page" href="javascript:void(0)">1</a>
-					<a href="javascript:void(0)">2</a>
-					<a href="javascript:void(0)">3</a>
-					<a href="javascript:void(0)">4</a>
-					<a href="javascript:void(0)">5</a>
-					<a>...</a>
-					<a href="javascript:void(0)">下一页&nbsp;&gt;</a>
+			<?php
+				$i1 = new index2();
+				$i1->queryPage();
+				$curPage = $i1->curPage;
+				$pageNum = $i1->pageNum;
+				$sex = $i1->sex;
+				if($curPage<=0||$curPage==""){
+					$curPage = 1;
+				}else if($curPage > $pageNum){
+					$curPage = $pageNum; 
+				}
+			
+					if($curPage!=1){
+						if($curPage<=4){
+							for ($i=1; $i<$curPage; $i++){
+								echo "<a href='index-2.php?sex=$sex&page=$i'>".$i."</a>";
+							}
+						}else{
+							echo "<a href='index-2.php?page=($curPage-1)'>上一页&nbsp;&gt;</a>
+							<a href='index-2.php?sex=$sex&page=1'>1</a>
+								<a>...</a>";
+							for ($i=($i1-$curPage-2); $i<$curPage; $i++){
+								echo "<a href='index-2.php?sex=$sex&page=$i'>".$i."</a>";
+							}
+						}
+					}
+				?>
+					<a class="current-page" href="javascript:viod(0);"><?php echo $curPage ?></a>
+				<?php
+					for ($i=($curPage+1); $i<=$pageNum; $i++){
+						echo "<a href='index-2.php?sex=$sex&page=$i'>".$i."</a>";
+					}
+					if(($pageNum-$curPage)>3){
+						echo "<a>...</a>
+						<a href='index-2.php?sex=$sex&page=($curPage+1)'>下一页&nbsp;&gt;</a>";
+					}
+				?>
 		</div>
-					<div class="clear"></div>
+		<div class="clear"></div>
 	</div>
 	
 </main>
@@ -222,5 +179,44 @@
 
 <script src="public/js/scroll.js"></script>
 <script src="public/js/javascript.js"></script>
+<script>
+	$(document).ready(function(){
+		
+		var url = location.search; 
+		var sex = decodeURI(url.substr(5));
+		if(sex === "男生"){
+			$(".nav-middle ul li:first-child").css({
+				"background-color" : "#444447"
+			});
+
+			$(".nav-middle ul li:nth-child(2)").css({
+				"background-color" : "#00c9d0"
+			});
+
+			$(".nav-middle-angle").css({
+				"margin-left" : "170px"
+			});
+		}else if(sex === "女生"){
+			$(".nav-middle ul li:first-child").css({
+				"background-color" : "#444447"
+			});
+
+			$(".nav-middle ul li:nth-child(3)").css({
+				"background-color" : "#00c9d0"
+			});
+
+			$(".nav-middle-angle").css({
+				"margin-left" : "292px"
+			});
+		}else{
+			$(".nav-middle ul li:first-child").css({
+				"background-color": "#00c9d0"
+			});
+			$(".nav-middle-angle").css({
+				"margin-left": "48px"
+			});
+		}
+	});
+</script>
 </body>
 </html>

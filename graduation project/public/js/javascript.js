@@ -156,23 +156,23 @@ return false;}
 				$.ajax({
 					url: "app/checkName.php",
 					type: "POST",
-						dataType: "json",
-						data: {username: user_name},
-						error: function(){  
-							alert('Error loading XML document');  
-						},  
-						success: function(data) {
-							if (data[0] === "") {
-								$(".check-name a").html("「 "+user_name + " 」 已被注册");
-								return false;
-							} else {
-								$(".check-name a").html("「 "+user_name + " 」 可以注册");
-							}
+					dataType: "json",
+					data: {username: user_name},
+					error: function(){  
+						alert('Error loading XML document');  
+					},  
+					success: function(data) {
+						if (data[0] === "") {
+							$(".check-name a").html("「 "+user_name + " 」 已被注册");
+							return false;
+						} else {
+							$(".check-name a").html("「 "+user_name + " 」 可以注册");
 						}
-					});
-				}
-			});
+					}
+				});
+			}
 		});
+	});
 
 function checkinfo_1(){
 	

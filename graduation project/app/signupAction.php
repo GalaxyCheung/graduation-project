@@ -23,5 +23,6 @@ $result = mysqli_query($link, $sql);
 
 header("Location: ../login.php?user=$log");
 
+mysqli_free_result($result);
 mysqli_close($link);
 ?>

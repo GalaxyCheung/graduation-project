@@ -132,7 +132,12 @@ input[type="submit"]{
 
 <body>
 
-<?php include("header.php"); ?>	
+<?php 
+	include("header.php");
+	if(!isset($_SESSION['currentUser'])){
+		header("Location: ./login.php");
+	}
+?>	
 	
 <main>
 	<div class="detail-content-box">

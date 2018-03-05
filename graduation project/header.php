@@ -30,7 +30,7 @@
 		
 	<nav class="nav">
 		<ul>
- 			<li><a href="index.php">首 页</a></li>
+ 			<li><a href="index.php?page=1">首 页</a></li>
   			<li><a href="index-2.php">搭配频道</a></li>
   			<li><a href="index-3.php">搭配达人</a></li>
 			<div class="nav-search-box">

@@ -18,6 +18,33 @@
 
 <?php include("header.php"); ?>
 
+<?php 
+	include("app/config.php");
+			
+		$sqls  = "SELECT COUNT(id) as total FROM gp_pic";  
+		$sqlcount = mysqli_query($link,$sqls);  
+		$pageCount  = mysqli_fetch_array($sqlcount);  
+		$pageCount = $pageCount['total']; 
+				
+		$curPage = @$_GET[page]?:'1';  
+		
+		$pageSize = 9;  
+		
+		$startRow = ($curPage-1) * $pageSize; 
+		$pageNum = ceil($pageCount/$pageSize);
+	
+		if($curPage <=0){
+			$curPage= 1;
+		}else if($curPage > $pageNum || !isset($curPage)){
+			$curPage = $pageNum; 
+		}
+				
+		$sql = "select * from gp_pic inner join gp_user on gp_pic.u_id=gp_user.id ORDER BY gp_pic.id DESC LIMIT $startRow,$pageSize";
+			
+		$result = mysqli_query($link,$sql);
+?>
+
+
 <div class="slide-box">
 	<div id="arrow-left"><img src="public/images/arrowleft.jpg" /></div>
 	<div id="arrow-right"><img src="public/images/arrowright.jpg" /></div>
@@ -74,9 +101,9 @@
 	<div class="nav-middle-box">
 		<nav class="nav-middle">
 			<ul>
- 				<li><a href="javascript:void(0)">不 限</a></li>
- 				<li><a href="javascript:void(0)">男 生<img class="img-boys" src="public/images/boy.png" /></a></li>
- 				<li><a href="javascript:void(0)">女 生<img class="img-girls" src="public/images/girl.png"/></a></li>
+ 				<li><a href="index-2.php">不 限</a></li>
+ 				<li><a href="index-2.php?sex=男生">男 生<img class="img-boys" src="public/images/boy.png" /></a></li>
+ 				<li><a href="index-2.php?sex=女生">女 生<img class="img-girls" src="public/images/girl.png"/></a></li>
 			</ul>
 		</nav>
 		<div class="nav-middle-angle"></div>  
@@ -89,11 +116,7 @@
 	<div class="content-box">
 		<div class="content">
 		
-			<?php 
-				include("app/config.php");
-				
-				$sql = "select * from gp_pic inner join gp_user on gp_pic.u_id=gp_user.id ORDER BY gp_pic.id DESC";
-				$result = mysqli_query($link,$sql);
+			<?php
 				while($rs = mysqli_fetch_array($result)){
 					echo "<div class='content-picture-box'>
 							<div class='content-picture'>
@@ -105,24 +128,43 @@
 								</div>
 								<div class='intro-info'><p>".@$rs[name]." / ".@$rs[sex]." / ".@$rs[stature]."</p>
 								</div>
-								<div class='intro-info'><p>".@$rs[title]."</p></div>	
+								<div class='intro-info'><p>".@$rs[title]."</p></div>
+								<div style='float:left; width:240px; height:20px;'><a style='float:right; display:block; font-size:10px; line-height:20px;'>".@$rs[time]."</a></div>	
 							</div>
 						</div>";
 				}
 			?>
-			
 			<div class="clear"></div>
 		</div>
 		
 		<div class="content-page">
-					<a href="javascript:void(0)">&lt;&nbsp;上一页</a>
-					<a class="current-page" href="javascript:void(0)">1</a>
-					<a href="javascript:void(0)">2</a>
-					<a href="javascript:void(0)">3</a>
-					<a href="javascript:void(0)">4</a>
-					<a href="javascript:void(0)">5</a>
-					<a>...</a>
-					<a href="javascript:void(0)">下一页&nbsp;&gt;</a>
+				<?php
+					if($curPage!=1){
+						if($curPage<=4){
+							for ($i=1; $i<$curPage; $i++){
+								echo "<a href='index.php?page=$i'>".$i."</a>";
+							}
+						}else{
+							echo "<a href='index.php?page=($curPage-1)'>上一页&nbsp;&gt;</a>
+							<a href='index.php?page=1'>1</a>
+								<a>...</a>";
+							for ($i=($curPage-2); $i<$curPage; $i++){
+								echo "<a href='index.php?page=$i'>".$i."</a>";
+							}
+						}
+					}
+				?>
+					<a class="current-page" href="javascript:viod(0);"><?php echo $curPage ?></a>
+				<?php
+					for ($i=($curPage+1); $i<=$pageNum; $i++){
+						echo "<a href='index.php?page=$i'>".$i."</a>";
+					}
+					if(($pageNum-$curPage)>3){
+						echo "<a>...</a>
+						<a href='index.php?page=($curPage+1)'>下一页&nbsp;&gt;</a>";
+					}
+				?>
+					
 		</div>
 					<div class="clear"></div>
 	</div>
