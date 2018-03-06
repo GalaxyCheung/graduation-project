@@ -169,10 +169,10 @@
 }
 
 .edit-pic-button a{
-	display: block;
+	display: inline-block;
 	float: right; 
-	margin-right: 10px;
-	font-size: 14px;
+	margin-right: 12px;
+	font-size: 12px;
 	line-height: 25px; 
 	color: #444447; 
 }

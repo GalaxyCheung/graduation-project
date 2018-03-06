@@ -67,7 +67,7 @@
 			mysqli_close($link);
 		}
 		
-		function queryBySex(){
+		function queryPicBySex(){
 
 			include("app/config.php");
 			$i = new index2();
@@ -121,7 +121,7 @@
 		<div class="content">
 			<?php
 				$i0 = new index2();
-				$i0->queryBySex();
+				$i0->queryPicBySex();
 			?>
 			<div class="clear"></div>
 		</div>

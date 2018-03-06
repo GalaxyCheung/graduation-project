@@ -75,16 +75,16 @@ textarea{
     background-color: #F4F4F4;
 }
 .header-tool-box{
-    width : 85%;
+    width : 90%;
 	height: 32px;
     margin: 0px auto;
-	max-width: 1120px;
+	max-width: 1200px;
 }
 .header-user-box{
 	float: right;
-	width: 260px;
 }
 .header-user-box dl{
+	width: 270px;
 	float: right;
 }
 .header-user-box dl dd{
@@ -98,10 +98,10 @@ textarea{
 	text-decoration:none;
 }
 .header-user-box dl dd span{
-	border-left: 1px solid #000;
+	border-right: 1px solid #000;
 }
 .header-user-box dl dd:first-child a{
-	border-left:0 none;
+	border-right:0 none;
 }
 
 .header-user-box dl dd a:hover{

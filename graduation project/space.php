@@ -21,36 +21,152 @@
 	
 
 <?php include("header.php");?>
+<?php
+	$userId = @$_GET['id']?:@$_SESSION['currentUser']['id'];
+	class space {
+		
+		public $pageCount;
+		public $curPage;
+		public $pageSize;
+		public $startRow;
+		public $pageNum;
+		public $currUserId;
+		public $userId;
+		
+		function queryUser(){
+			include("app/config.php");
+			
+			$userId = @$_GET['id']?:@$_SESSION['currentUser']['id'];
+			
+			$sql  = "SELECT * FROM gp_user where id='$userId'"; 
+			$result = mysqli_query($link,$sql);
+			$rs  = mysqli_fetch_array($result);
+			$_SESSION['user'] = $rs;
+			
+			mysqli_free_result($result);
+			mysqli_close($link);
+		}
+		
+		function queryPage(){
+			include("app/config.php");
+			
+			$this->currUserId = @$_SESSION['currentUser']['id'];
+			$this->userId = @$_GET['id']?:$this->currUserId;
+			
+			
+			$sqls  = "SELECT COUNT(*) as total FROM gp_user inner join gp_pic on gp_user.id=gp_pic.u_id where gp_user.id='$this->userId'"; 
+
+			$sqlcount = mysqli_query($link,$sqls);
+			$pageCount  = mysqli_fetch_array($sqlcount);
+			$this->pageCount = $pageCount['total']; 	
+
+			$this->curPage = @$_GET[page]?:'1';  
+
+			$this->pageSize = 6;  
+
+			$this->startRow = ($this->curPage-1) * $this->pageSize; 
+			$this->pageNum = ceil($this->pageCount/$this->pageSize);
+
+			if($this->curPage<=0||$this->curPage==""||!isset($this->curPage)){
+				$this->curPage= 1;
+			}else if($this->curPage > $this->pageNum){
+				$this->curPage = $this->pageNum; 
+			}
+			
+			mysqli_free_result($sqlcount);
+			mysqli_close($link);
+		}
+		
+		function queryUserPic(){
+
+			include("app/config.php");
+			$i = new space();
+			$i->queryPage();
+			
+			$sql = "select * from gp_user inner join gp_pic on gp_user.id=gp_pic.u_id where gp_user.id='$i->userId' ORDER BY gp_pic.id DESC LIMIT $i->startRow,$i->pageSize";
+			$result = mysqli_query($link,$sql);
+			while($rs = mysqli_fetch_array($result)){
+				echo "<div class='space-picture-box'>
+						<div class='space-picture'>
+							<img src='".@$rs[pic_url]."' />
+						</div>
+						<div class='space-picture-introduction'>";
+					if($i->currUserId==$i->userId){
+						echo "<div class='edit-button edit-pic-button'>
+								<a href='javascript:void(0);'><span>∨</span> 编辑搭配</a>
+								<a href='detail.php?pic_id=$rs[8]'><span>&lt;</span> 查看搭配</a>
+							</div>
+
+							<div class='close-button edit-pic-button display-none'>
+								<a href='javascript:void(0);'><span>∧</span> 完成编辑</a>
+								<a href='javascript:void(0);'><span>∧</span> 取消编辑</a>
+							</div>";
+					}else{}
+						echo"<div class='space-introduction-content'>
+								<div class='pic-id display-none'>".@$rs[8]."</div>
+								<div class='introduction-title'>
+									<textarea class='space-h1 display-none' type='text' placeholder='编辑标题' maxlength='17' value='".@$rs[title]."'></textarea>
+									<h1 class='h1-a'><a>".@$rs[title]."</a></h1>
+									<textarea class='space-h2 display-none' type='text' placeholder='编辑副标题' maxlength='40' value='".@$rs[subtitle]."'></textarea>
+									<h2 class='h2-a'><a>".@$rs[subtitle]."</a></h2>
+								</div>
+								<div class='introduction-content'>
+									<textarea class='space-cont display-none' type='text' placeholder='编辑介绍内容' maxlength='300' value='".@$rs[intro]."'></textarea>	
+									<div class='cont-a'><a>".@$rs[intro]."</a>
+									</div>
+								</div>
+							</div>";
+					if($i->currUserId==$i->userId){
+						echo "<div class='delete-button edit-pic-button display-none'>
+								<a href='javascript:void(0);'><span>×</span> 删除搭配</a>
+							</div>";
+						}else{}
+					echo "<div class='clear'></div>
+						</div>
+					</div>";
+				}
+			mysqli_free_result($result);
+			mysqli_close($link);
+		}	
+	}
+?>
+<?php 
+	$s = new space();
+	$s->queryUser();
+?>
 	
 <div class="space-header">
 	<div class="space-header-box">
 		<div class="space-user-info">
 			<div class="space-profile-picture">
-				<img src="<?php echo @$_SESSION['currentUser'][prof_url] ?>" />
+				<img src="<?php echo @$_SESSION['user'][prof_url] ?>" />
 			</div>
 			
 			<div class="space-user-introduction">
-				<p class="user-name"><?php echo @$_SESSION['currentUser'][name] ?></p>
+				<p class="user-name"><?php echo @$_SESSION['user'][name] ?></p>
 				<div class="display-none">
-					<input id="space-user-stature" autofocus type="text" placeholder="身高" maxlength="3" value="<?php echo @$_SESSION['currentUser'][stature] ?>" />
+					<input id="space-user-stature" autofocus type="text" placeholder="身高" maxlength="3" value="<?php echo @$_SESSION['user'][stature] ?>" />
 					<span> cm /</span>
-					<select id="space-user-sex" type="text" placeholder="性别" maxlength="8" value="<?php echo @$_SESSION['currentUser'][sex] ?>">
+					<select id="space-user-sex" type="text" placeholder="性别" maxlength="8" value="<?php echo @$_SESSION['user'][sex] ?>">
 						<option>男生</option>
 						<option>女生</option>
 					</select>
 				</div>
-				<p class="user-charact"><a class="user-stature"><?php echo @$_SESSION['currentUser'][stature] ?></a> cm /&nbsp;<a class="user-sex"><?php echo @$_SESSION['currentUser'][sex] ?></a></p>
-				<input id="space-user-signature" type="text" placeholder="编辑个性签名" maxlength="40" value="<?php echo @$_SESSION['currentUser'][signature] ?>" />
-				<p class="user-signature"><?php echo @$_SESSION['currentUser'][signature] ?></p>
+				<p class="user-charact"><a class="user-stature"><?php echo @$_SESSION['user'][stature] ?></a> cm /&nbsp;<a class="user-sex"><?php echo @$_SESSION['user'][sex] ?></a></p>
+				<input id="space-user-signature" type="text" placeholder="编辑个性签名" maxlength="40" value="<?php echo @$_SESSION['user'][signature] ?>" />
+				<p class="user-signature"><?php echo @$_SESSION['user'][signature] ?></p>
 			</div>
-			
-			<div class="edit-info-button">
-				<a id="info-button" href="javascript:void(0);">编辑个人信息</a>
-			</div>
-			
-			<div class="edit-info-button display-none">
-				<a id="finsh-button" href="javascript:void(0);">完成编辑</a>
-			</div>
+			<?php
+				if(@$_SESSION['user']['id']==@$_SESSION['currentUser']['id']){
+					echo"<div class='edit-info-button'>
+							<a id='info-button' href='javascript:void(0);'>编辑个人信息</a>
+						</div>
+
+						<div class='edit-info-button display-none'>
+							<a id='finsh-button' href='javascript:void(0);'>完成编辑</a>
+						</div>";
+				}
+			?>
 		</div>
 	</div>
 	
@@ -62,10 +178,12 @@
 	<div class="nav-middle-box">
 		<nav class="nav-middle">
 			<ul>
- 				<li><a href="space.php">搭配</a></li>
- 				<li><a href="space-2.php">喜欢</a></li>
- 				<li><a href="space-3.php">关注</a></li>
- 				<li><a href="space-4.php">粉丝</a></li>
+				<?php
+					echo "<li><a href='space.php?id=".$userId."'>搭配</a></li>
+					<li><a href='space-2.php?id=".$userId."'>喜欢</a></li>
+					<li><a href='space-3.php?id=".$userId."'>关注</a></li>
+					<li><a href='space-4.php?id=".$userId."'>粉丝</a></li>";
+				?>
 			</ul>
 		</nav>
 		<div class="nav-middle-angle"></div>  
@@ -79,130 +197,47 @@
 	<div class="content-box">
 		
 		<div class="content">
-			
-			<div class="space-picture-box">
-				
-				<div class="space-picture">
-					<img src="public/images/boys/20160103232318793_500.jpg" />
-				</div>
-				
-				<div class="space-picture-introduction">
-
-					<div class="edit-button edit-pic-button">
-						<a href="javascript:void(0);"><span>∨</span> 编辑搭配</a>
-					</div>
-
-					<div class="close-button edit-pic-button display-none">
-						<a href="javascript:void(0);"><span>∧</span> 完成编辑</a>
-					</div>
-					
-					<div class="space-introduction-content">
-						<div class="introduction-title">
-							<textarea class="space-h1 display-none" type="text" placeholder="编辑标题" maxlength="17" value=""></textarea>
-							<h1 class="h1-a"><a>1233121321321321</a></h1>
-							<textarea class="space-h2 display-none" type="text" placeholder="编辑副标题" maxlength="40" value=""></textarea>
-							<h2 class="h2-a"><a>12312132132132132</a></h2>
-						</div>
-						<div class="introduction-content">
-							<textarea class="space-cont display-none" type="text" placeholder="编辑介绍内容" maxlength="300" value=""></textarea>	
-							<div class="cont-a"><a>12312132132132112132132132112132132132112132132131213213213211213213213212132</a>
-							</div>
-						</div>
-					</div>
-					
-					<div class="delete-button edit-pic-button display-none">
-						<a href="javascript:void(0);"><span>×</span> 删除搭配</a>
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-			
-			
-			<div class="space-picture-box">
-				
-				<div class="space-picture">
-					<img src="public/images/boys/20160103232318793_500.jpg" />
-				</div>
-				
-				<div class="space-picture-introduction">
-
-					<div class="edit-button edit-pic-button">
-						<a href="javascript:void(0);"><span>∨</span> 编辑搭配</a>
-					</div>
-
-					<div class="close-button edit-pic-button display-none">
-						<a href="javascript:void(0);"><span>∧</span> 完成编辑</a>
-					</div>
-					
-					<div class="space-introduction-content">
-						<div class="introduction-title">
-							<textarea class="space-h1 display-none" type="text" placeholder="编辑标题" maxlength="17" value=""></textarea>
-							<h1 class="h1-a"><a>1233121321321321</a></h1>
-							<textarea class="space-h2 display-none" type="text" placeholder="编辑副标题" maxlength="40" value=""></textarea>
-							<h2 class="h2-a"><a>12312132132132132</a></h2>
-						</div>
-						<div class="introduction-content">
-							<textarea class="space-cont display-none" type="text" placeholder="编辑介绍内容" maxlength="300" value=""></textarea>	
-							<div class="cont-a"><a>12312132132132112132132132112132132132112132132131213213213211213213213212132</a>
-							</div>
-						</div>
-					</div>
-					
-					<div class="delete-button edit-pic-button display-none">
-						<a href="javascript:void(0);"><span>×</span> 删除搭配</a>
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-			
-			
-			<div class="space-picture-box">
-				
-				<div class="space-picture">
-					<img src="public/images/boys/20160103232318793_500.jpg" />
-				</div>
-				
-				<div class="space-picture-introduction">
-
-					<div class="edit-button edit-pic-button">
-						<a href="javascript:void(0);"><span>∨</span> 编辑搭配</a>
-					</div>
-
-					<div class="close-button edit-pic-button display-none">
-						<a href="javascript:void(0);"><span>∧</span> 完成编辑</a>
-					</div>
-					
-					<div class="space-introduction-content">
-						<div class="introduction-title">
-							<textarea class="space-h1 display-none" type="text" placeholder="编辑标题" maxlength="17" value=""></textarea>
-							<h1 class="h1-a"><a>1233121321321321</a></h1>
-							<textarea class="space-h2 display-none" type="text" placeholder="编辑副标题" maxlength="40" value=""></textarea>
-							<h2 class="h2-a"><a>12312132132132132</a></h2>
-						</div>
-						<div class="introduction-content">
-							<textarea class="space-cont display-none" type="text" placeholder="编辑介绍内容" maxlength="300" value=""></textarea>	
-							<div class="cont-a"><a>12312132132132112132132132112132132132112132132131213213213211213213213212132</a>
-							</div>
-						</div>
-					</div>
-					
-					<div class="delete-button edit-pic-button display-none">
-						<a href="javascript:void(0);"><span>×</span> 删除搭配</a>
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-			
+			<?php
+				$s->queryUserPic();
+			?>
 		</div>
 		<div class="content-page">
-					<a href="javascript:void(0)">&lt;&nbsp;上一页</a>
-					<a class="current-page" href="javascript:void(0)">1</a>
-					<a href="javascript:void(0)">2</a>
-					<a href="javascript:void(0)">3</a>
-					<a href="javascript:void(0)">4</a>
-					<a href="javascript:void(0)">5</a>
-					<a>...</a>
-					<a href="javascript:void(0)">下一页&nbsp;&gt;</a>
+			<?php
+				$s->queryPage();
+				$curPage = $s->curPage;
+				$pageNum = $s->pageNum;
+				$id = $s->userId;
+				if($curPage<=0||$curPage==""){
+					$curPage = 1;
+				}else if($curPage > $pageNum){
+					$curPage = $pageNum; 
+				}
+			
+					if($curPage!=1){
+						if($curPage<=4){
+							for ($i=1; $i<$curPage; $i++){
+								echo "<a href='space.php?id=$id&page=$i'>".$i."</a>";
+							}
+						}else{
+							echo "<a href='space.php?page=($curPage-1)'>上一页&nbsp;&gt;</a>
+							<a href='space.php?id=$id&page=1'>1</a>
+								<a>...</a>";
+							for ($i=($s-$curPage-2); $i<$curPage; $i++){
+								echo "<a href='space.php?id=$id&page=$i'>".$i."</a>";
+							}
+						}
+					}
+				?>
+					<a class="current-page" href="javascript:viod(0);"><?php echo $curPage ?></a>
+				<?php
+					for ($i=($curPage+1); $i<=$pageNum; $i++){
+						echo "<a href='space.php?id=$id&page=$i'>".$i."</a>";
+					}
+					if(($pageNum-$curPage)>3){
+						echo "<a>...</a>
+						<a href='space.php?id=$id&page=($curPage+1)'>下一页&nbsp;&gt;</a>";
+					}
+				?>
 		</div>
 			<div class="clear"></div>
 	</div>

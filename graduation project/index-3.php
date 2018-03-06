@@ -23,55 +23,103 @@
 
 <body>
 
-<header id="header" >
-	<div class="header-tool">
-		<div class="header-tool-box">
-			<div class="header-user-box">
-					<dl>
-						<dd><span></span><a href="login.php">登录</a></dd>
-						<dd><span></span><a href="signup.php">注册</a></dd>
-						<dd><span></span><a href="signup.php">消息</a></dd>
-						<dd><a href="publish.php">发布</a></dd>
-					</dl>
-			</div>
-		</div>
-	</div>
-	<div id="header-1">
-		<div id="header-box">
-			<div class="header-logo"><a href="index.php">
-				<img src="public/images/header_logo.png"/></a>
-			</div>
-		</div>
-	</div>
-		
-	<nav class="nav">
-		<ul>
- 			<li><a href="index.php">首 页</a></li>
-  			<li><a href="index-2.php">搭配频道</a></li>
-  			<li><a href="index-3.php">搭配达人</a></li>
-			<div class="nav-search-box">
-					<form class="nav-search">
-				 		<select>
-							<option>搭配</option>
-							<option>用户</option>
-						</select>
-					 	<input placeholder="请输入搜索内容" class="nav-search-input" type="text" />
-					 	<a class="search-img"></a>
-					</form>
-			</div>
-		</ul>
-	</nav>
-</header>
+<?php include("header.php"); ?>
 
+<?php
+	class index3 {
+		
+		public $sex;
+		public $sqlcount;
+		public $pageCount;
+		public $curPage;
+		public $pageSize;
+		public $startRow;
+		public $pageNum;
+		
+		function queryPage(){
+			
+			include("app/config.php");
+			$this->sex = @$_GET[sex];
+			
+			if($this->sex == ""){
+				$sqls  = "SELECT COUNT(*) as total FROM gp_user"; 
+			}else{
+				$sqls  = "SELECT COUNT(*) as total FROM gp_user where sex='$this->sex'"; 
+			} 
+
+			$sqlcount = mysqli_query($link,$sqls);
+			$pageCount  = mysqli_fetch_array($sqlcount);
+			$this->pageCount = $pageCount['total']; 	
+
+			$this->curPage = @$_GET[page]?:'1';  
+
+			$this->pageSize = 8;  
+
+			$this->startRow = ($this->curPage-1) * $this->pageSize; 
+			$this->pageNum = ceil($this->pageCount/$this->pageSize);
+
+			if($this->curPage<=0||$this->curPage==""||!isset($this->curPage)){
+				$this->curPage= 1;
+			}else if($this->curPage > $this->pageNum){
+				$this->curPage = $this->pageNum; 
+			}
+			
+			mysqli_free_result($sqlcount);
+			mysqli_close($link);
+		}
+		
+		function queryUserBySex(){
+
+			include("app/config.php");
+			$i = new index3();
+			$i->queryPage();
+			if($i->sex == ""){
+				$sql = "select * from gp_user ORDER BY id LIMIT $i->startRow,$i->pageSize";
+			}else{
+				$sql = "select * from gp_user where sex='$i->sex' ORDER BY id LIMIT $i->startRow,$i->pageSize";
+			}
+			$result = mysqli_query($link,$sql);
+			while($rs = mysqli_fetch_array($result)){
+				echo "<div class='detail-header'>
+						<div class='header-title'>
+							<div class='title-box'>
+								<div class='title-user-message'>
+									<div class='title-profile-picture'>
+										<img src='".@$rs[prof_url]."' />
+									</div>
+									<div class='title-user-introduction'>
+										<p>".@$rs[name]."</p>
+										<p>".@$rs[sex]." / ".@$rs[stature]."</p>
+										<p>".@$rs[signature]."</p>
+									</div>
+								</div>
+								<div class='title-button'>";
+							if(@$_SESSION['currentUser']['id'] !== @$rs['id']||!isset($_SESSION['currentUser'])){
+								echo "<ul class='button-follow'><li><a>关注</a></li></ul>
+									<ul class='button-chat'><li><a>私信</a></li></ul>";
+							}else{
+								echo "<ul class='button-follow'><li><a href='space.php'>个人空间</a></li></ul>
+									<ul class='button-chat'><li><a>查看信息</a></li></ul>";
+							}
+							echo "</div>
+							</div>
+						</div>
+					</div>";
+			}
+			mysqli_free_result($result);
+			mysqli_close($link);
+		}	
+	}
+?>
 
 <main>
 
 	<div class="nav-middle-box">
 		<nav class="nav-middle">
 			<ul>
- 				<li><a href="javascript:void(0)">不 限</a></li>
- 				<li><a href="javascript:void(0)">男 生<img class="img-boys" src="public/images/boy.png" /></a></li>
- 				<li><a href="javascript:void(0)">女 生<img class="img-girls" src="public/images/girl.png"/></a></li>
+ 				<li><a href="index-3.php">不 限</a></li>
+ 				<li><a href="index-3.php?sex=男生">男 生<img class="img-boys" src="public/images/boy.png" /></a></li>
+ 				<li><a href="index-3.php?sex=女生">女 生<img class="img-girls" src="public/images/girl.png"/></a></li>
 			</ul>
 		</nav>
 		<div class="nav-middle-angle"></div>  
@@ -83,95 +131,51 @@
 
 	<div class="content-box">
 		<div class="content">
-		
-			
-			<div class="detail-header">
-				<div class="header-title">
-					<div class="title-box">
-						<div class="title-user-message">
-							<div class="title-profile-picture">
-								<img src="public/images/AI.png" />
-							</div>
-							<div class="title-user-introduction">
-								<p>1</p>
-								<p>1</p>
-								<p>1</p>
-							</div>
-						</div>
-						<div class="title-button">
-							<ul class="button-follow">
-								<li><a>关注</a></li>
-							</ul>
-							<ul class="button-chat">
-								<li><a>私信</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		
-			<div class="detail-header">
-				<div class="header-title">
-					<div class="title-box">
-						<div class="title-user-message">
-							<div class="title-profile-picture">
-								<img src="public/images/AI.png" />
-							</div>
-							<div class="title-user-introduction">
-								<p>1</p>
-								<p>1</p>
-								<p>1</p>
-							</div>
-						</div>
-						<div class="title-button">
-							<ul class="button-follow">
-								<li><a>关注</a></li>
-							</ul>
-							<ul class="button-chat">
-								<li><a>私信</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="detail-header">
-				<div class="header-title">
-					<div class="title-box">
-						<div class="title-user-message">
-							<div class="title-profile-picture">
-								<img src="public/images/AI.png" />
-							</div>
-							<div class="title-user-introduction">
-								<p>1</p>
-								<p>1</p>
-								<p>1</p>
-							</div>
-						</div>
-						<div class="title-button">
-							<ul class="button-follow">
-								<li><a>关注</a></li>
-							</ul>
-							<ul class="button-chat">
-								<li><a>私信</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			
+			<?php
+				$i0 = new index3();
+				$i0->queryUserBySex();
+			?>
 			<div class="clear"></div>
 		</div>
 		
 		<div class="content-page">
-					<a href="javascript:void(0)">&lt;&nbsp;上一页</a>
-					<a class="current-page" href="javascript:void(0)">1</a>
-					<a href="javascript:void(0)">2</a>
-					<a href="javascript:void(0)">3</a>
-					<a href="javascript:void(0)">4</a>
-					<a href="javascript:void(0)">5</a>
-					<a>...</a>
-					<a href="javascript:void(0)">下一页&nbsp;&gt;</a>
+			<?php
+				$i1 = new index3();
+				$i1->queryPage();
+				$curPage = $i1->curPage;
+				$pageNum = $i1->pageNum;
+				$sex = $i1->sex;
+				if($curPage<=0||$curPage==""){
+					$curPage = 1;
+				}else if($curPage > $pageNum){
+					$curPage = $pageNum; 
+				}
+			
+					if($curPage!=1){
+						if($curPage<=4){
+							for ($i=1; $i<$curPage; $i++){
+								echo "<a href='index-3.php?sex=$sex&page=$i'>".$i."</a>";
+							}
+						}else{
+							echo "<a href='index-3.php?page=($curPage-1)'>上一页&nbsp;&gt;</a>
+							<a href='index-3.php?sex=$sex&page=1'>1</a>
+								<a>...</a>";
+							for ($i=($i1-$curPage-2); $i<$curPage; $i++){
+								echo "<a href='index-3.php?sex=$sex&page=$i'>".$i."</a>";
+							}
+						}
+					}
+				?>
+					<a class="current-page" href="javascript:viod(0);"><?php echo $curPage ?></a>
+				<?php
+					for ($i=($curPage+1); $i<=$pageNum; $i++){
+						echo "<a href='index-3.php?sex=$sex&page=$i'>".$i."</a>";
+					}
+					if(($pageNum-$curPage)>3){
+						echo "<a>...</a>
+						<a href='index-3.php?sex=$sex&page=($curPage+1)'>下一页&nbsp;&gt;</a>";
+					}
+			?>
 		</div>
 					<div class="clear"></div>
 	</div>

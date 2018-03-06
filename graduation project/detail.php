@@ -47,7 +47,7 @@
 							echo "<ul class='button-follow'><li><a>关注</a></li></ul>
 								<ul class='button-chat'><li><a>私信</a></li></ul>";
 						}else{
-							echo "<ul class='button-follow'><li><a>个人空间</a></li></ul>
+							echo "<ul class='button-follow'><li><a href='space.php'>个人空间</a></li></ul>
 								<ul class='button-chat'><li><a>查看信息</a></li></ul>";
 						}
 					?>

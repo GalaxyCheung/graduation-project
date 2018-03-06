@@ -10,7 +10,8 @@ $file=$_FILES['pro_url'];
 
 //保存图片 
 $savadir='../upload/profile/';  
-move_uploaded_file($file['tmp_name'],$savadir.$file['name']);
+
+move_uploaded_file($file['tmp_name'],$savadir.iconv('utf-8','GBK',$file['name']));
 
 $pro_url = 'upload/profile/'.$file['name'];  
 

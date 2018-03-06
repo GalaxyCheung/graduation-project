@@ -9,8 +9,8 @@
 							echo '<dd><span></span><a href="login.php">登录</a></dd>
 								<dd><span></span><a href="signup.php">注册</a></dd>';
 						}else{
-							echo '<a href="space.php" style="display:inline-block; float:left; margin-right:5px; width:30px; height:30px;"><img style=" width:30px; height:30px;" src="'.@$_SESSION['currentUser'][prof_url].'" /></a>
-							<dd><span></span><a href="space.php" style="color: darkcyan;">'.@$_SESSION['currentUser'][name].'</a></dd>
+							echo '<a href="space.php" style="display:inline-block; float:left; margin-right:8px; width:30px; height:30px;"><img style=" width:30px; height:30px;" src="'.@$_SESSION['currentUser'][prof_url].'" /></a>
+							<dd style="width:72px;"><span style="padding-right:5px;"></span><a href="space.php" style="padding-left:5px; color: darkcyan;">'.@$_SESSION['currentUser'][name].'</a></dd>
 								<dd><span></span><a href="login.php">注销</a></dd>';
 						}
 					?>

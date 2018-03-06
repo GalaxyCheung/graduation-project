@@ -10,7 +10,7 @@
 
 //保存图片 
 $savadir='../upload/photo library/';  
-move_uploaded_file($file['tmp_name'],$savadir.$file['name']);  
+move_uploaded_file($file['tmp_name'],$savadir.iconv("utf-8","GBK",$file['name']));  
 
 $pic_url = 'upload/photo library/'.$file['name'];  
 
