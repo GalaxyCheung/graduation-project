@@ -43,7 +43,7 @@
 			if($this->sex == ""){
 				$sqls  = "SELECT COUNT(*) as total FROM gp_user inner join gp_pic on gp_user.id=gp_pic.u_id"; 
 			}else{
-				$sqls  = "SELECT COUNT(*) as total FROM gp_user inner join gp_pic on gp_user.id=gp_pic.u_id where sex='$this->sex'"; 
+				$sqls  = "SELECT COUNT(*) as total FROM gp_user inner join gp_pic on gp_user.id=gp_pic.u_id where 1=1 and sex='$this->sex'"; 
 			} 
 
 			$sqlcount = mysqli_query($link,$sqls);
@@ -70,12 +70,11 @@
 		function queryPicBySex(){
 
 			include("app/config.php");
-			$i = new index2();
-			$i->queryPage();
-			if($i->sex == ""){
-				$sql = "select * from gp_user inner join gp_pic on gp_user.id=gp_pic.u_id ORDER BY gp_pic.id DESC LIMIT $i->startRow,$i->pageSize";
+			$this->queryPage();
+			if($this->sex == ""){
+				$sql = "select * from gp_user inner join gp_pic on gp_user.id=gp_pic.u_id ORDER BY gp_pic.id DESC LIMIT $this->startRow,$this->pageSize";
 			}else{
-				$sql = "select * from gp_user inner join gp_pic on gp_user.id=gp_pic.u_id where sex='$i->sex' ORDER BY gp_pic.id DESC LIMIT $i->startRow,$i->pageSize";
+				$sql = "select * from gp_user inner join gp_pic on gp_user.id=gp_pic.u_id where sex='$this->sex' ORDER BY gp_pic.id DESC LIMIT $this->startRow,$this->pageSize";
 			}
 			$result = mysqli_query($link,$sql);
 			while($rs = mysqli_fetch_array($result)){
@@ -87,7 +86,7 @@
 							<div class='profile-picture'>
 								<a href='space.php'><img src='".@$rs[prof_url]."' /></a>
 							</div>
-							<div class='intro-info'><p>".@$rs[name]." / ".@$rs[sex]." / ".@$rs[stature]."</p>
+							<div class='intro-info'><p>".@$rs[name]." / ".@$rs[sex]." / ".@$rs[stature]."<span> cm</span></p>
 							</div>
 							<div class='intro-info'><p>".@$rs[title]."</p></div>
 							<div style='float:left; width:240px; height:20px;'><a style='float:right; display:block; font-size:10px; line-height:20px;'>".@$rs[time]."</a></div>	
@@ -128,11 +127,10 @@
 		
 		<div class="content-page">
 			<?php
-				$i1 = new index2();
-				$i1->queryPage();
-				$curPage = $i1->curPage;
-				$pageNum = $i1->pageNum;
-				$sex = $i1->sex;
+				$i0->queryPage();
+				$curPage = $i0->curPage;
+				$pageNum = $i0->pageNum;
+				$sex = $i0->sex;
 				if($curPage<=0||$curPage==""){
 					$curPage = 1;
 				}else if($curPage > $pageNum){
@@ -148,7 +146,7 @@
 							echo "<a href='index-2.php?page=($curPage-1)'>上一页&nbsp;&gt;</a>
 							<a href='index-2.php?sex=$sex&page=1'>1</a>
 								<a>...</a>";
-							for ($i=($i1-$curPage-2); $i<$curPage; $i++){
+							for ($i=($i0-$curPage-2); $i<$curPage; $i++){
 								echo "<a href='index-2.php?sex=$sex&page=$i'>".$i."</a>";
 							}
 						}

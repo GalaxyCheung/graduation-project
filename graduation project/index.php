@@ -126,7 +126,7 @@
 								<div class='profile-picture'>
 									<a href='space.php?id=".@$rs[id]."'><img src='".@$rs[prof_url]."' /></a>
 								</div>
-								<div class='intro-info'><p>".@$rs[name]." / ".@$rs[sex]." / ".@$rs[stature]."</p>
+								<div class='intro-info'><p>".@$rs[name]." / ".@$rs[sex]." / ".@$rs[stature]."<span> cm</span></p>
 								</div>
 								<div class='intro-info'><p>".@$rs[title]."</p></div>
 								<div style='float:left; width:240px; height:20px;'><a style='float:right; display:block; font-size:10px; line-height:20px;'>".@$rs[time]."</a></div>	

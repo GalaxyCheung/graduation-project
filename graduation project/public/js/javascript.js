@@ -348,3 +348,14 @@ function createCode(n){
     checkCode.innerHTML=code;
   }
 }
+
+$(".nav-search-type").change(function(){
+	var t = $(this).find("option:selected").text();
+	if(t === "搭配"){
+		$("#pic_title").removeClass("display-none");
+		$(".nav-search").attr("action","search.php");
+	}else{
+		$("#pic_title").addClass("display-none");
+		$(".nav-search").attr("action","search-2.php");
+	}
+});

@@ -80,10 +80,9 @@
 		function queryUserPic(){
 
 			include("app/config.php");
-			$i = new space();
-			$i->queryPage();
+			$this->queryPage();
 			
-			$sql = "select * from gp_user inner join gp_pic on gp_user.id=gp_pic.u_id where gp_user.id='$i->userId' ORDER BY gp_pic.id DESC LIMIT $i->startRow,$i->pageSize";
+			$sql = "select * from gp_user inner join gp_pic on gp_user.id=gp_pic.u_id where gp_user.id='$this->userId' ORDER BY gp_pic.id DESC LIMIT $this->startRow,$this->pageSize";
 			$result = mysqli_query($link,$sql);
 			while($rs = mysqli_fetch_array($result)){
 				echo "<div class='space-picture-box'>
@@ -91,7 +90,7 @@
 							<img src='".@$rs[pic_url]."' />
 						</div>
 						<div class='space-picture-introduction'>";
-					if($i->currUserId==$i->userId){
+					if($this->currUserId==$this->userId){
 						echo "<div class='edit-button edit-pic-button'>
 								<a href='javascript:void(0);'><span>∨</span> 编辑搭配</a>
 								<a href='detail.php?pic_id=$rs[8]'><span>&lt;</span> 查看搭配</a>
@@ -116,7 +115,7 @@
 									</div>
 								</div>
 							</div>";
-					if($i->currUserId==$i->userId){
+					if($this->currUserId==$this->userId){
 						echo "<div class='delete-button edit-pic-button display-none'>
 								<a href='javascript:void(0);'><span>×</span> 删除搭配</a>
 							</div>";
@@ -145,7 +144,7 @@
 			<div class="space-user-introduction">
 				<p class="user-name"><?php echo @$_SESSION['user'][name] ?></p>
 				<div class="display-none">
-					<input id="space-user-stature" autofocus type="text" placeholder="身高" maxlength="3" value="<?php echo @$_SESSION['user'][stature] ?>" />
+					<input id="space-user-stature" autofocus type="number" placeholder="身高" oninput="if(value.length>3)value=value.slice(0,3)" value="<?php echo @$_SESSION['user'][stature] ?>" />
 					<span> cm /</span>
 					<select id="space-user-sex" type="text" placeholder="性别" maxlength="8" value="<?php echo @$_SESSION['user'][sex] ?>">
 						<option>男生</option>
@@ -250,6 +249,7 @@
 
 <script src="public/js/scroll.js"></script>
 <script src="public/js/space.js"></script>
+<script src="public/js/javascript.js"></script>
 <script>
 	
 </script>

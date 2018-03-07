@@ -71,12 +71,11 @@
 		function queryUserBySex(){
 
 			include("app/config.php");
-			$i = new index3();
-			$i->queryPage();
-			if($i->sex == ""){
-				$sql = "select * from gp_user ORDER BY id LIMIT $i->startRow,$i->pageSize";
+			$this->queryPage();
+			if($this->sex == ""){
+				$sql = "select * from gp_user ORDER BY id DESC LIMIT $this->startRow,$this->pageSize";
 			}else{
-				$sql = "select * from gp_user where sex='$i->sex' ORDER BY id LIMIT $i->startRow,$i->pageSize";
+				$sql = "select * from gp_user where sex='$this->sex' ORDER BY id DESC LIMIT $this->startRow,$this->pageSize";
 			}
 			$result = mysqli_query($link,$sql);
 			while($rs = mysqli_fetch_array($result)){
@@ -89,7 +88,7 @@
 									</div>
 									<div class='title-user-introduction'>
 										<p>".@$rs[name]."</p>
-										<p>".@$rs[sex]." / ".@$rs[stature]."</p>
+										<p>".@$rs[sex]." / ".@$rs[stature]."<span> cm</span></p>
 										<p>".@$rs[signature]."</p>
 									</div>
 								</div>
@@ -140,11 +139,9 @@
 		
 		<div class="content-page">
 			<?php
-				$i1 = new index3();
-				$i1->queryPage();
-				$curPage = $i1->curPage;
-				$pageNum = $i1->pageNum;
-				$sex = $i1->sex;
+				$curPage = $i0->curPage;
+				$pageNum = $i0->pageNum;
+				$sex = $i0->sex;
 				if($curPage<=0||$curPage==""){
 					$curPage = 1;
 				}else if($curPage > $pageNum){
@@ -160,7 +157,7 @@
 							echo "<a href='index-3.php?page=($curPage-1)'>上一页&nbsp;&gt;</a>
 							<a href='index-3.php?sex=$sex&page=1'>1</a>
 								<a>...</a>";
-							for ($i=($i1-$curPage-2); $i<$curPage; $i++){
+							for ($i=($i0-$curPage-2); $i<$curPage; $i++){
 								echo "<a href='index-3.php?sex=$sex&page=$i'>".$i."</a>";
 							}
 						}
@@ -191,5 +188,44 @@
 
 <script src="public/js/scroll.js"></script>
 <script src="public/js/javascript.js"></script>
+<script>
+	$(document).ready(function(){
+		
+		var url = location.search; 
+		var sex = decodeURI(url.substr(5));
+		if(sex === "男生"){
+			$(".nav-middle ul li:first-child").css({
+				"background-color" : "#444447"
+			});
+
+			$(".nav-middle ul li:nth-child(2)").css({
+				"background-color" : "#00c9d0"
+			});
+
+			$(".nav-middle-angle").css({
+				"margin-left" : "170px"
+			});
+		}else if(sex === "女生"){
+			$(".nav-middle ul li:first-child").css({
+				"background-color" : "#444447"
+			});
+
+			$(".nav-middle ul li:nth-child(3)").css({
+				"background-color" : "#00c9d0"
+			});
+
+			$(".nav-middle-angle").css({
+				"margin-left" : "292px"
+			});
+		}else{
+			$(".nav-middle ul li:first-child").css({
+				"background-color": "#00c9d0"
+			});
+			$(".nav-middle-angle").css({
+				"margin-left": "48px"
+			});
+		}
+	});
+</script>
 </body>
 </html>

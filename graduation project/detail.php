@@ -24,7 +24,6 @@
 	$result_u = mysqli_query($link, $sql_u);
 	$rs_u = mysqli_fetch_array($result_u);
 	
-	mysqli_close($link);
 ?> 
 
 
@@ -33,6 +32,7 @@
 		<div class="title-box">
 			<div class="title-user-message">
 				<div class="title-profile-picture">
+					<div class="display-none" id="user-id"><?php echo @$rs_u['id']; ?></div>
 					<img src="<?php echo @$rs_u['prof_url']; ?>" />
 				</div>
 				<div class="title-user-introduction">
@@ -66,10 +66,20 @@
 	<div class="detail-content-box">
 		<div class="detail-content">
 			<div class="detail-picture">
+				<div class="display-none" id="pic-id"><?php echo @$rs_p['id']; ?></div>
 				<img src="<?php echo @$rs_p['pic_url']; ?>">
 					<div class="picture-button"><a href="javascriot:void(0);"><span>▽</span>评论</a></div>
-					
-					<div class="picture-button"><a href="javascriot:void(0);"><span>♡</span>喜欢</a></div>
+					<?php
+						$sql1 = "select count(1) as total from gp_pic_like where u_id = '".@$_SESSION['currentUser']['id']."' and p_id = '".$pic_id."'";
+						$result1 = mysqli_query($link,$sql1);
+						$rs1 = mysqli_fetch_array($result1);
+						if($rs1['total'] == 1||@$rs_u['id']==@$_SESSION['currentUser']['id']){
+							echo "<div class='picture-button'><a class='like-button' href='javascriot:void(0);'>已喜欢</a></div>";
+						}else{
+							echo "<div class='picture-button'><a class='like-button' href='javascriot:void(0);'><span>♡</span>喜欢</a></div>";
+						}
+						mysqli_free_result($result1);
+					?>
 			</div>
 
 			<div class="detail-comments">
@@ -104,5 +114,37 @@
 </footer>
 
 <script src="public/js/scroll.js"></script>
+<script src="public/js/javascript.js"></script>
+<script>
+	$(document).ready(function(){
+		if($(".like-button").text == "已喜欢"){
+			$(this).removeClass("like-button");
+		}
+	});
+	
+	$(".like-button").mousedown(function(){
+		var pic_id = $("#pic-id").text();
+		var user_id = $("#user-id").text();
+		$.ajax({
+			url: "app/likePic.php",
+			type: "POST",
+			dataType: "json",
+			data: {
+				pic_id: pic_id,
+				user_id: user_id
+			},
+			success:function(data){
+				if(data[0] == 0){
+					$(".like-button").text("已喜欢");
+				}else if(data[0] == 1){
+					window.location.href("login.php");
+				}
+			},
+			error:function(data){
+				alert('ajax error!'+data[0]);
+			}
+		});		
+	});
+</script>
 </body>
 </html>
