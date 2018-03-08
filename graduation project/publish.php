@@ -234,6 +234,7 @@ $(function(){
 	$("#file").change(function(){
 		var docObj = document.getElementById("file");
 		var imgObjPreview = document.getElementById("look");
+		var file_name = docObj.files[0].name;
 		
 		var filepath = $(this).val();
 		var extStart = filepath.lastIndexOf(".");
@@ -242,13 +243,28 @@ $(function(){
 		var file_size = this.files[0].size;
 		
 		var size = file_size / 1024;
-
+		
 		if(ext!==".BMP"&&ext!==".PNG"&&ext!==".GIF"&&ext!==".JPG"&&ext!==".JPEG"){
 			alert("请选择一个格式正确的图片");
 			return false;
 		}else if(size > 10240){
 			alert("上传的图片大小不能超过10M");
 			return false;
+		}else{
+			$.ajax({
+				url:"app/checkPicUrl.php",
+				type:"post",
+				dataType:"json",
+				data:{
+					file_name:file_name
+				},
+				success: function(data){
+					if(data[0]==1){
+						$(".detail-picture").find("img").attr("src","");
+						alert("您上传的图片已存在 ");
+					}
+				}
+			});
 		}
 		
 		if (docObj.files && docObj.files[0]) {

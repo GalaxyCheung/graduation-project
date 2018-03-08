@@ -19,29 +19,102 @@
 <?php include("header.php"); ?>
 
 <?php 
-	include("app/config.php");
+	class index {
+		
+		public $sqlcount;
+		public $pageCount;
+		public $curPage;
+		public $pageSize;
+		public $startRow;
+		public $pageNum;
+		
+		function queryPage(){
 			
-		$sqls  = "SELECT COUNT(id) as total FROM gp_pic";  
-		$sqlcount = mysqli_query($link,$sqls);  
-		$pageCount  = mysqli_fetch_array($sqlcount);  
-		$pageCount = $pageCount['total']; 
-				
-		$curPage = @$_GET[page]?:'1';  
-		
-		$pageSize = 9;  
-		
-		$startRow = ($curPage-1) * $pageSize; 
-		$pageNum = ceil($pageCount/$pageSize);
-	
-		if($curPage <=0){
-			$curPage= 1;
-		}else if($curPage > $pageNum || !isset($curPage)){
-			$curPage = $pageNum; 
+			include("app/config.php");
+			
+			$sqls  = "SELECT COUNT(id) as total FROM gp_pic";  
+			$sqlcount = mysqli_query($link,$sqls);  
+			$pageCount  = mysqli_fetch_array($sqlcount);  
+			$this->pageCount = $pageCount['total']; 
+
+			$this->curPage = @$_GET[page]?:'1';  
+
+			$this->pageSize = 9;  
+
+			$this->startRow = ($this->curPage-1) * $this->pageSize; 
+			$this->pageNum = ceil($this->pageCount/$this->pageSize);
+
+			if($this->curPage<=0||$this->curPage==""||!isset($this->curPage)){
+				$this->curPage= 1;
+			}else if($this->curPage > $this->pageNum){
+				$this->curPage = $this->pageNum; 
+			}
+			mysqli_free_result($sqlcount);
+			mysqli_close($link);
 		}
-				
-		$sql = "select * from gp_pic inner join gp_user on gp_pic.u_id=gp_user.id ORDER BY gp_pic.id DESC LIMIT $startRow,$pageSize";
+		
+		function queryPicBySex(){
 			
-		$result = mysqli_query($link,$sql);
+			include("app/config.php");
+			
+			$sql = "select * from gp_pic inner join gp_user on gp_pic.u_id=gp_user.id ORDER BY gp_pic.id DESC LIMIT $this->startRow,$this->pageSize";
+
+			$result = mysqli_query($link,$sql);
+			while($rs = mysqli_fetch_array($result)){
+				echo "<div class='content-picture-box'>
+						<div class='content-picture'>
+							<a href='detail.php?pic_id=".@$rs[0]."'><img src='".@$rs[pic_url]."' /></a>
+						</div>
+						<div class='picture-info'>
+							<div class='profile-picture'>
+								<a href='space.php?id=".@$rs[id]."'><img src='".@$rs[prof_url]."' /></a>
+							</div>
+							<div class='intro-info'><p>".@$rs[name]." / ".@$rs[sex]." / ".@$rs[stature]."<span> cm</span></p>
+							</div>
+							<div class='intro-info'><p>".@$rs[title]."</p></div>
+							<div style='float:left; width:240px; height:20px;'><a style='float:right; display:block; font-size:10px; line-height:20px;'>".@$rs[time]."</a></div>	
+						</div>
+					</div>";
+			}
+		}
+		
+		function queryPicRank(){
+			
+			include("app/config.php");
+			
+			$sql = "select * from gp_pic inner join gp_user on gp_pic.u_id=gp_user.id ORDER BY gp_pic.like_num DESC  LIMIT 0,5";
+
+			$result = mysqli_query($link,$sql);
+			while($rs = mysqli_fetch_array($result)){
+				echo "<li>
+						<a href='detail.php?pic_id=".@$rs[0]."'><img src='".@$rs[pic_url]."' /></a>
+							<div class='picture-info'>
+							<div class='profile-picture'>
+								<a href='space.php?id=".@$rs[id]."'><img src='".@$rs[prof_url]."' /></a>
+							</div>
+							<div class='user-info'>
+								<p>".@$rs[name]." / ".@$rs[sex]." / ".@$rs[stature]."<span> cm</span></p>
+								<p>".@$rs[title]."</p>
+							</div>
+							<div style='float:left; width:240px; height:20px;'><a style='float:right; display:block; font-size:9px; line-height:20px;'>".@$rs[time]."</a></div>
+						</li>";
+			}
+		}
+		
+		function queryPicRank1(){
+			
+			include("app/config.php");
+			
+			$sql = "select * from gp_pic ORDER BY like_num DESC LIMIT 0,5";
+
+			$result = mysqli_query($link,$sql);
+			while($rs = mysqli_fetch_array($result)){
+				echo "<li><a href='detail.php?pic_id=".@$rs[0]."'><img src='".@$rs[pic_url]."'/></a></li>";
+			}
+		}
+	}
+	$i = new index();
+	$i->queryPage();
 ?>
 
 
@@ -52,20 +125,7 @@
 		<div  id="newsBox">
 			<div class="slide-pic">
 					<ul>
-						<li>
-						<a href="detail.php"><img src="public/images/boys/20160103232318793_500.jpg" /></a>
-							<div class="picture-info">
-							<div class="profile-picture">
-								<a href="space.php"><img src="public/images/AI.png" /></a>
-							</div>
-							<div class="user-info"></div>
-							<div class="picture-caption"></div>
-							</div>
-						</li> 
-						<li><a href="detail.php"><img src="public/images/boys/20170217082007173_500.jpg" /></a></li> 
-						<li><a href="Ps.php"><img src="public/images/girls/20171225233703502_500.jpg" /></a></li>
-						<li><a href="Ai.php"><img src="public/images/girls/20171226150828053_500.jpg" /></a></li>
-						<li><a href="Pr.php"><img src="public/images/boys/20171222065120588_500.jpg" /></a></li>
+						<?php $i->queryPicRank(); ?>
 					</ul>
 			</div>
 		</div>
@@ -85,12 +145,7 @@
 				<span>No.4</span>
 				<span>No.5</span>
 			</div>
-			<li><a href="space.php"><img src="public/images/boys/20160103232318793_500.jpg"/></a></li> 
-			<li><a href="Dw.php"><img src="public/images/boys/20170217082007173_500.jpg"/></a></li> 
-			<li><a href="Ps.php"><img src="public/images/girls/20171225233703502_500.jpg"/></a></li>
-			<li><a href="Ai.php"><img src="public/images/girls/20171226150828053_500.jpg"/></a></li>
-			<li><a href="Pr.php"><img src="public/images/boys/20171222065120588_500.jpg"/></a></li>
-			<div class="clear"></div>
+			<?php $i->queryPicRank1(); ?>
 		</ul>
 	</div>
 </div>
@@ -117,54 +172,47 @@
 		<div class="content">
 		
 			<?php
-				while($rs = mysqli_fetch_array($result)){
-					echo "<div class='content-picture-box'>
-							<div class='content-picture'>
-								<a href='detail.php?pic_id=".@$rs[0]."'><img src='".@$rs[pic_url]."' /></a>
-							</div>
-							<div class='picture-info'>
-								<div class='profile-picture'>
-									<a href='space.php?id=".@$rs[id]."'><img src='".@$rs[prof_url]."' /></a>
-								</div>
-								<div class='intro-info'><p>".@$rs[name]." / ".@$rs[sex]." / ".@$rs[stature]."<span> cm</span></p>
-								</div>
-								<div class='intro-info'><p>".@$rs[title]."</p></div>
-								<div style='float:left; width:240px; height:20px;'><a style='float:right; display:block; font-size:10px; line-height:20px;'>".@$rs[time]."</a></div>	
-							</div>
-						</div>";
-				}
+				$i->queryPicBySex();
 			?>
 			<div class="clear"></div>
 		</div>
 		
 		<div class="content-page">
-				<?php
-					if($curPage!=1){
-						if($curPage<=4){
-							for ($i=1; $i<$curPage; $i++){
-								echo "<a href='index.php?page=$i'>".$i."</a>";
-							}
-						}else{
-							echo "<a href='index.php?page=($curPage-1)'>上一页&nbsp;&gt;</a>
-							<a href='index.php?page=1'>1</a>
-								<a>...</a>";
-							for ($i=($curPage-2); $i<$curPage; $i++){
-								echo "<a href='index.php?page=$i'>".$i."</a>";
-							}
+			<?php
+				$curPage = $i->curPage;
+				$pageNum = $i->pageNum;
+		
+				if($curPage<=0||$curPage==""){
+					$curPage = 1;
+				}else if($curPage > $pageNum){
+					$curPage = $pageNum; 
+				}
+			
+				if($curPage!=1){
+					if($curPage<=3){
+						for ($i=1; $i<$curPage; $i++){
+							echo "<a href='index.php?page=$i'>".$i."</a>";
+						}
+					}else{
+						echo "<a href='index.php?page=".($curPage-1)."'>上一页&nbsp;&gt;</a>
+						<a href='index.php?page=1'>1</a>
+							<a>...</a>";
+						for ($i=($curPage-2); $i<$curPage; $i++){
+							echo "<a href='index.php?page=$i'>".$i."</a>";
 						}
 					}
-				?>
-					<a class="current-page" href="javascript:viod(0);"><?php echo $curPage ?></a>
-				<?php
-					for ($i=($curPage+1); $i<=$pageNum; $i++){
-						echo "<a href='index.php?page=$i'>".$i."</a>";
-					}
-					if(($pageNum-$curPage)>3){
-						echo "<a>...</a>
-						<a href='index.php?page=($curPage+1)'>下一页&nbsp;&gt;</a>";
-					}
-				?>
-					
+				}
+			?>
+				<a class="current-page" href="javascript:viod(0);"><?php echo $curPage ?></a>
+			<?php
+				for ($i=($curPage+1); $i<=$pageNum; $i++){
+					echo "<a href='index.php?page=$i'>".$i."</a>";
+				}
+				if(($pageNum-$curPage)>=3){
+					echo "<a>...</a>
+					<a href='index.php?page=".($curPage+1)."'>下一页&nbsp;&gt;</a>";
+				}
+			?>		
 		</div>
 					<div class="clear"></div>
 	</div>

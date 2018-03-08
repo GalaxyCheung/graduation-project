@@ -27,7 +27,7 @@
 
 .title-user-message{
 	float: left;
-	width: 680px;
+	width: 560px;
 	height: 60px;
 }
 
@@ -59,33 +59,24 @@
 }
 
 .title-user-introduction p:first-child{
-	font-size: 16px; 
+	font-size: 18px; 
+	color: #292020;
+	font-weight: 600;
 }
 
 .title-button{
 	float: right;
-	width: 205px;
+	width: 335px;
 	height: 34px;
 	margin-top: 13px;
 	margin-right: 15px;
 }
 
-.button-follow{
-	float: left;
+.user-button{
+	float: right;
 	width: 90px;
 	height: 34px;
 	margin-right: 20px;
-	text-align: center;
-	background-color: #161616;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	border-radius: 8px;
-}
-
-.button-chat{
-	float: left; 
-	width: 90px; 
-	height: 34px;
 	text-align: center;
 	background-color: #161616;
 	-moz-border-radius: 8px;

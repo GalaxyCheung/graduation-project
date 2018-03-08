@@ -359,3 +359,7 @@ $(".nav-search-type").change(function(){
 		$(".nav-search").attr("action","search-2.php");
 	}
 });
+
+$(".follow-button").mousedown(function(){
+	
+});

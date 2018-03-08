@@ -18,6 +18,7 @@
 
 		$(".user-charact").addClass("display-none");
 		$(".user-signature").addClass("display-none");
+		$(".empty-signature").addClass("display-none");
 		
 	});
 
@@ -26,6 +27,9 @@
 		var stat = $("#space-user-stature").val();
 		var sex = $("#space-user-sex").val();
 		var signa = $("#space-user-signature").val();
+		var pwd = $.trim($("#pwd").val());
+		var new_pwd = $.trim($("#new-pwd").val());
+		var cfm_pwd = $.trim($("#cfm-pwd").val());
 		
 		var confirm_1 = confirm("是否确认更改");
 		if(confirm_1 === true){
@@ -41,6 +45,17 @@
 				}
 				alert("身高范围应为50cm~270cm");
 				return;
+			}else if(pwd !== ""&&(pwd.length < 5 || pwd.length >17)){
+				alert("原密码应为6~16个字符，请重新输入");
+				return;
+			}else if(new_pwd !== ""&&(new_pwd.length < 5 || new_pwd.length >17)){
+				alert("新密码应为6~16个字符，请重新输入");
+				return;
+			}else if(new_pwd !== cfm_pwd){
+				alert("新密码与原密码不一致");
+				return;
+			}else if(pwd !== ""&&new_pwd === ""){
+				alert("请输入新密码");
 			}else{
 				$.ajax({
 					url:"app/editUserInfo.php",
@@ -50,13 +65,18 @@
 						name:name,
 						stat:stat,
 						sex:sex,
-						signa:signa
+						signa:signa,
+						pwd:pwd,
+						new_pwd:new_pwd
 					},
-					success : function(data){
-						
+					success: function(data){
 						$(".user-sex").html(data[1]);
 						$(".user-stature").html(data[2]);
 						$(".user-signature").html(data[3]);
+						
+						$("#pwd").val("");
+						$("#new-pwd").val("");
+						$("#cfm-pwd").val("");
 						
 						$("#info-button").parent().removeClass("display-none");
 						$("#finsh-button").parent().addClass("display-none");
@@ -66,7 +86,17 @@
 							"display" : "none"
 						});
 						$(".user-charact").removeClass("display-none");
-						$(".user-signature").removeClass("display-none");
+						
+						if(data[3] === ""){
+							$(".user-signature").addClass("display-none");
+							$(".empty-signature").removeClass("display-none");
+						}else{
+							$(".empty-signature").addClass("display-none");
+							$(".user-signature").removeClass("display-none");
+						}
+					},
+					error: function(){
+						alert("原密码错误");
 					}
 				});
 				}
@@ -87,6 +117,7 @@
 		var h2_a = $(this).find(".h2-a");
 		var cont_a = $(this).find(".cont-a");
 		var pic_id = $(this).find(".pic-id");
+		var pic_url = $(this).parents().find(".space-picture");
 		
 	  	editButton.find("a").first().mousedown(function(){
 			
@@ -168,6 +199,7 @@
 		
 		deleteButton.find("a").mousedown(function(){
 			var p_id = pic_id.html();
+			var p_url = pic_url.find("img").attr("src");
 			
 			var confirm_3 = confirm("是否删除搭配");
 			if(confirm_3 === true){
@@ -176,10 +208,14 @@
 					type:"post",
 					dataType:"json",
 					data:{
-						pic_id:p_id
+						pic_id:p_id,
+						pic_url:p_url
 					},
 					success:function(){
 						window.location.href = "space.php";
+					},
+					error:function(){
+						alert("删除失败");
 					}
 				}); 
 			}else{

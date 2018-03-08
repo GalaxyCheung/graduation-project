@@ -167,7 +167,7 @@
 						echo "<a class='prev-page' href='javascript:void(0);'>上一页&nbsp;&gt;</a>
 						<a href='javascript:void(0);'>1</a>
 							<a>...</a>";
-						for ($i=($s-$curPage-2); $i<$curPage; $i++){
+						for ($i=($curPage-2); $i<$curPage; $i++){
 							echo "<a class='page-num' href='javascript:void(0);'>".$i."</a>";
 						}
 					}

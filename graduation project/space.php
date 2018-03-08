@@ -100,7 +100,7 @@
 								<a href='javascript:void(0);'><span>∧</span> 完成编辑</a>
 								<a href='javascript:void(0);'><span>∧</span> 取消编辑</a>
 							</div>";
-					}else{}
+					}
 						echo"<div class='space-introduction-content'>
 								<div class='pic-id display-none'>".@$rs[8]."</div>
 								<div class='introduction-title'>
@@ -119,10 +119,14 @@
 						echo "<div class='delete-button edit-pic-button display-none'>
 								<a href='javascript:void(0);'><span>×</span> 删除搭配</a>
 							</div>";
-						}else{}
+						}
 					echo "<div class='clear'></div>
 						</div>
 					</div>";
+				
+					if($rs == ""){
+						echo "<div style='margin:50px; 50px;'><h1>这个人很懒，什么也没发布</h1></div>";
+					}
 				}
 			mysqli_free_result($result);
 			mysqli_close($link);
@@ -150,10 +154,14 @@
 						<option>男生</option>
 						<option>女生</option>
 					</select>
+					<span style="margin-left: 10px; color: #292020;">修改密码:</span><input id="pwd" class="space-user-pass" type="password" placeholder="原密码" maxlength="16" value="" />
+					<input id="new-pwd" class="space-user-pass" type="password" placeholder="新密码" maxlength="16" value="" />
+					<input id="cfm-pwd" class="space-user-pass" type="password" placeholder="确认密码" maxlength="16" value="" />
 				</div>
 				<p class="user-charact"><a class="user-stature"><?php echo @$_SESSION['user'][stature] ?></a> cm /&nbsp;<a class="user-sex"><?php echo @$_SESSION['user'][sex] ?></a></p>
 				<input id="space-user-signature" type="text" placeholder="编辑个性签名" maxlength="40" value="<?php echo @$_SESSION['user'][signature] ?>" />
 				<p class="user-signature"><?php echo @$_SESSION['user'][signature] ?></p>
+				<p class="empty-signature display-none">这个人很懒，什么也没留下</p>
 			</div>
 			<?php
 				if(@$_SESSION['user']['id']==@$_SESSION['currentUser']['id']){
@@ -164,6 +172,11 @@
 						<div class='edit-info-button display-none'>
 							<a id='finsh-button' href='javascript:void(0);'>完成编辑</a>
 						</div>";
+				}else{
+					echo"<div class='title-button'>
+							<ul class='user-button follow-button'><li><a>关注</a></li></ul>
+								<ul class='user-button' style='margin-right: 20px;'><li><a>私信</a></li></ul>
+							</div>";
 				}
 			?>
 		</div>
@@ -202,7 +215,6 @@
 		</div>
 		<div class="content-page">
 			<?php
-				$s->queryPage();
 				$curPage = $s->curPage;
 				$pageNum = $s->pageNum;
 				$id = $s->userId;
@@ -213,15 +225,15 @@
 				}
 			
 					if($curPage!=1){
-						if($curPage<=4){
+						if($curPage<=3){
 							for ($i=1; $i<$curPage; $i++){
 								echo "<a href='space.php?id=$id&page=$i'>".$i."</a>";
 							}
 						}else{
-							echo "<a href='space.php?page=($curPage-1)'>上一页&nbsp;&gt;</a>
+							echo "<a href='space.php?id=$id&page=".($curPage-1)."'>上一页&nbsp;&gt;</a>
 							<a href='space.php?id=$id&page=1'>1</a>
 								<a>...</a>";
-							for ($i=($s-$curPage-2); $i<$curPage; $i++){
+							for ($i=($curPage-2); $i<$curPage; $i++){
 								echo "<a href='space.php?id=$id&page=$i'>".$i."</a>";
 							}
 						}
@@ -232,9 +244,9 @@
 					for ($i=($curPage+1); $i<=$pageNum; $i++){
 						echo "<a href='space.php?id=$id&page=$i'>".$i."</a>";
 					}
-					if(($pageNum-$curPage)>3){
+					if(($pageNum-$curPage)>=3){
 						echo "<a>...</a>
-						<a href='space.php?id=$id&page=($curPage+1)'>下一页&nbsp;&gt;</a>";
+						<a href='space.php?id=$id&page=".($curPage-1)."'>下一页&nbsp;&gt;</a>";
 					}
 				?>
 		</div>
@@ -251,7 +263,15 @@
 <script src="public/js/space.js"></script>
 <script src="public/js/javascript.js"></script>
 <script>
-	
+	$(document).ready(function(){
+		if($(".user-signature").text() === ""|| $(".user-signature").text() === null){
+			$(".user-signature").addClass("display-none");
+			$(".empty-signature").removeClass("display-none");
+		}else{
+			$(".empty-signature").addClass("display-none");
+			$(".user-signature").removeClass("display-none");
+		}
+	});
 </script>
 </body>
 </html>

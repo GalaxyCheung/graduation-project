@@ -38,17 +38,17 @@
 				<div class="title-user-introduction">
 					<p><?php echo @$rs_u['name']; ?></p>
 					<p><?php echo @$rs_u['sex']." / ". @$rs_u['stature']."cm"; ?></p>
-					<p><?php echo @$rs_u['signature']; ?></p>
+					<p class="signa"><?php echo @$rs_u['signature']; ?></p>
 				</div>
 			</div>
 			<div class="title-button">
 					<?php 
 						if(@$_SESSION['currentUser']['id'] !== @$rs_u['id']){
-							echo "<ul class='button-follow'><li><a>关注</a></li></ul>
-								<ul class='button-chat'><li><a>私信</a></li></ul>";
+							echo "<ul class='user-button follow-button'><li><a>关注</a></li></ul>
+								<ul class='user-button'><li><a>私信</a></li></ul>";
 						}else{
-							echo "<ul class='button-follow'><li><a href='space.php'>个人空间</a></li></ul>
-								<ul class='button-chat'><li><a>查看信息</a></li></ul>";
+							echo "<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>
+								<ul class='user-button'><li><a>查看信息</a></li></ul>";
 						}
 					?>
 				
@@ -119,6 +119,9 @@
 	$(document).ready(function(){
 		if($(".like-button").text == "已喜欢"){
 			$(this).removeClass("like-button");
+		}
+		if($(".signa").text() === ""|| $(".signa").text() === null){
+			$(".signa").text("这个人很懒,什么也没留下");
 		}
 	});
 	

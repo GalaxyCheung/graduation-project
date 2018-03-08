@@ -100,11 +100,11 @@
 								</div>
 								<div class='title-button'>";
 							if(@$_SESSION['currentUser']['id'] !== @$rs['id']||!isset($_SESSION['currentUser'])){
-								echo "<ul class='button-follow'><li><a>关注</a></li></ul>
-									<ul class='button-chat'><li><a>私信</a></li></ul>";
+								echo "<ul class='user-button'><li><a>关注</a></li></ul>
+									<ul class='user-button follow-button'><li><a>私信</a></li></ul>";
 							}else{
-								echo "<ul class='button-follow'><li><a href='space.php'>个人空间</a></li></ul>
-									<ul class='button-chat'><li><a>查看信息</a></li></ul>";
+								echo "<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>
+									<ul class='user-button'><li><a>查看信息</a></li></ul>";
 							}
 							echo "</div>
 							</div>
@@ -163,7 +163,7 @@
 				}
 			
 				if($curPage!=1){
-					if($curPage<=4){
+					if($curPage<=3){
 						for ($i=1; $i<$curPage; $i++){
 							echo "<a class='page-num' href='javascript:viod(0);'>".$i."</a>";
 						}
@@ -171,7 +171,7 @@
 						echo "<a class='prev-page' href='javascript:viod(0);'>上一页&nbsp;&gt;</a>
 						<a href='index-2.php?&page=1'>1</a>
 							<a>...</a>";
-						for ($i=($s2-$curPage-2); $i<$curPage; $i++){
+						for ($i=($curPage-2); $i<$curPage; $i++){
 							echo "<a class='page-num' href='javascript:viod(0);'>".$i."</a>";
 						}
 					}
@@ -182,7 +182,7 @@
 				for ($i=($curPage+1); $i<=$pageNum; $i++){
 					echo "<a class='page-num' href='javascript:viod(0);'>".$i."</a>";
 				}
-				if(($pageNum-$curPage)>3){
+				if(($pageNum-$curPage)>=3){
 					echo "<a>...</a>
 					<a class='next-page' href='javascript:viod(0);'>下一页&nbsp;&gt;</a>";
 				}
@@ -193,6 +193,7 @@
 				<input name="search_stat" value="<?php echo $s2->stature ?>"/>
 				<input name="page" id="page" value=""/>
 			</form>
+		</div>
 		<div class="clear"></div>
 	</div>
 	

@@ -71,7 +71,7 @@
 		function queryUserBySex(){
 
 			include("app/config.php");
-			$this->queryPage();
+			
 			if($this->sex == ""){
 				$sql = "select * from gp_user ORDER BY id DESC LIMIT $this->startRow,$this->pageSize";
 			}else{
@@ -94,11 +94,13 @@
 								</div>
 								<div class='title-button'>";
 							if(@$_SESSION['currentUser']['id'] !== @$rs['id']||!isset($_SESSION['currentUser'])){
-								echo "<ul class='button-follow'><li><a>关注</a></li></ul>
-									<ul class='button-chat'><li><a>私信</a></li></ul>";
+								echo "<ul class='user-button'><li><a>私信</a></li></ul>
+									<ul class='user-button follow-button'><li><a>关注</a></li></ul>
+									<ul class='user-button'><li><a href='space.php?id=$rs[id]'>个人空间</a></li></ul>";
 							}else{
-								echo "<ul class='button-follow'><li><a href='space.php'>个人空间</a></li></ul>
-									<ul class='button-chat'><li><a>查看信息</a></li></ul>";
+								echo "
+									<ul class='user-button'><li><a>查看信息</a></li></ul>
+									<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>";
 							}
 							echo "</div>
 							</div>
@@ -131,17 +133,18 @@
 	<div class="content-box">
 		<div class="content">
 			<?php
-				$i0 = new index3();
-				$i0->queryUserBySex();
+				$i1 = new index3();
+				$i1->queryPage();
+				$i1->queryUserBySex();
 			?>
 			<div class="clear"></div>
 		</div>
 		
 		<div class="content-page">
 			<?php
-				$curPage = $i0->curPage;
-				$pageNum = $i0->pageNum;
-				$sex = $i0->sex;
+				$curPage = $i1->curPage;
+				$pageNum = $i1->pageNum;
+				$sex = $i1->sex;
 				if($curPage<=0||$curPage==""){
 					$curPage = 1;
 				}else if($curPage > $pageNum){
@@ -149,15 +152,15 @@
 				}
 			
 					if($curPage!=1){
-						if($curPage<=4){
+						if($curPage<=3){
 							for ($i=1; $i<$curPage; $i++){
 								echo "<a href='index-3.php?sex=$sex&page=$i'>".$i."</a>";
 							}
 						}else{
-							echo "<a href='index-3.php?page=($curPage-1)'>上一页&nbsp;&gt;</a>
+							echo "<a href='index-3.php?page=".($curPage-1)."'>上一页&nbsp;&gt;</a>
 							<a href='index-3.php?sex=$sex&page=1'>1</a>
 								<a>...</a>";
-							for ($i=($i0-$curPage-2); $i<$curPage; $i++){
+							for ($i=($curPage-2); $i<$curPage; $i++){
 								echo "<a href='index-3.php?sex=$sex&page=$i'>".$i."</a>";
 							}
 						}
@@ -168,9 +171,9 @@
 					for ($i=($curPage+1); $i<=$pageNum; $i++){
 						echo "<a href='index-3.php?sex=$sex&page=$i'>".$i."</a>";
 					}
-					if(($pageNum-$curPage)>3){
+					if(($pageNum-$curPage)>=3){
 						echo "<a>...</a>
-						<a href='index-3.php?sex=$sex&page=($curPage+1)'>下一页&nbsp;&gt;</a>";
+						<a href='index-3.php?sex=$sex&page=".($curPage+1)."'>下一页&nbsp;&gt;</a>";
 					}
 			?>
 		</div>

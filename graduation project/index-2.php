@@ -70,7 +70,7 @@
 		function queryPicBySex(){
 
 			include("app/config.php");
-			$this->queryPage();
+			
 			if($this->sex == ""){
 				$sql = "select * from gp_user inner join gp_pic on gp_user.id=gp_pic.u_id ORDER BY gp_pic.id DESC LIMIT $this->startRow,$this->pageSize";
 			}else{
@@ -80,7 +80,7 @@
 			while($rs = mysqli_fetch_array($result)){
 				echo "<div class='content-picture-box'>
 						<div class='content-picture'>
-							<a href='detail.php?pic_id=".@$rs[0]."'><img src='".@$rs[pic_url]."' /></a>
+							<a href='detail.php?pic_id=".@$rs[8]."'><img src='".@$rs[pic_url]."' /></a>
 						</div>
 						<div class='picture-info'>
 							<div class='profile-picture'>
@@ -120,6 +120,7 @@
 		<div class="content">
 			<?php
 				$i0 = new index2();
+				$i0->queryPage();
 				$i0->queryPicBySex();
 			?>
 			<div class="clear"></div>
@@ -138,15 +139,15 @@
 				}
 			
 					if($curPage!=1){
-						if($curPage<=4){
+						if($curPage<=3){
 							for ($i=1; $i<$curPage; $i++){
 								echo "<a href='index-2.php?sex=$sex&page=$i'>".$i."</a>";
 							}
 						}else{
-							echo "<a href='index-2.php?page=($curPage-1)'>上一页&nbsp;&gt;</a>
+							echo "<a href='index-2.php?page=".($curPage-1)."'>上一页&nbsp;&gt;</a>
 							<a href='index-2.php?sex=$sex&page=1'>1</a>
 								<a>...</a>";
-							for ($i=($i0-$curPage-2); $i<$curPage; $i++){
+							for ($i=($curPage-2); $i<$curPage; $i++){
 								echo "<a href='index-2.php?sex=$sex&page=$i'>".$i."</a>";
 							}
 						}
@@ -157,9 +158,9 @@
 					for ($i=($curPage+1); $i<=$pageNum; $i++){
 						echo "<a href='index-2.php?sex=$sex&page=$i'>".$i."</a>";
 					}
-					if(($pageNum-$curPage)>3){
+					if(($pageNum-$curPage)>=3){
 						echo "<a>...</a>
-						<a href='index-2.php?sex=$sex&page=($curPage+1)'>下一页&nbsp;&gt;</a>";
+						<a href='index-2.php?sex=$sex&page=".($curPage+1)."'>下一页&nbsp;&gt;</a>";
 					}
 				?>
 		</div>
