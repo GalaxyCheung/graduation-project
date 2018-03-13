@@ -92,6 +92,7 @@
 									<div class='title-profile-picture'>
 										<img src='".@$rs[prof_url]."' />
 									</div>
+									<div class='display-none user-id'>".@$rs[id]."</div>
 									<div class='title-user-introduction'>
 										<p>".@$rs[name]."</p>
 										<p>".@$rs[sex]." / ".@$rs[stature]."<span> cm</span></p>
@@ -100,8 +101,18 @@
 								</div>
 								<div class='title-button'>";
 							if(@$_SESSION['currentUser']['id'] !== @$rs['id']||!isset($_SESSION['currentUser'])){
-								echo "<ul class='user-button'><li><a>关注</a></li></ul>
-									<ul class='user-button follow-button'><li><a>私信</a></li></ul>";
+								
+								$sql1 = "select count(*) as total from gp_user_follow where u_id = '".$_SESSION['currentUser']['id']."' and f_id = '".@$rs['id']."'";
+								$result1 = mysqli_query($link,$sql1);
+								$rs1 = mysqli_fetch_array($result1);
+								
+								if($rs1['total']==0){
+									echo "<ul class='user-button follow-button'><li><a>关注</a></li></ul>";
+								}else{
+									echo "<ul class='user-button followed'><li><a>已关注</a></li></ul>";
+								}
+								echo "<ul class='user-button'><li><a>私信</a></li></ul>";
+								
 							}else{
 								echo "<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>
 									<ul class='user-button'><li><a>查看信息</a></li></ul>";
@@ -112,6 +123,7 @@
 					</div>";
 			}
 			mysqli_free_result($result);
+			mysqli_free_result($result1);
 			mysqli_close($link);
 		}
 	}
@@ -165,26 +177,26 @@
 				if($curPage!=1){
 					if($curPage<=3){
 						for ($i=1; $i<$curPage; $i++){
-							echo "<a class='page-num' href='javascript:viod(0);'>".$i."</a>";
+							echo "<a class='page-num' href='javascript:void(0);'>".$i."</a>";
 						}
 					}else{
-						echo "<a class='prev-page' href='javascript:viod(0);'>上一页&nbsp;&gt;</a>
+						echo "<a class='prev-page' href='javascript:void(0);'>上一页&nbsp;&gt;</a>
 						<a href='index-2.php?&page=1'>1</a>
 							<a>...</a>";
 						for ($i=($curPage-2); $i<$curPage; $i++){
-							echo "<a class='page-num' href='javascript:viod(0);'>".$i."</a>";
+							echo "<a class='page-num' href='javascript:void(0);'>".$i."</a>";
 						}
 					}
 				}
 			?>
-				<a class="current-page" href="javascript:viod(0);"><?php echo $curPage ?></a>
+				<a class="current-page" href="javascript:void(0);"><?php echo $curPage ?></a>
 			<?php
 				for ($i=($curPage+1); $i<=$pageNum; $i++){
-					echo "<a class='page-num' href='javascript:viod(0);'>".$i."</a>";
+					echo "<a class='page-num' href='javascript:void(0);'>".$i."</a>";
 				}
 				if(($pageNum-$curPage)>=3){
 					echo "<a>...</a>
-					<a class='next-page' href='javascript:viod(0);'>下一页&nbsp;&gt;</a>";
+					<a class='next-page' href='javascript:void(0);'>下一页&nbsp;&gt;</a>";
 				}
 			?>
 			<form style="display: none;" method="post" action="search-2.php" id="changePage">

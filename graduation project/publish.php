@@ -127,6 +127,14 @@ input[type="submit"]{
 	opacity: 0;
 	cursor: pointer;
 }
+	
+.nav ul li:first-child {
+	background-color: #474747;
+}
+
+.nav ul li:hover {
+	background-color: #00c9d0;
+}	
 </style>
 </head>
 
@@ -135,7 +143,7 @@ input[type="submit"]{
 <?php 
 	include("header.php");
 	if(!isset($_SESSION['currentUser'])){
-		header("Location: ./login.php");
+		echo "<script>window.location.href = 'login.php';</script>";
 	}
 ?>	
 	

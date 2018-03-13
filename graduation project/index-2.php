@@ -84,7 +84,7 @@
 						</div>
 						<div class='picture-info'>
 							<div class='profile-picture'>
-								<a href='space.php'><img src='".@$rs[prof_url]."' /></a>
+								<a href='space.php?id=".@$rs[0]."'><img src='".@$rs[prof_url]."' /></a>
 							</div>
 							<div class='intro-info'><p>".@$rs[name]." / ".@$rs[sex]." / ".@$rs[stature]."<span> cm</span></p>
 							</div>
@@ -153,7 +153,7 @@
 						}
 					}
 				?>
-					<a class="current-page" href="javascript:viod(0);"><?php echo $curPage ?></a>
+					<a class="current-page" href="javascript:void(0);"><?php echo $curPage ?></a>
 				<?php
 					for ($i=($curPage+1); $i<=$pageNum; $i++){
 						echo "<a href='index-2.php?sex=$sex&page=$i'>".$i."</a>";

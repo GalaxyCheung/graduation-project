@@ -18,6 +18,11 @@
 						<dd><a href="publish.php">发布</a></dd>
 					</dl>
 			</div>
+			<?php
+				if($_SESSION['currentUser']['rule_id']==1){
+					echo '<div style="float:left;"><a href="administrator.php">&lt;-管理员页面-&gt</a></div>'; 
+				}
+			?>
 		</div>
 	</div>
 	<div id="header-1">

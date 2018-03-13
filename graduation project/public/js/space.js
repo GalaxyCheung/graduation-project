@@ -119,7 +119,7 @@
 		var pic_id = $(this).find(".pic-id");
 		var pic_url = $(this).parents().find(".space-picture");
 		
-	  	editButton.find("a").first().mousedown(function(){
+	  	editButton.find(".edit").first().mousedown(function(){
 			
 			if($(".edit-button").hasClass("display-none")){
 				alert("请先完成其他编辑操作");

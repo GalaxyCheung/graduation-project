@@ -84,8 +84,9 @@
 							<div class='title-box'>
 								<div class='title-user-message'>
 									<div class='title-profile-picture'>
-										<img src='".@$rs[prof_url]."' />
+										<a href='space.php?id=".@$rs[id]."'><img src='".@$rs[prof_url]."' /></a>
 									</div>
+									<div class='display-none user-id'>".@$rs[id]."</div>
 									<div class='title-user-introduction'>
 										<p>".@$rs[name]."</p>
 										<p>".@$rs[sex]." / ".@$rs[stature]."<span> cm</span></p>
@@ -93,15 +94,25 @@
 									</div>
 								</div>
 								<div class='title-button'>";
-							if(@$_SESSION['currentUser']['id'] !== @$rs['id']||!isset($_SESSION['currentUser'])){
-								echo "<ul class='user-button'><li><a>私信</a></li></ul>
-									<ul class='user-button follow-button'><li><a>关注</a></li></ul>
-									<ul class='user-button'><li><a href='space.php?id=$rs[id]'>个人空间</a></li></ul>";
-							}else{
-								echo "
-									<ul class='user-button'><li><a>查看信息</a></li></ul>
-									<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>";
-							}
+								if(isset($_SESSION['currentUser'])){
+									if(@$_SESSION['currentUser']['id'] !== @$rs['id']||!isset($_SESSION['currentUser'])){
+								
+										$sql1 = "select count(*) as total from gp_user_follow where u_id = '".$_SESSION['currentUser']['id']."' and f_id = '".@$rs['id']."'";
+										$result1 = mysqli_query($link,$sql1);
+										$rs1 = mysqli_fetch_array($result1);
+
+										if($rs1['total']==0){
+											echo "<ul class='user-button follow-button'><li><a>关注</a></li></ul>";
+										}else{
+											echo "<ul class='user-button followed'><li><a>已关注</a></li></ul>";
+										}
+										echo "<ul class='user-button'><li><a>私信</a></li></ul>";
+									}else{
+										echo "
+											<ul class='user-button'><li><a>查看信息</a></li></ul>
+											<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>";
+									}
+								}
 							echo "</div>
 							</div>
 						</div>
@@ -166,7 +177,7 @@
 						}
 					}
 				?>
-					<a class="current-page" href="javascript:viod(0);"><?php echo $curPage ?></a>
+					<a class="current-page" href="javascript:void(0);"><?php echo $curPage ?></a>
 				<?php
 					for ($i=($curPage+1); $i<=$pageNum; $i++){
 						echo "<a href='index-3.php?sex=$sex&page=$i'>".$i."</a>";

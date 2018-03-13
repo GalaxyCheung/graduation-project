@@ -6,6 +6,15 @@
 <link href="public/css/space.css" rel="stylesheet" type="text/css">
 <link href="public/css/style.css" rel="stylesheet" type="text/css">
 <script src="public/js/jquery-2.1.4.min.js"></script>
+<style>
+	.nav ul li:first-child {
+		background-color: #474747;
+	}
+
+	.nav ul li:hover {
+		background-color: #00c9d0;
+	}	
+</style>
 </head>
 
 <body>
@@ -66,12 +75,12 @@
 			mysqli_close($link);
 		}
 		
-		function queryUserPic(){
+		function queryLikePic(){
 
 			include("app/config.php");
 			$this->queryPage();
 			
-			$sql = "select * from gp_pic_like inner join gp_pic on gp_pic_like.p_id=gp_pic.id where gp_pic_like.u_id='$this->userId' ORDER BY gp_pic.id DESC LIMIT $this->startRow,$this->pageSize";
+			$sql = "select * from gp_pic_like inner join gp_pic on gp_pic_like.p_id=gp_pic.id where gp_pic_like.u_id='$this->userId' ORDER BY gp_pic_like.id DESC LIMIT $this->startRow,$this->pageSize";
 			$result = mysqli_query($link,$sql);
 			while($rs = mysqli_fetch_array($result)){
 				echo "<div class='space-picture-box'>
@@ -100,9 +109,10 @@
 					echo "<div class='clear'></div>
 						</div>
 					</div>";
-					if($rs == ""){
-						echo "<div style='margin:50px; 50px;'><h1>这个人很懒，没有喜欢的搭配</h1></div>";
-					}
+				}
+			
+				if(mysqli_num_rows($result) < 1){
+					echo "<div style='margin:50px; 50px;'><h1>这个人很懒，没有喜欢的搭配</h1></div>";
 				}
 			mysqli_free_result($result);
 			mysqli_close($link);
@@ -140,6 +150,7 @@
 				<p class="empty-signature display-none">这个人很懒，什么也没留下</p>
 			</div>
 			<?php
+				include("app/config.php");
 				if(@$_SESSION['user']['id']==@$_SESSION['currentUser']['id']){
 					echo"<div class='edit-info-button'>
 							<a id='info-button' href='javascript:void(0);'>编辑个人信息</a>
@@ -148,7 +159,23 @@
 						<div class='edit-info-button display-none'>
 							<a id='finsh-button' href='javascript:void(0);'>完成编辑</a>
 						</div>";
-				}
+				}else{
+					if(isset($_SESSION['currentUser'])){
+					echo"<div class='title-button' style='margin-top:41px;'>";
+							$sql1 = "select count(*) as total from gp_user_follow where u_id = '".$_SESSION['currentUser']['id']."' and f_id = '".@$_SESSION['user']['id']."'";
+								$result1 = mysqli_query($link,$sql1);
+								$rs1 = mysqli_fetch_array($result1);
+								
+								if($rs1['total']==0){
+									echo "<ul class='user-button follow-button'><li><a>关注</a></li></ul>";
+								}else{
+									echo "<ul class='user-button followed'><li><a>取消关注</a></li></ul>";
+								}
+								echo "<ul class='user-button' style='margin-right: 20px;'><li><a>私信</a></li></ul>
+						</div>";
+						mysqli_free_result($result1);
+					}
+				}	 
 			?>
 		</div>
 	</div>
@@ -181,7 +208,7 @@
 		
 		<div class="content">
 			<?php
-				$s2->queryUserPic();
+				$s2->queryLikePic();
 			?>
 		</div>
 		<div class="content-page">
@@ -210,7 +237,7 @@
 						}
 					}
 				?>
-					<a class="current-page" href="javascript:viod(0);"><?php echo $curPage ?></a>
+					<a class="current-page" href="javascript:void(0);"><?php echo $curPage ?></a>
 				<?php
 					for ($i=($curPage+1); $i<=$pageNum; $i++){
 						echo "<a href='space-2.php?id=$id&page=$i'>".$i."</a>";
@@ -245,6 +272,7 @@
 	$(".nav-middle-angle").css({
 		"margin-left" : "170px"
 	});
+	
 	$(document).ready(function(){
 		if($(".user-signature").text() === ""|| $(".user-signature").text() === null){
 			$(".user-signature").addClass("display-none");

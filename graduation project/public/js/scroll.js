@@ -32,7 +32,6 @@ $(window).on("scroll", function () {
 	}else{ 
         $(".nav").removeClass("float-top-nav");
 	}
-	
 });   
 
 $(window).trigger("scroll");

@@ -173,7 +173,7 @@
 	width: 480px;
 	height: 25px;
 	padding: 10px 0;
-	margin: 10px auto;
+	margin: 10px auto 0 auto;
 	border-bottom: 1px solid #ddd;
 }
 
@@ -184,11 +184,126 @@
 
 .comments-content{
 	width: 480px;
-	height: 600px;
+	height: auto;
 	margin: 20px auto;
 }
 
 
+.comments-box{
+	padding: 20px 0;
+	border-bottom: 1px solid #ddd;
+}
+
+.comments-box:first-child{
+	padding: 0 0 20px 0;
+}
+
+.comment-user{
+	float: left;
+	width: 80px;	
+}
+	
+.comment-profile{
+	margin-left: 15px; 
+	width: 50px;
+	height: 50px;
+}
+	
+.comment-name{
+	text-align: center;
+	font-size: 12px;
+}
+	
+.comment-text{
+	left: 90px;
+	padding-bottom: 5px;
+	position:relative; 
+	width:380px; 
+	background-color: #f6f7f9;
+	border:1px solid #ddd; 
+	border-radius: 8px;
+}
+
+.comment-text p{
+	position: absolute;
+	padding:5px 5px 0 10px; 
+	font-size: 14px; 
+	overflow: hidden;
+}
+
+.arrow *{
+	position:absolute;
+	display:block;
+	border-style:solid dashed dashed;
+	font-size:0; 
+	line-height:0;
+}
+
+.arrow-1{
+	top:-1px; 
+	left:-14px;
+	border-width:10px; 
+	border-color:#ddd #ddd transparent transparent;
+}
+	
+.arrow-2{
+	top:0px; 
+	left:-12px;
+	border-width:10px; 
+	border-color:#f6f7f9 #f6f7f9 transparent transparent;
+	}
+	
+.arrow-3{
+	top:10px; 
+	border-width:5px; 
+	border-color:transparent transparent #f6f7f9 #f6f7f9;
+}
+
+.user-arrow-1{
+	top:-1px; 
+	right:-14px;
+	border-width:10px; 
+	border-color:#ddd transparent transparent #ddd;
+}
+	
+.user-arrow-2{
+	top:0px; 
+	right:-12px;
+	border-width:10px; 
+	border-color:#f6f7f9 transparent transparent #f6f7f9;
+	}
+	
+.user-arrow-3{
+	top:10px; 
+	right:0px;
+	border-width:5px; 
+	border-color:transparent #f6f7f9 #f6f7f9 transparent;
+}
+
+#comment-form{
+	border-top: 1px solid #ddd;
+}
+
+.comment-textarea{
+	padding: 5px 5px 0 5px;
+	margin: 20px 0 0 10px;
+	width: 454px; 
+	height: 60px;
+	font-size: 16px;
+}
+
+#comment-form input{
+	margin: 5px 10px 20px 0;
+	float: right;
+	width: 65px; 
+	height: 30px; 
+	background-color:#ddd;
+	color: #161616;
+	font-size: 14px; 
+	font-family: 微软雅黑;
+	letter-spacing: 1px; 
+	cursor: pointer;
+}
 
 /*右边简介区*/
 .detail-picture-introduction{

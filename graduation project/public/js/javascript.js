@@ -360,6 +360,48 @@ $(".nav-search-type").change(function(){
 	}
 });
 
-$(".follow-button").mousedown(function(){
+
+$(".title-button").parent().each(function(){
 	
+	var user_id = $(this).parent().find(".user-id").text();
+	
+	if($(this).find(".follow-button")){
+		var follow = $(this).find(".follow-button");
+		follow.mousedown(function(){
+			$.ajax({
+				url:"app/addFollowUser.php",
+				type:"post",
+				dataType:"json",
+				data:{
+					user_id:user_id
+				},
+				success:function(){
+					window.location.reload();
+				},
+				error:function(data){
+					alert("error"+data[0]);
+				}
+			});
+		});
+	}
+	
+	if($(this).find(".followed")){
+		var followed = $(this).find(".followed");
+		followed.mousedown(function(){
+			$.ajax({
+				url:"app/delFollowUser.php",
+				type:"post",
+				dataType:"json",
+				data:{
+					user_id:user_id
+				},
+				success:function(){
+					window.location.reload();
+				},
+				error:function(data){
+					alert("error"+data[0]);
+				}
+			});
+		});
+	}
 });

@@ -173,7 +173,7 @@
 					}
 				}
 			?>
-				<a class="current-page" href="javascript:viod(0);"><?php echo $curPage ?></a>
+				<a class="current-page" href="javascript:void(0);"><?php echo $curPage ?></a>
 			<?php
 				for ($i=($curPage+1); $i<=$pageNum; $i++){
 					echo "<a class='page-num' href='javascript:void(0);'>".$i."</a>";
