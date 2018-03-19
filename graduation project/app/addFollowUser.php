@@ -1,5 +1,5 @@
 <?php
-	
+	#添加关注
 	include("config.php");
 	session_start();
 	

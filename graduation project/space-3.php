@@ -25,7 +25,7 @@
 	
 <?php
 	$userId = @$_GET['id']?:@$_SESSION['currentUser']['id'];
-	class space3 {
+	class Space3 {
 		
 		public $pageCount;
 		public $curPage;
@@ -105,7 +105,7 @@
 							
 						if(isset($_SESSION['currentUser'])){
 							echo "<ul class='user-button followed'><li><a>取消关注</a></li></ul>
-								<ul class='user-button'><li><a>私信</a></li></ul>";
+								<ul class='user-button'><li><a href='space.php?id=$rs[id]'>个人空间</a></li></ul>";
 								}
 							echo "</div>
 							</div>
@@ -122,7 +122,7 @@
 	}
 ?>
 <?php 
-	$s = new space3();
+	$s = new Space3();
 	$s->queryUser();
 ?>
 	

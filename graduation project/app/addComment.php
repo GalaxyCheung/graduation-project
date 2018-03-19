@@ -1,5 +1,6 @@
-<?php
 
+<?php
+	#添加评论
 	include("config.php");
 	session_start();
 

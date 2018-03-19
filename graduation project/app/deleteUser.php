@@ -1,4 +1,5 @@
 <?php
+	#管理员删除用户
 	include("config.php");
 	
 	$user_id = $_POST['user_id'];

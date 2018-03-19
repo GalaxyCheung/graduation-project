@@ -1,4 +1,5 @@
 <?php
+#管理页面的操作
 class Admin {
 	
 	public $i;
@@ -10,6 +11,7 @@ class Admin {
 	public $startRow;
 	public $pageNum;
 	public $sqls;
+	public $sql;
 	
 	function queryPage(){
 			
@@ -18,8 +20,6 @@ class Admin {
 	$sqlcount = mysqli_query($link,$this->sqls);
 	$pageCount  = mysqli_fetch_array($sqlcount);
 	$this->pageCount = $pageCount['total'];
-		
-	$this->curPage = @$_GET['page']?:'1'; 
 
 	$this->pageSize = 8;  
 
@@ -37,10 +37,8 @@ class Admin {
 	}
 	
 	function queryUser(){
-		$i = 0;
 		include("app/config.php");
-		$sql = "select * from gp_user where rule_id=2 ORDER BY id DESC LIMIT $this->startRow,$this->pageSize";
-		$result = mysqli_query($link,$sql);
+		$result = mysqli_query($link,$this->sql);
 		while($rs = mysqli_fetch_array($result)){
 			echo "<div class='title-box'>
 					<div class='edit-button edit-pic-button'>
@@ -88,10 +86,8 @@ class Admin {
 	}
 	
 	function queryPic(){
-		$i = 0;
 		include("app/config.php");
-		$sql = "select * from gp_pic inner join gp_user on gp_pic.u_id=gp_user.id ORDER BY gp_pic.id DESC LIMIT $this->startRow,$this->pageSize";
-		$result = mysqli_query($link,$sql);
+		$result = mysqli_query($link,$this->sql);
 		while($rs = mysqli_fetch_array($result)){
 			echo "<div class='space-picture-box'>
 				<div class='space-picture'>

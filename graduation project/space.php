@@ -31,7 +31,7 @@
 <?php include("header.php");?>
 <?php
 	$userId = @$_GET['id']?:@$_SESSION['currentUser']['id'];
-	class space {
+	class Space {
 		
 		public $pageCount;
 		public $curPage;
@@ -142,7 +142,7 @@
 	}
 ?>
 <?php 
-	$s = new space();
+	$s = new Space();
 	$s->queryUser();
 ?>
 	

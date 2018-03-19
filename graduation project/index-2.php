@@ -25,7 +25,7 @@
 
 <?php include('header.php'); ?>
 <?php
-	class index2 {
+	class Index2 {
 		
 		public $sex;
 		public $sqlcount;
@@ -119,7 +119,7 @@
 	<div class="content-box">
 		<div class="content">
 			<?php
-				$i0 = new index2();
+				$i0 = new Index2();
 				$i0->queryPage();
 				$i0->queryPicBySex();
 			?>

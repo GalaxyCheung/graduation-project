@@ -1,4 +1,5 @@
 <?php
+	#用户注册
 	$log = $_POST['log'];
 	$pwd = $_POST['pwd'];
 	$sex = $_POST['sex'];

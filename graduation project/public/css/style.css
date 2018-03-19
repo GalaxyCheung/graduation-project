@@ -168,10 +168,10 @@ textarea{
 }
 
 .nav ul li a{
+	margin-top: 8px;
 	display: block;
 	width: 110px;
 	height: 38px;
-	margin-top: 8px;
 	font-size:14px;
 	letter-spacing: 1px;
 	color: #FFF;
@@ -179,6 +179,8 @@ textarea{
 
 .nav-search-box{
 	float: right;
+	width: auto;
+	height: 30px;
 	margin-top: 3px;
 }
 
@@ -187,11 +189,11 @@ textarea{
 }
 
 .nav-search select {
+	margin: 1px 3px 0 0; 
+	padding: 0 14px 1px 8px;
 	float: left;
 	width: 60px; 
-	height: 27px; 
-	margin: 2px 3px 0 0; 
-	padding: 0 14px 1px 8px;
+	height: 29px; 
 	font-size: 14px;
 	font-family:"微软雅黑";
 	background: url(../images/arrow.png) no-repeat scroll right center transparent;
@@ -203,21 +205,21 @@ textarea{
 }
 
 .nav-search-input{
-	float: left;
-	height: 23px;
-	margin: 2px 5px 0 0;
+	margin: 1px 3px 0 0; 
 	padding-left: 10px;
+	float: left;
+	width: 220px;
+	height: 25px;
 	border: 1px solid #444447;
-	font-size: 12px;
-	font-family: "微软雅黑";
 }
 .search-img{
+	margin: 1px 0 0 1px;
 	float: left;
-	width: 42px;
-	height: 23px;
-	margin: 3px 0 0 1px;
+	width: 45px;
+	height: 27px;
 	background:url(../images/boy_search.png) no-repeat 50%;
 	border: 1px solid #FFF;
+	cursor: pointer;
 }
 
 /*头部跟随滚动*/

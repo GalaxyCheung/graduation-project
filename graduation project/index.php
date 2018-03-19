@@ -19,7 +19,7 @@
 <?php include("header.php"); ?>
 
 <?php 
-	class index {
+	class Index {
 		
 		public $sqlcount;
 		public $pageCount;
@@ -113,7 +113,7 @@
 			}
 		}
 	}
-	$i = new index();
+	$i = new Index();
 	$i->queryPage();
 ?>
 

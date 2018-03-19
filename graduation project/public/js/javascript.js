@@ -52,14 +52,21 @@ function checkinfo(){
 	var user_name = $("#user-login").val();
 	var user_pass = $("#user-pass").val();
 	
-	function check_name(){
-		if(user_name === "" || user_name === null){
-			$(".check-name a").html("请输入用户名");
+	if(user_name === "" || user_name === null){
+		$(".check-name a").html("请输入用户名");
+		return false;
+	}else if(user_name.replace(/[^\u0000-\u00ff]/g,"ab").length <= 4 || user_name.replace(/[^\u0000-	\u00ff]/g,"aa").length >= 13){
+		$(".check-name a").html("用户名应为5~12个字符，请重新输入");
+		return false;
+	}else{
+		if(user_pass === "" || user_pass === null){
+			$(".check-pass a").html("请输入密码");
 			return false;
-		}else if(user_name.replace(/[^\u0000-\u00ff]/g,"ab").length <= 4 || user_name.replace(/[^\u0000-	\u00ff]/g,"aa").length >= 13){
-			$(".check-name a").html("用户名应为5~12个字符，请重新输入");
+		}else if(user_pass.length <= 5 || user_pass.length >= 17){
+			$(".check-pass a").html("密码应为6~16个字符，请重新输入");
 			return false;
 		}else{
+			$(".check-pass a").html("");
 			$.ajax({
 				url: "app/checkinfo.php",
 				type: "POST",
@@ -71,7 +78,7 @@ function checkinfo(){
 				success: function(data) {
 					if (data[0] !== ""&&data[1] !== ""){
 						$(".check-name a").html("用户名或密码错误，请重新输入");
-						return;
+						return false;
 					} else {
 						if($("#remember-me").is(":checked")){
 							$.cookie("remember-me", "true", {expires: 1});
@@ -89,25 +96,8 @@ function checkinfo(){
 					}
 				}
 			});
-			
 		}
 	}
-	function check_pass(){
-		if(user_pass === "" || user_pass === null){
-			$(".check-pass a").html("请输入密码");
-			return false;
-		}else if(user_pass.length <= 5 || user_pass.length >= 17){
-			$(".check-pass a").html("密码应为6~16个字符，请重新输入");
-			return false;
-		}else{
-			$(".check-pass a").html("");
-		}
-	}
-	
-	check_name();
-	check_pass();
-	
-	return false;
 }
 	
 /*

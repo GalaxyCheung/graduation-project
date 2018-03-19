@@ -26,7 +26,7 @@
 <?php include("header.php"); ?>
 
 <?php
-	class index3 {
+	class Index3 {
 		
 		public $sex;
 		public $sqlcount;
@@ -106,11 +106,9 @@
 										}else{
 											echo "<ul class='user-button followed'><li><a>已关注</a></li></ul>";
 										}
-										echo "<ul class='user-button'><li><a>私信</a></li></ul>";
+										echo "<ul class='user-button'><li><a href='space.php?id=$rs[id]'>个人空间</a></li></ul>";
 									}else{
-										echo "
-											<ul class='user-button'><li><a>查看信息</a></li></ul>
-											<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>";
+										echo "<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>";
 									}
 								}
 							echo "</div>
@@ -144,7 +142,7 @@
 	<div class="content-box">
 		<div class="content">
 			<?php
-				$i1 = new index3();
+				$i1 = new Index3();
 				$i1->queryPage();
 				$i1->queryUserBySex();
 			?>

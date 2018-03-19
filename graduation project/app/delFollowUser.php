@@ -1,5 +1,5 @@
 <?php
-	
+	#取消关注
 	include("config.php");
 	session_start();
 	

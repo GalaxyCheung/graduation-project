@@ -8,7 +8,6 @@
 						<dd style="width:72px;"><span style="padding-right:5px;"></span><a href="space.php" style="padding-left:5px; color: darkcyan;">'.@$_SESSION['currentUser'][name].'</a></dd>
 						<dd><span></span><a href="login.php">注销</a></dd>';
 					?>
-						<dd><span></span><a href="signup.php">消息</a></dd>
 						<dd><a href="publish.php">发布</a></dd>
 					</dl>
 			</div>

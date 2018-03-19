@@ -24,7 +24,7 @@
 	
 <?php
 	$userId = @$_GET['id']?:@$_SESSION['currentUser']['id'];
-	class space4 {
+	class Space4 {
 		
 		public $pageCount;
 		public $curPage;
@@ -107,7 +107,7 @@
 								}else{
 									echo "<ul class='user-button followed'><li><a>已关注</a></li></ul>";
 								}
-								echo "<ul class='user-button'><li><a>私信</a></li></ul>
+								echo "<ul class='user-button'><li><a href='space.php?id=$rs[id]'>个人空间</a></li></ul>
 								</div>
 							</div>
 						</div>
@@ -132,7 +132,7 @@
 	
 ?>
 <?php 
-	$s = new space4();
+	$s = new Space4();
 	$s->queryUser();
 ?>
 	

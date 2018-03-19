@@ -1,4 +1,5 @@
 <?php
+	#管理员编辑用户信息
 	include("config.php");
 
 	$user_id = $_POST['user_id'];

@@ -1,4 +1,5 @@
 <?php
+	#个人空间编辑搭配信息
 	include("config.php");
 	
 	$pic_id = $_POST['pic_id'];

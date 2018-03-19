@@ -1,4 +1,5 @@
 <?php
+	#添加喜欢
 	include("config.php");
 	session_start();
 

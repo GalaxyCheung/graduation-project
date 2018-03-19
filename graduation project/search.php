@@ -12,7 +12,7 @@
 <?php include("header.php"); ?>
 
 <?php
-	class search {
+	class Search {
 		
 		public $sqlcount;
 		public $pageCount;
@@ -113,7 +113,7 @@
 ?>
 
 <?php 
-	$s = new search();
+	$s = new Search();
 	$s->queryPage(); 
 ?>
 

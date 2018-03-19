@@ -64,13 +64,12 @@
 								}else{
 									echo "<ul class='user-button followed'><li><a>取消关注</a></li></ul>";
 								}
-								echo "<ul class='user-button'><li><a>私信</a></li></ul>";
+								echo "<ul class='user-button'><li><a href='space.php?id=$rs_u[id]'>个人空间</a></li></ul>";
 							
 								mysqli_free_result($result0);
 							
 						}else{
-							echo "<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>
-								<ul class='user-button'><li><a>查看信息</a></li></ul>";
+							echo "<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>";
 						}
 					}
 					?>

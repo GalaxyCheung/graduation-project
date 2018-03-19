@@ -58,7 +58,7 @@
 				alert("请输入新密码");
 			}else{
 				$.ajax({
-					url:"app/editUserInfo.php",
+					url:"app/editUserInfo.php?action='space'",
 					type:"post",
 					dataType:"json",
 					data:{
@@ -200,7 +200,6 @@
 		deleteButton.find("a").mousedown(function(){
 			var p_id = pic_id.html();
 			var p_url = pic_url.find("img").attr("src");
-			
 			var confirm_3 = confirm("是否删除搭配");
 			if(confirm_3 === true){
 				$.ajax({
@@ -244,8 +243,4 @@ function replaceTextarea2(str){
 	str = str.replace(reg1," ");
 
 	return str;
-}
-
-function edUserInfo(){
-	
 }

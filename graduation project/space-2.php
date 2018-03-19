@@ -21,7 +21,7 @@
 <?php include("header.php");?>
 <?php
 	$userId = @$_GET['id']?:@$_SESSION['currentUser']['id'];
-	class space2 {
+	class Space2 {
 		
 		public $pageCount;
 		public $curPage;
@@ -95,13 +95,10 @@
 						echo"<div class='space-introduction-content'>
 								<div class='pic-id display-none'>".@$rs[p_id]."</div>
 								<div class='introduction-title'>
-									<textarea class='space-h1 display-none' type='text' placeholder='编辑标题' maxlength='17' value='".@$rs[title]."'></textarea>
 									<h1 class='h1-a'><a>".@$rs[title]."</a></h1>
-									<textarea class='space-h2 display-none' type='text' placeholder='编辑副标题' maxlength='40' value='".@$rs[subtitle]."'></textarea>
 									<h2 class='h2-a'><a>".@$rs[subtitle]."</a></h2>
 								</div>
 								<div class='introduction-content'>
-									<textarea class='space-cont display-none' type='text' placeholder='编辑介绍内容' maxlength='300' value='".@$rs[intro]."'></textarea>	
 									<div class='cont-a'><a>".@$rs[intro]."</a>
 									</div>
 								</div>
@@ -120,7 +117,7 @@
 	}
 ?>
 <?php 
-	$s2 = new space2();
+	$s2 = new Space2();
 	$s2->queryUser();
 ?>
 	

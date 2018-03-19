@@ -1,4 +1,5 @@
 <?php
+	#检测上传图片是否重复
 	$file_name = $_POST['file_name'];
 
 	include("config.php");

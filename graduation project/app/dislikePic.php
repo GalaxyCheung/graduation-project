@@ -1,5 +1,5 @@
 <?php
-	
+	#取消搭配喜欢
 	include("config.php");
 	session_start();
 	

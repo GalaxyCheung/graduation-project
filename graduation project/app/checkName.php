@@ -1,5 +1,5 @@
 <?php
-
+	#检测注册时用户名是否存在
 	include("config.php");
 	
 	$username = $_POST['username'];

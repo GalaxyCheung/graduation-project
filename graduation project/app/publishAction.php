@@ -1,4 +1,5 @@
 <?php
+	#发布搭配
 	session_start();
 	$currentUser_id = @$_SESSION['currentUser']['id'];
 	$title = $_POST['title'];

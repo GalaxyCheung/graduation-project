@@ -1,5 +1,5 @@
 <?php
-
+	#登录检测用户名和密码
 	include("config.php");
 
 	session_start();

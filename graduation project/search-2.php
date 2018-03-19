@@ -13,7 +13,7 @@
 
 <?php include("header.php"); ?>
 <?php
-	class search2 {
+	class Search2 {
 		
 		public $sqlcount;
 		public $pageCount;
@@ -111,11 +111,10 @@
 								}else{
 									echo "<ul class='user-button followed'><li><a>已关注</a></li></ul>";
 								}
-								echo "<ul class='user-button'><li><a>私信</a></li></ul>";
+								echo "<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>";
 								
 							}else{
-								echo "<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>
-									<ul class='user-button'><li><a>查看信息</a></li></ul>";
+								echo "<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>";
 							}
 							echo "</div>
 							</div>
@@ -130,7 +129,7 @@
 ?>
 
 <?php 
-	$s2 = new search2();
+	$s2 = new Search2();
 	$s2->queryPage(); 
 ?>
 
@@ -181,7 +180,7 @@
 						}
 					}else{
 						echo "<a class='prev-page' href='javascript:void(0);'>上一页&nbsp;&gt;</a>
-						<a href='index-2.php?&page=1'>1</a>
+						<a class='page-num' href='index-2.php?&page=1'>1</a>
 							<a>...</a>";
 						for ($i=($curPage-2); $i<$curPage; $i++){
 							echo "<a class='page-num' href='javascript:void(0);'>".$i."</a>";

@@ -14,7 +14,6 @@
 								<dd><span></span><a href="login.php">注销</a></dd>';
 						}
 					?>
-						<dd><span></span><a href="signup.php">消息</a></dd>
 						<dd><a href="publish.php">发布</a></dd>
 					</dl>
 			</div>
@@ -32,7 +31,7 @@
 			</div>
 		</div>
 	</div>
-		
+			
 	<nav class="nav">
 		<ul>
  			<li><a href="index.php">首 页</a></li>
