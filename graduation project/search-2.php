@@ -100,9 +100,9 @@
 									</div>
 								</div>
 								<div class='title-button'>";
-							if(@$_SESSION['currentUser']['id'] !== @$rs['id']||!isset($_SESSION['currentUser'])){
+							if(isset($_SESSION['currentUser'])&&@$_SESSION['currentUser']['id'] != @$rs['id']){
 								
-								$sql1 = "select count(*) as total from gp_user_follow where u_id = '".$_SESSION['currentUser']['id']."' and f_id = '".@$rs['id']."'";
+								$sql1 = "select count(*) as total from gp_user_follow where u_id = '".@$_SESSION['currentUser']['id']."' and f_id = '".@$rs['id']."'";
 								$result1 = mysqli_query($link,$sql1);
 								$rs1 = mysqli_fetch_array($result1);
 								
@@ -111,10 +111,10 @@
 								}else{
 									echo "<ul class='user-button followed'><li><a>已关注</a></li></ul>";
 								}
-								echo "<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>";
+								echo "<ul class='user-button'><li><a href='space.php?id=$rs[id]'>个人空间</a></li></ul>";
 								
 							}else{
-								echo "<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>";
+								echo "<ul class='user-button'><li><a href='space.php?id=$rs[id]'>个人空间</a></li></ul>";
 							}
 							echo "</div>
 							</div>
@@ -122,7 +122,6 @@
 					</div>";
 			}
 			mysqli_free_result($result);
-			mysqli_free_result($result1);
 			mysqli_close($link);
 		}
 	}
@@ -137,7 +136,8 @@
 
 	<div class="search-header">
 		<div class="search-header-title">
-			<h1> <?php
+			<h1> 
+				<?php
 					$str = "";
 					if($s2->name!="")$str = "「 ".$s2->name." 」";
 					if($s2->sex!="")$str = $str."「 ".$s2->sex." 」";

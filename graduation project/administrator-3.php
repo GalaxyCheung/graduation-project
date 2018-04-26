@@ -21,7 +21,7 @@
 <body>
 <?php 
 	session_start();
-	if(!isset($_SESSION['currentUser'])){
+	if(!isset($_SESSION['currentUser'])||@$_SESSION['currentUser']['rule_id']==2){
 		echo "<script>window.location.href = 'login.php';</script>";
 	}
 	
@@ -49,7 +49,7 @@
 				<a href="administrator.php">用户管理</a>
 			</li>
 			<li class="pic-bar">
-				<a href="administrator-2.php">图片管理</a>
+				<a href="administrator-2.php">搭配管理</a>
 			</li>
 			<div class="clear"></div>
 		</ul>

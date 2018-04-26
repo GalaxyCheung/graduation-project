@@ -10,7 +10,7 @@ $link = mysqli_connect(
 if (!$link) {
     printf("Can't connect to MySQL Server. Errorcode: %s ", mysqli_connect_error());
     exit;
-}else
+}
 
 mysqli_query($link,'set names utf8');
 ?>

@@ -41,6 +41,7 @@
 	
 .h2_textarea{
 	margin: 8px 15px 0 15px;
+	height: 55px;
 }
 	
 .h2_textarea textarea{
@@ -156,13 +157,16 @@ input[type="submit"]{
 		<form name="publish-form" id="publish-form" onsubmit="return check_pic_info()" method="post" action="app/publishAction.php" enctype="multipart/form-data">
 			<div class="detail-content">
 				<div class="detail-picture">
-					<img alt="" src="" id="look"/>
+					<div style="width: 540px; height: 720px;">
+						<img alt="" src="" id="look"/>
+					</div>
 					<div style="margin-left: 270px;">
 						<input type="file" accept="image/*" value="" id="file" name="pic_url">
 						<div class="bottom-button" id="upload_button"><a href="javascriot:void(0);"><span>∧</span>上传图片</a></div>
 						<input type="submit" id="submit">
 						<div class="bottom-button" id="publish_button"><a href="javascriot:void(0);"><span>√</span>发布</a></div>
 					</div>
+					<div class="clear"></div>
 				</div>
 			</div>
 

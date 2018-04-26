@@ -101,11 +101,13 @@
 									</div>
 								</div>
 								<div class='title-button'>";
-							
-								if($this->queryFollow($_SESSION['currentUser']['id'],$rs['id'])==0){
-									echo "<ul class='user-button follow-button'><li><a>关注</a></li></ul>";
-								}else{
-									echo "<ul class='user-button followed'><li><a>已关注</a></li></ul>";
+				
+								if(isset($_SESSION['currentUser'])&&$_SESSION['currentUser']['id']!=$rs['id']){
+									if($this->queryFollow($_SESSION['currentUser']['id'],$rs['id'])==0){
+										echo "<ul class='user-button follow-button'><li><a>关注</a></li></ul>";
+									}else{
+										echo "<ul class='user-button followed'><li><a>取消关注</a></li></ul>";
+									}
 								}
 								echo "<ul class='user-button'><li><a href='space.php?id=$rs[id]'>个人空间</a></li></ul>
 								</div>
@@ -163,7 +165,6 @@
 				<p class="empty-signature display-none">这个人很懒，什么也没留下</p>
 			</div>
 			<?php
-				include("app/config.php");
 				if(@$_SESSION['user']['id']==@$_SESSION['currentUser']['id']){
 					echo"<div class='edit-info-button'>
 							<a id='info-button' href='javascript:void(0);'>编辑个人信息</a>
@@ -173,16 +174,14 @@
 							<a id='finsh-button' href='javascript:void(0);'>完成编辑</a>
 						</div>";
 				}else{
-					if(isset($_SESSION['currentUser'])){
+					if(isset($_SESSION['currentUser'])&&$_SESSION['currentUser']['id']!=$_SESSION['user']['id']){
 					echo"<div class='title-button' style='margin-top:41px;'>";
 						if($s->queryFollow($_SESSION['currentUser']['id'],$_SESSION['user']['id'])==0){
 							echo "<ul class='user-button follow-button'><li><a>关注</a></li></ul>";
 						}else{
 							echo "<ul class='user-button followed'><li><a>取消关注</a></li></ul>";
 						}
-						echo "<ul class='user-button' style='margin-right: 20px;'><li><a>私信</a></li></ul>
-						</div>";
-						mysqli_free_result($result1);
+				echo "</div>";
 					}
 				}	 
 			?>

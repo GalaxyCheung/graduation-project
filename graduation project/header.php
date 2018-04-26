@@ -18,7 +18,7 @@
 					</dl>
 			</div>
 			<?php
-				if($_SESSION['currentUser']['rule_id']==1){
+				if(@$_SESSION['currentUser']['rule_id']==1){
 					echo '<div style="float:left;"><a href="administrator.php">&lt;-管理员页面-&gt</a></div>'; 
 				}
 			?>

@@ -94,22 +94,20 @@
 									</div>
 								</div>
 								<div class='title-button'>";
-								if(isset($_SESSION['currentUser'])){
-									if(@$_SESSION['currentUser']['id'] !== @$rs['id']||!isset($_SESSION['currentUser'])){
+								if(isset($_SESSION['currentUser'])&&@$_SESSION['currentUser']['id'] != @$rs['id']){
 								
-										$sql1 = "select count(*) as total from gp_user_follow where u_id = '".$_SESSION['currentUser']['id']."' and f_id = '".@$rs['id']."'";
-										$result1 = mysqli_query($link,$sql1);
-										$rs1 = mysqli_fetch_array($result1);
+									$sql1 = "select count(*) as total from gp_user_follow where u_id = '".@$_SESSION['currentUser']['id']."' and f_id = '".@$rs['id']."'";
+									$result1 = mysqli_query($link,$sql1);
+									$rs1 = mysqli_fetch_array($result1);
 
-										if($rs1['total']==0){
-											echo "<ul class='user-button follow-button'><li><a>关注</a></li></ul>";
-										}else{
-											echo "<ul class='user-button followed'><li><a>已关注</a></li></ul>";
-										}
-										echo "<ul class='user-button'><li><a href='space.php?id=$rs[id]'>个人空间</a></li></ul>";
+									if($rs1['total']==0){
+										echo "<ul class='user-button follow-button'><li><a>关注</a></li></ul>";
 									}else{
-										echo "<ul class='user-button'><li><a href='space.php'>个人空间</a></li></ul>";
+										echo "<ul class='user-button followed'><li><a>已关注</a></li></ul>";
 									}
+									echo "<ul class='user-button'><li><a href='space.php?id=$rs[id]'>个人空间</a></li></ul>";
+								}else{
+									echo "<ul class='user-button'><li><a href='space.php?id=$rs[id]'>个人空间</a></li></ul>";
 								}
 							echo "</div>
 							</div>

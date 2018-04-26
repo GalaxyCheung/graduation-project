@@ -14,6 +14,15 @@
 .nav ul li:hover {
 	background-color: #00c9d0;
 }		
+	
+.comment-text span{
+	bottom:3px; 
+	right:3px; 
+	position: absolute;
+	font-size: 12px;
+	overflow: hidden;
+}
+
 </style>
 </head>
 
@@ -90,16 +99,16 @@
 			<div class="detail-picture">
 				<div class="display-none" id="pic-id"><?php echo @$rs_p['id']; ?></div>
 				<img src="<?php echo @$rs_p['pic_url']; ?>">
-					<div class="picture-button"><a href="#comment-textarea"><span>▽</span>评论</a></div>
+					<div class="picture-button"><a href="#comment-form"><span>▽</span>评论</a></div>
 					<?php
 					if(isset($_SESSION['currentUser'])){
 						$sql1 = "select count(1) as total from gp_pic_like where u_id = '".@$_SESSION['currentUser']['id']."' and p_id = '".$pic_id."'";
 						$result1 = mysqli_query($link,$sql1);
 						$rs1 = mysqli_fetch_array($result1);
 						if($rs1['total'] == 1||@$rs_u['id']==@$_SESSION['currentUser']['id']){
-							echo "<div class='picture-button'><a class='dislike-button' href='javascriot:void(0);'>已喜欢</a></div>";
+							echo "<div class='picture-button'><a class='dislike-button' href='javascript:void(0);'>已喜欢</a></div>";
 						}else{
-							echo "<div class='picture-button'><a class='like-button' href='javascriot:void(0);'><span>♡</span>喜欢</a></div>";
+							echo "<div class='picture-button'><a class='like-button' href='javascript:void(0);'><span>♡</span>喜欢</a></div>";
 						}
 						mysqli_free_result($result1);
 					}
@@ -124,6 +133,7 @@
 									<div class="comment-text" style="left:10px;">
 										<div class="display-none comment-id">'.@$rs2[0].'</div>
 										<p style="right:0; padding: 5px 10px 0 5px;">'.@$rs2[p_comment].'</p>
+										<span style="left:3px; ">'.@$rs2[time].'</span>
 										<div class="arrow">
 											<div class="user-arrow-1"></div>
 											<div class="user-arrow-2"></div>
@@ -141,6 +151,7 @@
 									<div class="comment-text">
 										<div class="display-none comment-id">'.@$rs2[0].'</div>
 										<p>'.@$rs2[p_comment].'</p>
+										<span>'.@$rs2[time].'</span>
 										<div class="arrow">
 											<div class="arrow-1"></div>
 											<div class="arrow-2"></div>
@@ -243,22 +254,26 @@
 	
 	$("#comment-form input").mousedown(function(){
 		var pic_id = $("#pic-id").text();
-		var comm_text = $(".comment-textarea").val();
-		$.ajax({
-			url: "app/addComment.php",
-			type: "POST",
-			dataType: "json",
-			data: {
-				comm_text: comm_text,
-				pic_id: pic_id
-			},
-			success:function(data){
-				window.location.reload();
-			},
-			error:function(data){
-				alert('ajax error!'+data[0]);
-			}
-		});	
+		var comm_text = $.trim($(".comment-textarea").val());
+		if(comm_text == ""){
+			alert("评论内容为空,请重新输入");
+		}else{
+			$.ajax({
+				url: "app/addComment.php",
+				type: "POST",
+				dataType: "json",
+				data: {
+					comm_text: comm_text,
+					pic_id: pic_id
+				},
+				success:function(data){
+					window.location.reload();
+				},
+				error:function(data){
+					alert('ajax error!'+data[0]);
+				}
+			});	
+		}
 	});
 </script>
 </body>

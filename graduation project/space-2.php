@@ -114,6 +114,14 @@
 			mysqli_free_result($result);
 			mysqli_close($link);
 		}	
+		
+		function queryFollow($u1,$u2){
+			include("app/config.php");
+			$sql1 = "select count(*) as total from gp_user_follow where u_id = $u1 and f_id = $u2";
+			$result1 = mysqli_query($link,$sql1);
+			$rs1 = mysqli_fetch_array($result1);
+			return $rs1['total'];
+		}
 	}
 ?>
 <?php 
@@ -157,20 +165,14 @@
 							<a id='finsh-button' href='javascript:void(0);'>完成编辑</a>
 						</div>";
 				}else{
-					if(isset($_SESSION['currentUser'])){
+					if(isset($_SESSION['currentUser'])&&$_SESSION['currentUser']['id']!=$_SESSION['user']['id']){
 					echo"<div class='title-button' style='margin-top:41px;'>";
-							$sql1 = "select count(*) as total from gp_user_follow where u_id = '".$_SESSION['currentUser']['id']."' and f_id = '".@$_SESSION['user']['id']."'";
-								$result1 = mysqli_query($link,$sql1);
-								$rs1 = mysqli_fetch_array($result1);
-								
-								if($rs1['total']==0){
-									echo "<ul class='user-button follow-button'><li><a>关注</a></li></ul>";
-								}else{
-									echo "<ul class='user-button followed'><li><a>取消关注</a></li></ul>";
-								}
-								echo "<ul class='user-button' style='margin-right: 20px;'><li><a>私信</a></li></ul>
-						</div>";
-						mysqli_free_result($result1);
+						if($s2->queryFollow($_SESSION['currentUser']['id'],$_SESSION['user']['id'])==0){
+							echo "<ul class='user-button follow-button'><li><a>关注</a></li></ul>";
+						}else{
+							echo "<ul class='user-button followed'><li><a>取消关注</a></li></ul>";
+						}
+					echo "</div>";
 					}
 				}	 
 			?>

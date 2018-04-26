@@ -29,7 +29,6 @@
 	<div class="checkout-left">
 		<div class="checkout-box-left">
 			<div class="checkout-inner">
-				<form name="login-form" id="login-form" onsubmit="return checkinfo()" method="post"  action="index.php">
 					<font class="checkout-title-font"><strong>用户登录</strong></font>
 					<p style="margin-top: 50px;">	
 						<label for="user-login"><font class="checkout-font"><strong>用户名</strong></font></label>
@@ -51,9 +50,8 @@
 						<input type="checkbox" id="remember-me" checked="false"><a class="remember-me-a"><strong>记住我</strong></a>
 					</p>
 					<div class="checkout-button">
-						<input type="submit" name="submit" id="submit" value="登录">
+						<input type="button" onClick="checkinfo()" id="submit" value="登录">
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>

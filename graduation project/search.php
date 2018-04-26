@@ -93,7 +93,7 @@
 			while($rs = mysqli_fetch_array($result)){
 				echo "<div class='content-picture-box'>
 						<div class='content-picture'>
-							<a href='detail.php?pic_id=".@$rs[0]."'><img src='".@$rs[pic_url]."' /></a>
+							<a href='detail.php?pic_id=".@$rs[8]."'><img src='".@$rs[pic_url]."' /></a>
 						</div>
 						<div class='picture-info'>
 							<div class='profile-picture'>

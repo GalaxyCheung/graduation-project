@@ -1,6 +1,8 @@
 <?php
 	#发布搭配
+	include("config.php");
 	session_start();
+
 	$currentUser_id = @$_SESSION['currentUser']['id'];
 	$title = $_POST['title'];
 	$subtitle = $_POST['subtitle'];
@@ -8,8 +10,6 @@
 	$d = date("Y-m-d H:i:s");
 	
 	$file=$_FILES['pic_url'];
-
-	include("config.php");
 	
 	$savadir='../upload/photo library/';  
 	$pic_url = 'upload/photo library/'.$file['name']; 
